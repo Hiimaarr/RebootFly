@@ -1,31 +1,33 @@
 require('dotenv').config()
-const {syncModels,checkConnection} = require('./Database/index')
-/* const {addRelationsToModels} = require('./Database/models') */
+const {sequelize, syncModels, checkConnection} = require('./Database/index')
+const {addRelationsToModels} = require('./Database/models') 
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
+const app = express()
 
 async function checkAndSyncSQL() {
     await checkConnection()
-    /* addRelationsToModels() */
     await syncModels()
-}
-const port = 3000 
-function initAndListen(){
-    try{
-    const app = express()
-    .use(cors())
-    .use(express.json())
-    .use(morgan('dev'))
-    /* .use('/api', require('./Api/Routes')) */
-    .listen(port, () => {
-        console.log(`Listening on port ${port}`)
-    })
-    }catch(error){
-        console.log(error);
-    }
+    addRelationsToModels() 
     
 }
+const port = 3000
+
+const initAndListen = () => {
+    try {
+        app.use(express.json())
+            .use(cors())
+            .use(morgan('dev'))
+            .listen(port, () => {
+        console.log(`Server started ${port}`)
+  })
+    }catch (error) {
+    console.log(error)
+    }
+}
+
+
 async function startAPI(){
     try{
     await checkAndSyncSQL()

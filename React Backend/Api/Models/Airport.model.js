@@ -15,5 +15,5 @@ const Airport = sequelize.define('Airport',{
 
 },/* {updatedAt:false, timestamps:false} */)
 
-module.exports=Clients
+module.exports=Airport;
 
