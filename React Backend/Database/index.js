@@ -16,4 +16,18 @@ async function checkConnection(){
     }
 }
 
-module,exports = {sequelize,checkConnection}
+async function syncModels(value){
+    const state = {
+        alter: {alter: true},
+        force: {force: true},
+    }
+
+    try {
+        await sequelize.sync(state[value] || '')
+        console.log(`All models synchronized using ${JSON.stringify(state[value]) || ''}`)
+    } catch (error) {
+        throw error
+    }
+}
+
+module.exports = {sequelize,checkConnection,syncModels}
