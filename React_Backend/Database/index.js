@@ -1,6 +1,6 @@
 const {Sequelize} = require ('sequelize')
 
-const sequelize = new Sequelize("DBrebootFly", "himar", "reboot", {
+const sequelize = new Sequelize("DBrebootFly", "reboot", "reboot", {
     host: "localhost",
     dialect: 'mysql',
     port: 3306,
@@ -20,7 +20,7 @@ async function syncModels(value){
     const state = {}
 
     try {
-        await sequelize.sync(state[value] || '')
+        await sequelize.sync({alter:false})
         console.log(`All models synchronized using ${JSON.stringify(state[value]) || ''}`)
     } catch (error) {
         throw error

@@ -10,7 +10,7 @@ const app = express()
 async function checkAndSyncSQL() {
     await checkConnection()
     initializeRelations() 
-    await syncModels()
+    await syncModels(false)
     
 }
 const port = 3000
