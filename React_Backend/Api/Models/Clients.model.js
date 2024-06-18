@@ -19,14 +19,16 @@ const Clients = sequelize.define('Clients',{
     username:{
         type: DataTypes.STRING(20),
         allowNull: false,
+        unique:true,
+
     },
     password:{
         type: DataTypes.STRING(20),
         allowNull: false,
-
     },
     dni: {
         type: DataTypes.STRING(9),
+        unique:true,
     },
     status:{
         type: DataTypes.ENUM('blocked','active'),

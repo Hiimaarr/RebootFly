@@ -11,6 +11,7 @@ const Planes = sequelize.define('Planes',{
     reference:{
         type: DataTypes.STRING(9),
         allowNull: false,
+        unique:true,
     },
     user_capacity:{
         type: DataTypes.INTEGER,

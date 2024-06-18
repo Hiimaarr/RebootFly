@@ -11,6 +11,7 @@ const Billing = sequelize.define('Billings',{
     bank_account:{
         type: DataTypes.STRING(10),
         allowNull: false,
+        unique:true,
     },
     payment_method:{
         type: DataTypes.ENUM("PayPal", "Visa", "Bizum", "Mastercard"),

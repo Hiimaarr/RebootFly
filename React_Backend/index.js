@@ -6,10 +6,11 @@ const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
 
+
 async function checkAndSyncSQL() {
     await checkConnection()
-    await syncModels()
     addRelationsToModels() 
+    await syncModels()
     
 }
 const port = 3000

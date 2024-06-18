@@ -5,10 +5,12 @@
  const Flights = require('../Api/Models/Flights.model')
  const Location = require('../Api/Models/Location.model')
  const Planes = require('../Api/Models/Planes.model')
+ const clients_fligths= require('./relations')
+ const Employees_flight = require('./relations')
+ 
 
 function addRelationsToModels() {
     try {
-    
         console.log('Relations added to all models')
     } catch (error) {
         throw error
