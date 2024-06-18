@@ -19,8 +19,8 @@ const initAndListen = () => {
     try {
         app.use(express.json())
         app.use('/Api', require('./Api/Routes/index'))
-        /* .use(cors())
-        .use(morgan('dev')) */
+        .use(cors())
+        .use(morgan('dev')) 
         app.listen(port, () => {
         console.log(`Server started ${port}`)
   })

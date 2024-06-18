@@ -10,6 +10,6 @@ const clients_flights = sequelize.define('Clients_flights',{
         onDelete: 'CASCADE'
     } */
    
-})
+}, {timestamps:false})
 
 module.exports = clients_flights;

@@ -13,7 +13,7 @@ const Airport = sequelize.define('Airport',{
         allowNull: false,
     }
 
-},/* {updatedAt:false, timestamps:false} */)
+}, {timestamps:false})
 
 module.exports=Airport;
 

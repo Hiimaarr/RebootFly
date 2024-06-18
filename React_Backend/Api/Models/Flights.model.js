@@ -19,7 +19,7 @@ const Flights = sequelize.define('Flights',{
         allowNull: false
     }
 
-},/* {updatedAt:false, timestamps:false} */)
+},{timestamps:false})
 
 module.exports=Flights
 

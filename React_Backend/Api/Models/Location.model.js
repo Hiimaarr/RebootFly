@@ -17,7 +17,7 @@ const Location = sequelize.define('Location',{
         allowNull: false,
     }
 
-},/* {updatedAt:false, timestamps:false} */)
+},{timestamps:false})
 
 module.exports=Location
 

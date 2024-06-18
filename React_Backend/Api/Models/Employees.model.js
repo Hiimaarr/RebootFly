@@ -25,6 +25,6 @@ const Employees = sequelize.define('Employees',{
         allowNull: false
     }
 
-},/* {updatedAt:false, timestamps:false} */)
+},{timestamps:false})
 
 module.exports=Employees

@@ -27,7 +27,7 @@ const Planes = sequelize.define('Planes',{
 
     },
 
-},/* {updatedAt:false, timestamps:false} */)
+},{timestamps:false})
 
 module.exports=Planes
 

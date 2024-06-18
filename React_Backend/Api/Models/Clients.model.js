@@ -35,7 +35,7 @@ const Clients = sequelize.define('Clients',{
         allowNull: false
     }
 
-},/* {updatedAt:false, timestamps:false} */)
+},{timestamps:false})
 
 module.exports=Clients
 

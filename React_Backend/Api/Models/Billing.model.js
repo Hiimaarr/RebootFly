@@ -22,7 +22,7 @@ const Billing = sequelize.define('Billings',{
         allowNull: false
     }
 
-},/* {updatedAt:false, timestamps:false} */)
+}, {timestamps:false} )
 
 module.exports=Billing
 
