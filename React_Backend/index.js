@@ -1,6 +1,6 @@
 require('dotenv').config()
 const {sequelize, syncModels, checkConnection} = require('./Database/index')
-const {addRelationsToModels} = require('./Database/models') 
+const {initializeRelations} = require("./Database/relations")
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
@@ -9,7 +9,7 @@ const app = express()
 
 async function checkAndSyncSQL() {
     await checkConnection()
-    addRelationsToModels() 
+    initializeRelations() 
     await syncModels()
     
 }

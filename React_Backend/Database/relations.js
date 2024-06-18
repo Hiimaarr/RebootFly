@@ -7,8 +7,9 @@
  const Flights = require('../Api/Models/Flights.model')
  const Location = require('../Api/Models/Location.model')
  const Planes = require('../Api/Models/Planes.model');
+ const Clients_flights = require('../Api/Models/Clients_flights.model');
 
-const clients_fligths = sequelize.define('clients_flights', {
+/* const clients_fligths = sequelize.define('clients_flights', {
     billing_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -30,7 +31,7 @@ const employees_flights = sequelize.define('employees_flights', {
         }
 }}, {
     timestamps: false
-});
+}); */
 
  const initializeRelations = () =>{
     try{
@@ -83,22 +84,22 @@ const employees_flights = sequelize.define('employees_flights', {
         onDelete: 'CASCADE'
     })
     
-    Billing.hasOne(clients_fligths, {
+    
+    
+    Clients.belongsToMany(Flights, {through:"Clients_flights", });
+    Flights.belongsToMany(Clients, {through:"Clients_flights", });
+    
+    Employees.belongsToMany(Flights,{through:"Employees_flights"});
+    Flights.belongsToMany(Employees,{through:"Employees_flights"});
+    
+    Billing.hasOne(Clients_flights, {
         foreignKey: {
             name: 'billing_id',
             allowNull: false,
         },
         onDelete: 'CASCADE'
     })
-    
-    
-    Clients.belongsToMany(Flights, {through:clients_fligths});
-    Flights.belongsToMany(Clients, {through:clients_fligths});
-    
-    Employees.belongsToMany(Flights,{through:employees_flights});
-    Flights.belongsToMany(Employees,{through:employees_flights});
-    
-    clients_fligths.belongsTo(Billing, {
+    Clients_flights.belongsTo(Billing, {
         foreignKey: {
             name: 'billing_id',
             allowNull: false,
