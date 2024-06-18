@@ -18,9 +18,10 @@ const port = 3000
 const initAndListen = () => {
     try {
         app.use(express.json())
-            .use(cors())
-            .use(morgan('dev'))
-            .listen(port, () => {
+        app.use('/Api', require('./Api/Routes/index'))
+        /* .use(cors())
+        .use(morgan('dev')) */
+        app.listen(port, () => {
         console.log(`Server started ${port}`)
   })
     }catch (error) {
