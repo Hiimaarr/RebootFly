@@ -4,7 +4,7 @@ const Flights = require("../Models/Flights.model");
 const getAllFlights = async (req, res) => {
   try {
     const Flights = await Flights.findAll();
-    return res.status(200).json(flights);
+    return res.status(200).json(Flights);
   } catch (error) {
     console.log(error);
   }
