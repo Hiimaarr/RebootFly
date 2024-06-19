@@ -1,20 +1,18 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const { sequelize } = require("./index");
-const Airport = require("../Api/Models/Airport.model");
-const Billing = require("../Api/Models/Billing.model");
-const Clients = require("../Api/Models/Clients.model");
-const Employees = require("../Api/Models/Employees.model");
-const Flights = require("../Api/Models/Flights.model");
-const Location = require("../Api/Models/Location.model");
-const Planes = require("../Api/Models/Planes.model");
-const Clients_flights = require("../Api/Models/Clients_flights.model");
-const employees_flights = require("../Api/Models/Employees_flights.model");
+ const {Sequelize,DataTypes} = require('sequelize');
+ const {sequelize }= require('./index');
+ const Airport = require('../Api/Models/Airport.model');
+ const Billing = require('../Api/Models/Billing.model')
+ const Clients = require('../Api/Models/Clients.model')
+ const Employees = require('../Api/Models/Employees.model')
+ const Flights = require('../Api/Models/Flights.model')
+ const Location = require('../Api/Models/Location.model')
+ const Planes = require('../Api/Models/Planes.model');
+ const Clients_flights = require('../Api/Models/Clients_flights.model');
+ const Employees_flights = require('../Api/Models/Employees_flights.model')
 
-const initializeRelations = () => {
-  try {
-    Planes.hasOne(Flights, {
-      foreignKey: {
-        name: "plane_id",
+/* const clients_fligths = sequelize.define('clients_flights', {
+    billing_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       onDelete: "CASCADE",
@@ -24,60 +22,36 @@ const initializeRelations = () => {
       foreignKey: {
         name: "departure_airport_id",
         allowNull: false,
-      },
-      onDelete: "CASCADE",
-    });
-    Flights.hasMany(Location, {
-      foreignKey: "departure_airport_id",
-    });
-    Location.hasOne(Flights, {
-      foreignKey: {
-        name: "arrival_airport_id",
-        allowNull: false,
-      },
-      onDelete: "CASCADE",
-    });
-    Flights.hasMany(Location, {
-      foreignKey: "arrival_airport_id",
-    });
+        references: {
+            model: Employees,
+            key: 'id'
+        }
+}}, {
+    timestamps: false
+}); */
 
-    Airport.hasOne(Location, {
-      foreignKey: {
-        name: "airport_id",
-        allowNull: false,
-      },
-      onDelete: "CASCADE",
-    });
+ const initializeRelations = () =>{
+    try{
 
-    Location.belongsTo(Airport, {
-      foreignKey: {
-        name: "airport_id",
-        allowNull: false,
-      },
-      onDelete: "CASCADE",
-    });
+    Planes.hasMany(Flights)
+    Flights.belongsTo(Planes);
+ 
+    Location.hasMany(Flights)
+    Flights.belongsTo(Location)
+        
+    Airport.hasOne(Location)
+    Location.belongsTo(Airport)
+    
+    Clients.belongsToMany(Flights, {through:"Clients_flights", });
+    Flights.belongsToMany(Clients, {through:"Clients_flights", });
+    
+    Employees.belongsToMany(Flights,{through:"Employees_flights"});
+    Flights.belongsToMany(Employees,{through:"Employees_flights"});
+    
+    Billing.hasOne(Clients_flights)
+    Clients_flights.belongsTo(Billing)
 
-    Clients.belongsToMany(Flights, { through: "Clients_flights" });
-    Flights.belongsToMany(Clients, { through: "Clients_flights" });
-
-    Employees.belongsToMany(Flights, { through: "Employees_flights" });
-    Flights.belongsToMany(Employees, { through: "Employees_flights" });
-
-    Billing.hasOne(Clients_flights, {
-      foreignKey: {
-        name: "billing_id",
-        allowNull: false,
-      },
-      onDelete: "CASCADE",
-    });
-    Clients_flights.belongsTo(Billing, {
-      foreignKey: {
-        name: "billing_id",
-        allowNull: false,
-      },
-      onDelete: "CASCADE",
-    });
-  } catch (error) {
+}catch(error){
     console.log(error);
   }
 };
