@@ -1,20 +1,20 @@
-const Flights = require("../Models/Flights.model");
+const Plane = require("../Models/Planes.model");
 
 
-const getAllFlights = async (req, res) => {
+const getAllPlanes = async (req, res) => {
   try {
-    const Flights = await Flights.findAll();
-    return res.status(200).json(flights);
+    const Planes = await Planes.findAll();
+    return res.status(200).json(planes);
   } catch (error) {
     console.log(error);
   }
 };
 
-const getOneFlights = async (req, res) => {
+const getOnePlane = async (req, res) => {
   try {
-    const oneFlights = await Flights.findByPk(req.params.id);
-    if (oneFlights) {
-      return res.status(200).json(oneFlights);
+    const onePlane = await Plane.findByPk(req.params.id);
+    if (onePlane) {
+      return res.status(200).json(onePlane);
     } else {
       return res.status(200).send("No user found");
     }
@@ -23,46 +23,46 @@ const getOneFlights = async (req, res) => {
   }
 };
 
-const updateFlights = async (req, res) => {
+const updatePlane = async (req, res) => {
   try {
-    const updatedFlights = await Flights.update(req.body, {
+    const updatedPlane = await Plane.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
-    return res.status(200).json(updatedFlights);
+    return res.status(200).json(updatedPlane);
   } catch (error) {
     return res.status(500).send(error.message);
   }
 };
 
-const deleteFlights = async (req, res) => {
+const deletePlane = async (req, res) => {
   try {
-    const deletedFlights = await Flights.destroy({
+    const deletedPlane = await Plane.destroy({
       where: {
         id: req.params.id,
       },
     });
-    return res.status(200).json(deletedFlights);
+    return res.status(200).json(deletedPlane);
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
   }
 };
 
-const createFlights = async (req, res) => {
+const createPlane = async (req, res) => {
   try {
-    const updatedFlights = await Flights.create(req.body);
-    return res.status(200).json(updatedFlights);
+    const updatedPlane = await Plane.create(req.body);
+    return res.status(200).json(updatedPlane);
   } catch (error) {
     return res.status(500).send(error.message);
   }
 };
 
 module.exports = {
-  getAllFlights,
-  getOneFlights,
-  updateFlights,
-  deleteFlights,
-  createFlights,
+  getAllPlanes,
+  getOnePlane,
+  updatePlane,
+  deletePlane,
+  createPlane,
 };

@@ -1,20 +1,20 @@
-const Flights = require("../Models/Flights.model");
+const Location = require("../Models/Location.model");
 
 
-const getAllFlights = async (req, res) => {
+const getAllLocations = async (req, res) => {
   try {
-    const Flights = await Flights.findAll();
-    return res.status(200).json(flights);
+    const Location = await Location.findAll();
+    return res.status(200).json(location);
   } catch (error) {
     console.log(error);
   }
 };
 
-const getOneFlights = async (req, res) => {
+const getOneLocation = async (req, res) => {
   try {
-    const oneFlights = await Flights.findByPk(req.params.id);
-    if (oneFlights) {
-      return res.status(200).json(oneFlights);
+    const oneLocation = await Location.findByPk(req.params.id);
+    if (oneLocation) {
+      return res.status(200).json(oneLocation);
     } else {
       return res.status(200).send("No user found");
     }
@@ -23,46 +23,46 @@ const getOneFlights = async (req, res) => {
   }
 };
 
-const updateFlights = async (req, res) => {
+const updateLocation = async (req, res) => {
   try {
-    const updatedFlights = await Flights.update(req.body, {
+    const updatedLocation = await Location.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
-    return res.status(200).json(updatedFlights);
+    return res.status(200).json(updatedLocation);
   } catch (error) {
     return res.status(500).send(error.message);
   }
 };
 
-const deleteFlights = async (req, res) => {
+const deleteLocation = async (req, res) => {
   try {
-    const deletedFlights = await Flights.destroy({
+    const deletedLocation = await Location.destroy({
       where: {
         id: req.params.id,
       },
     });
-    return res.status(200).json(deletedFlights);
+    return res.status(200).json(deletedLocation);
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
   }
 };
 
-const createFlights = async (req, res) => {
+const createLocation = async (req, res) => {
   try {
-    const updatedFlights = await Flights.create(req.body);
-    return res.status(200).json(updatedFlights);
+    const updatedLocation = await Location.create(req.body);
+    return res.status(200).json(updatedLocation);
   } catch (error) {
     return res.status(500).send(error.message);
   }
 };
 
 module.exports = {
-  getAllFlights,
-  getOneFlights,
-  updateFlights,
-  deleteFlights,
-  createFlights,
+  getAllLocations,
+  getOneLocation,
+  updateLocation,
+  deleteLocation,
+  createLocation,
 };

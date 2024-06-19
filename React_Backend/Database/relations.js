@@ -10,30 +10,6 @@ const Planes = require("../Api/Models/Planes.model");
 const Clients_flights = require("../Api/Models/Clients_flights.model");
 const employees_flights = require("../Api/Models/Employees_flights.model");
 
-/* const clients_fligths = sequelize.define('clients_flights', {
-    billing_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: Billing,
-            key: 'id'
-        }
-    }
-}, {
-    timestamps: false
-});
-
-const employees_flights = sequelize.define('employees_flights', {
-   employees_id:{ type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: Employees,
-            key: 'id'
-        }
-}}, {
-    timestamps: false
-}); */
-
 const initializeRelations = () => {
   try {
     Planes.hasOne(Flights, {
@@ -43,9 +19,6 @@ const initializeRelations = () => {
       },
       onDelete: "CASCADE",
     });
-    /* Flights.hasMany(Planes,{
-    foreignKey:'plane_id'
- }) */
 
     Location.hasOne(Flights, {
       foreignKey: {

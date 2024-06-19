@@ -1,17 +1,17 @@
 const router = require("express").Router();
 
 const {
-  getAllLocations,
-  getOneLocation,
-  updateLocation,
-  deleteLocation,
-  createLocation,
-} = require("../Controllers/Location.controller");
+  getAllPlanes,
+  getOnePlane,
+  updatePlane,
+  deletePlane,
+  createPlane,
+} = require("../Controllers/Planes.controller");
 
-router.get("", getAllLocations);
-router.get("/:id", getOneLocation);
-router.put("/:id", updateLocation);
-router.delete("/:id", deleteLocation);
-router.post("", createLocation);
+router.get("", getAllPlanes);
+router.get("/:id", getOnePlane);
+router.put("/:id", updatePlane);
+router.delete("/:id", deletePlane);
+router.post("", createPlane);
 
 module.exports = router;
