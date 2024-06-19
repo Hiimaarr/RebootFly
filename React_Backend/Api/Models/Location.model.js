@@ -8,12 +8,12 @@ const Location = sequelize.define('Location',{
         autoIncrement:true,
         primaryKey:true
     },
-    name:{
+    departure_airport:{
         type: DataTypes.STRING(20),
         allowNull: false,
     },
-    description:{
-        type: DataTypes.STRING,
+    arrival_airport:{
+        type: DataTypes.STRING(20),
         allowNull: false,
     }
 

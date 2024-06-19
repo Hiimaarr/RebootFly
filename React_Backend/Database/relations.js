@@ -8,7 +8,6 @@
  const Location = require('../Api/Models/Location.model')
  const Planes = require('../Api/Models/Planes.model');
  const Clients_flights = require('../Api/Models/Clients_flights.model');
- const employees_flights = require('../Api/Models/Employees_flights.model')
 
 /* const clients_fligths = sequelize.define('clients_flights', {
     billing_id: {
@@ -37,13 +36,15 @@ const employees_flights = sequelize.define('employees_flights', {
  const initializeRelations = () =>{
     try{
         Planes.hasOne(Flights,{
-        foreignKey:{
+    foreignKey:{
         name:'plane_id',
         allowNull:false
     },
     onDelete:'CASCADE'
  })
- 
+ Flights.hasMany(Planes,{
+    foreignKey:'plane_id'
+ })
  
  Location.hasOne(Flights,{
      foreignKey:{
@@ -91,20 +92,9 @@ const employees_flights = sequelize.define('employees_flights', {
     Employees.belongsToMany(Flights,{through:"Employees_flights"});
     Flights.belongsToMany(Employees,{through:"Employees_flights"});
     
-    Billing.hasOne(Clients_flights, {
-        foreignKey: {
-            name: 'billing_id',
-            allowNull: false,
-        },
-        onDelete: 'CASCADE'
-    })
-    Clients_flights.belongsTo(Billing, {
-        foreignKey: {
-            name: 'billing_id',
-            allowNull: false,
-        },
-        onDelete: 'CASCADE',
-    })
+    Billing.hasOne(Clients_flights)
+    Clients_flights.belongsTo(Billing)
+
 }catch(error){
     console.log(error);
 }
