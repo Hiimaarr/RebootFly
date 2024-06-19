@@ -17,7 +17,10 @@ async function checkConnection(){
 }
 
 async function syncModels(value){
-    const state = {}
+    const state = {
+        alter: {alter: true},
+        force: {force: true},
+    }
 
     try {
         await sequelize.sync(state[value] || '')
