@@ -29,6 +29,7 @@ const Clients = sequelize.define('Clients',{
     dni: {
         type: DataTypes.STRING(9),
         unique:true,
+        allowNull:false,
     },
     status:{
         type: DataTypes.ENUM('blocked','active'),

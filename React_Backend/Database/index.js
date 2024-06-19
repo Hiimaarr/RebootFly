@@ -1,6 +1,6 @@
 const {Sequelize} = require ('sequelize')
 
-const sequelize = new Sequelize("DBrebootFly", "himar", "reboot", {
+const sequelize = new Sequelize("DBrebootFly", "david", "reboot", {
     host: "localhost",
     dialect: 'mysql',
     port: 3306,
@@ -17,7 +17,10 @@ async function checkConnection(){
 }
 
 async function syncModels(value){
-    const state = {}
+    const state = {
+        alter: {alter: true},
+        force: {force: true},
+    }
 
     try {
         await sequelize.sync(state[value] || '')

@@ -8,6 +8,7 @@
  const Location = require('../Api/Models/Location.model')
  const Planes = require('../Api/Models/Planes.model');
  const Clients_flights = require('../Api/Models/Clients_flights.model');
+ const employees_flights = require('../Api/Models/Employees_flights.model')
 
 /* const clients_fligths = sequelize.define('clients_flights', {
     billing_id: {
@@ -36,15 +37,13 @@ const employees_flights = sequelize.define('employees_flights', {
  const initializeRelations = () =>{
     try{
         Planes.hasOne(Flights,{
-    foreignKey:{
+        foreignKey:{
         name:'plane_id',
         allowNull:false
     },
     onDelete:'CASCADE'
  })
- Flights.hasMany(Planes,{
-    foreignKey:'plane_id'
- })
+ 
  
  Location.hasOne(Flights,{
      foreignKey:{

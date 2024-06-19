@@ -51,27 +51,12 @@ const deleteAirport = async (req,res)=>{
 
 const createAirport = async (req, res ) => {
     try {
-        const updatedAirport = await Airport.create(req.body)    
-        return res.status(200).json(updatedAirport) 
+        const createdAirport = await Airport.create(req.body)    
+        return res.status(200).json(createdAirport) 
     } catch (error) {
         return res.status(500).send(error.message)
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = {
     getAllAirports,
