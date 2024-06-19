@@ -2,6 +2,8 @@ const {DataTypes}=require('sequelize')
 
 const {sequelize}=require('../../Database/index')
 
+const allowedDomains = ['gmail.com', 'hotmail.com'];
+
 const Clients = sequelize.define('Clients',{
     id:{
         type:DataTypes.INTEGER,
@@ -25,6 +27,27 @@ const Clients = sequelize.define('Clients',{
     password:{
         type: DataTypes.STRING(20),
         allowNull: false,
+    },
+    email: {
+        type:DataTypes.STRING,
+        allowNull: false,
+        unique:true,
+        validate: {
+      isEmail: {
+        msg: "El correo electrónico no tiene un formato válido."
+      },
+      len: {
+        args: [5, 15],
+        msg: "El correo electrónico debe tener entre 5 y 15 caracteres."
+      },
+      isAllowedDomain(value) {
+        const domain = value.split('@')[1];
+        if (!allowedDomains.includes(domain)) {
+          throw new Error(`El dominio del correo electrónico debe ser uno de los siguientes: ${allowedDomains.join(', ')}.`);
+        }
+      }
+    }
+        
     },
     dni: {
         type: DataTypes.STRING(9),
