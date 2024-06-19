@@ -30,6 +30,22 @@ const Clients = sequelize.define('Clients',{
         type: DataTypes.STRING(9),
         unique:true,
         allowNull:false,
+        validate: {
+            isDNI(value) {
+                const dniPattern = /^[0-9]{8}[A-Z]$/;
+        if (!dniPattern.test(value)) {
+          throw new Error('El DNI debe tener 8 dígitos y un caracter');
+        };
+        const dniLetters = 'TRWAGMYFPDXBNJZSQVHLCKE';
+        const number = parseInt(value.slice(0, 8), 10);
+        const letter = value[8];
+        const correctLetter = dniLetters[number % 23];
+
+        if (letter !== correctLetter) {
+          throw new Error('La letra del DNI no es correcta.');
+        }
+            }
+        }
     },
     status:{
         type: DataTypes.ENUM('blocked','active'),
