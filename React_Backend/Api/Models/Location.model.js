@@ -9,6 +9,18 @@ const Location = sequelize.define(
       type: DataTypes.STRING(30),
       allowNull: false,
     },
+    country: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    province: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
     description: {
       type: DataTypes.STRING(60),
       allowNull: false,

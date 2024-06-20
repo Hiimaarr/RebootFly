@@ -9,8 +9,39 @@ const Airport = sequelize.define(
       type: DataTypes.STRING(20),
       allowNull: false,
     },
+    code: {
+      type: DataTypes.STRING(10),
+      allowNull: false,
+      unique: true,
+    },
+    locationId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    elevation: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    runwayCount: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    runwayLength: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    terminalCount: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    contactNumber: {
+      type: DataTypes.STRING(20),
+      allowNull: true,
+    },
   },
-  { timestamps: false }
+  {
+    timestamps: false,
+  }
 );
 
 module.exports = Airport;

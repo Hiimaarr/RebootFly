@@ -12,16 +12,13 @@ const initializeRelations = () => {
     Flights.belongsTo(Airport);
 
     Airport.hasOne(Location);
-    Location.belongsTo(Airport);
+    Airport.belongsTo(Location);
 
-    Clients.belongsToMany(Flights, { through: "Clients_flights" });
-    Flights.belongsToMany(Clients, { through: "Clients_flights" });
+    Bookings.belongsToMany(Flights, { through: "Flight_bookings" });
+    Flights.belongsToMany(Bookings, { through: "Flight_bookings" });
 
-    Employees.belongsToMany(Flights, { through: "Employees_flights" });
-    Flights.belongsToMany(Employees, { through: "Employees_flights" });
-
-    Billing.hasOne(Clients_flights);
-    Clients_flights.belongsTo(Billing);
+    Bookings.hasMany(Users);
+    Bookings.belongsTo(Users);
   } catch (error) {
     console.log(error);
   }
