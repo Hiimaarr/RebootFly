@@ -1,4 +1,7 @@
 const Clients_flights = require('../Models/Clients_flights.model');
+const Flight = require('../Models/Flights.model')
+const Client = require('../Models/Clients.model')
+const Location = require('../Models/Location.model')
 
 const getAllClients_flights = async ( req, res ) => {
     try {
@@ -59,10 +62,30 @@ const createClients_flights = async (req, res ) => {
     }
 };
 
+const getFlightByPK = async (req,res) =>{
+    try {
+        const {Flights} = await Client.findByPk(req.params.id,
+           { include:Flight}
+        )
+        const location = await Flight.findByPk(Flights[0].id, {
+            include: Location
+        })
+        const result = {
+            flights: Flights,
+            locationFlight: location.Location
+        }
+            /* const getFlight = await Flight.findAll() */
+        return res.status(200).json(result)
+    } catch (error) {
+        return res.status(500).send(error.message)
+    }
+}
+
 module.exports = {
     getAllClients_flights,
     createClients_flights,
     getOneClient_flight,
     updateClient_flight,
-    deleteClient_flight
+    deleteClient_flight,
+    getFlightByPK
 }
