@@ -18,10 +18,13 @@ const signUp = async ( req, res ) => {
         const salt = bcrypt.genSaltSync(parseInt('10'));
         req.body.password = bcrypt.hashSync(req.body.password, salt);
 
-        const client = await client.create({
+        const client = await Clients.create({
+            name: req.body.name,
+            surname: req.body.surname,
             username: req.body.username,
-            email: req.body.email,
             password: req.body.password,
+            dni: req.body.dni,
+            email: req.body.email,
         });
 
         const payload = {email: req.body.email};
@@ -29,7 +32,7 @@ const signUp = async ( req, res ) => {
         return res.status(200).json({token});
     }
      catch (error) {
-        console.log('Error signing up client');
+        console.log('Error signing up client', error);
         return res.status(500).json(error);
     }
 };

@@ -24,7 +24,7 @@ const Clients = sequelize.define('Clients',{
 
     },
     password:{
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     dni: {
@@ -70,7 +70,8 @@ const Clients = sequelize.define('Clients',{
     },
     status:{
         type: DataTypes.ENUM('blocked','active'),
-        allowNull: false
+        allowNull: false,
+        defaultValue: 'active'
     }
 
 },{timestamps:false})
