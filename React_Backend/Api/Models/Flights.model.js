@@ -1,25 +1,22 @@
-const {DataTypes}=require('sequelize')
+const { DataTypes } = require("sequelize");
 
-const {sequelize}=require('../../Database/index')
+const { sequelize } = require("../../Database/index");
 
-const Flights = sequelize.define('Flights',{
-    id:{
-        type:DataTypes.INTEGER,
-        autoIncrement:true,
-        primaryKey:true
+const Flights = sequelize.define(
+  "Flights",
+  {
+    departure_time: {
+      type: DataTypes.DATE,
     },
-    departure_time:{
-        type: DataTypes.TIME
+    arrival_time: {
+      type: DataTypes.DATE,
     },
-    arrival_time:{
-        type:DataTypes.TIME
+    status: {
+      type: DataTypes.ENUM("full", "available", "cancel"),
+      allowNull: false,
     },
-    status:{
-        type: DataTypes.ENUM('pending','in_progress','completed'),
-        allowNull: false
-    }
+  },
+  { timestamps: false }
+);
 
-},{timestamps:false})
-
-module.exports=Flights
-
+module.exports = Flights;
