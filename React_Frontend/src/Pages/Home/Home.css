@@ -1,0 +1,122 @@
+#PosicionHeader {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00ff22c0;
+    height: 15vh;
+    width: 100vw;
+    align-content: center;
+
+}
+
+#outlet{
+    background-color: yellow;
+    display: grid;
+    height: 70vh;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+            ". . . BarraBuscar . . ."
+            ". . . Contenido . . ."
+            ". . . Contenido . . ."
+            ". . . Contenido . . ."
+            ". . . Contenido . . ."
+            ". . . Contenido . . ."
+            ". . . Contenido . . ."
+            ". . . Contenido . . .";
+}
+
+
+#BarraBuscar{
+    grid-area: BarraBuscar;
+    width: 50%;
+    height: 25px;
+    background-color: aqua;
+    display: inline-block;
+    margin-left: 24%;
+    margin-top: 1%;
+    place-items: end;
+    place-content: end;
+    display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-template-areas: 
+            ". . . . Lupa";
+}
+
+#Origen{
+
+}
+
+#Destino{
+
+}
+
+#Lupa{
+    grid-area: Lupa;
+    width: 50px;
+    height: 25px;
+}
+
+#Content{
+    grid-area: Contenido;
+    width: 1500px;
+    height: 100%;
+    background-color: darkgreen;
+    place-items: center;
+    place-content: center;
+    display: grid;
+        grid-template-columns: 1fr 1fr 1fr ;
+        grid-template-rows: 1fr 1fr ;
+        gap: 10px 10px;
+        grid-template-areas:
+            "Oferta1 Oferta2 Oferta3"
+            "Oferta4 Oferta5 Oferta6";
+}
+
+
+#Oferta1{
+    display: block;
+    grid-area: Oferta1;
+        width: 1500px;
+        height: 10%;
+        background-color: chartreuse;
+}
+
+#Oferta2{
+    grid-area: Oferta2;
+    width: 1500px;
+    height: 10%;
+    background-color: rgb(9, 255, 0);
+}
+
+#Oferta3{
+    grid-area: Oferta3;
+    width: 1500px;
+    height: 10%;
+    background-color: chartreuse;
+}
+
+#Oferta4{
+    grid-area: Oferta4;
+    width: 1500px;
+    height: 10%;
+    background-color: chartreuse;
+}
+
+#Oferta5{
+    grid-area: Oferta5;
+    width: 1500px;
+    height: 10%;
+    background-color: chartreuse;
+}
+
+#Oferta6{
+    grid-area: Oferta6;
+    width: 1500px;
+    height: 10%;
+    background-color: rgb(255, 187, 0);
+}
