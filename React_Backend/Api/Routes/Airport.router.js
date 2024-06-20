@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {getAllAirports, getOneAirport, updateAirport,deleteAirport,createAirport} = require('../Controllers/Airport.controllers')
+const {getAllAirports, getOneAirport, updateAirport,deleteAirport,createAirport} = require('../Controllers/Airport.controller')
 
 router.get('', getAllAirports);
 router.get('/:id', getOneAirport);

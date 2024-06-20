@@ -14,10 +14,6 @@ const Airport = sequelize.define(
       allowNull: false,
       unique: true,
     },
-    locationId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     elevation: {
       type: DataTypes.INTEGER,
       allowNull: true,
