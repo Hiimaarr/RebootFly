@@ -8,7 +8,7 @@ router.use('/Clients', require('./Clients.router'));
 router.use('/Employees',require('./Employees.router'))
 router.use('/EmployeesFlights',require('./EmployeesFlight.router'))
 router.use('/Billing', require('./Billing.router'))
-router.use('/Clientsflights', require('./Clients_flights.router'))
+router.use('/ClientsFlights', require('./Clients_flights.router'))
 router.use('/auth', require('./auth.router'))
 
 module.exports = router;
