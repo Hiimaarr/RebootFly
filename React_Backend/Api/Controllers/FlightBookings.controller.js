@@ -1,19 +1,21 @@
+const FlightBooking = require("../Models/Bookings.model");
+const Flight = require("../Models/Flights.model");
 const Booking = require("../Models/Bookings.model");
 
-const getAllBookings = async (req, res) => {
+const getAllFlightBookings = async (req, res) => {
   try {
-    const booking = await Booking.findAll();
-    return res.status(200).json(booking);
+    const flightBooking = await FlightBooking.findAll();
+    return res.status(200).json(flightBooking);
   } catch (error) {
     console.log(error);
   }
 };
 
-const getOneBooking = async (req, res) => {
+const getOneFlightBooking = async (req, res) => {
   try {
-    const oneBooking = await Booking.findByPk(req.params.id);
-    if (oneBooking) {
-      return res.status(200).json(oneBooking);
+    const oneFlightBooking = await FlightBooking.findByPk(req.params.id);
+    if (oneFLightBooking) {
+      return res.status(200).json(oneFlightBooking);
     } else {
       return res.status(200).send("No user found");
     }
@@ -22,38 +24,32 @@ const getOneBooking = async (req, res) => {
   }
 };
 
-const updateBooking = async (req, res) => {
+const updateFlightBooking = async (req, res) => {
   try {
-    const updatedBooking = await Booking.update(req.body, {
+    const updatedFlightBooking = await FlightBooking.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
-    return res.status(200).json(updatedBooking);
+    return res.status(200).json(updateFLightBooking);
   } catch (error) {
     return res.status(500).send(error.message);
   }
 };
 
-const deleteBooking = async (req, res) => {
+const createBookingFromFlightBooking = async (req, res) => {
   try {
-    const deletedBooking = await Booking.destroy({
+    const createBooking = await Booking.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
-    return res.status(200).json(deletedBooking);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send(error.message);
-  }
-};
-
-const createBooking = async (req, res) => {
-  try {
-    const updatedBooking = await Booking.create(req.body);
-
-    return res.status(200).json(updatedBooking);
+    const patchToAddSeatsToFlight = await Flight.update(req, body, {
+      where: {
+        id: req.params.id,
+      }
+    });
+    return res.status(200).json(updateFLightBooking);
   } catch (error) {
     return res.status(500).send(error.message);
   }
