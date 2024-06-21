@@ -1,4 +1,4 @@
-const FlightBooking = require("../Models/Bookings.model");
+const FlightBooking = require("../Models/FlightBookings.model");
 const Flight = require("../Models/Flights.model");
 const Booking = require("../Models/Bookings.model");
 
@@ -44,25 +44,60 @@ const createBookingAndIncreaseOcuppiedSeatsFromFlightBooking = async (
   res
 ) => {
   try {
+   
     const createBooking = await Booking.create(req.body);
 
-    const patchToAddSeatsToFlight = await Flight.findOne(req.body, {
+    
+    const flight = await Flight.findByPk(req.params.id);
+
+   console.log(flight.dataValues)
+    if (!flight) {
+      return res.status(404).json({ error: "Flight not found" });
+    }
+
+   /// Actualizar flight
+    
+ suma = flight.dataValues.occupiedPlaces += 1;
+  const updatedFlights = await Flight.update(
+    { occupiedPlaces : suma },
+    {
       where: {
-        id: req.params.id,
+        id: flight.dataValues.id,
       },
+    }
+  );
+    console.log(updatedFlights);
+   /*  await flight.save(); */
+console.log(createBooking.dataValues.id);
+   
+  createdBookingAndAddedSeats =  await FlightBooking.create({
+      FlightId: flight.dataValues.id,
+      BookingId: createBooking.dataValues.id,
     });
-    patchToAddSeatsToFlight.occupiedPlaces += 1;
-
-    const creadBookingAndAddSeats = {
-      booking: createBooking,
-      flight: patchToAddSeatsToFlight,
-    };
-
-    return res.status(200).json(creadBookingAndAddSeats);
+    
+    return res.status(200).json(createdBookingAndAddedSeats);
   } catch (error) {
+   
     return res.status(500).send(error.message);
   }
 };
+
+
+const prueba=async(req,res)=>{
+try {
+  createdBookingAndAddedSeats =  await FlightBooking.create({
+      FlightId:1,
+      BookingId: 1,
+    });
+    
+  return res.status(200).json(createdBookingAndAddedSeats);
+} catch (error) {
+  console.log(error)
+}
+
+
+
+}
 
 const deleteBookingAndSeatsFromFlightBooking = async (req, res) => {
   try {
@@ -114,4 +149,5 @@ module.exports = {
   updateFlightBooking,
   createBookingAndIncreaseOcuppiedSeatsFromFlightBooking,
   deleteBookingAndSeatsFromFlightBooking,
+  prueba,
 };
