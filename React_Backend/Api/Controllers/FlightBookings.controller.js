@@ -46,7 +46,7 @@ const createBookingAndIncreaseOcuppiedSeatsFromFlightBooking = async (
   try {
     const createBooking = await Booking.create(req.body);
 
-    const patchToAddSeatsToFlight = await Flight.findOne(req, body, {
+    const patchToAddSeatsToFlight = await Flight.findOne(req.body, {
       where: {
         id: req.params.id,
       },

@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 const { sequelize } = require("../../Database/index");
+const allowedDomains = ["gmail.com", "hotmail.com", "outlook.com"];
 
 const Bookings = sequelize.define(
   "Bookings",
@@ -16,6 +17,7 @@ const Bookings = sequelize.define(
     dni: {
       type: DataTypes.STRING(9),
       allowNull: false,
+      unique: true,
       validate: {
         isDNI(value) {
           const dniPattern = /^[0-9]{8}[A-Z]$/;

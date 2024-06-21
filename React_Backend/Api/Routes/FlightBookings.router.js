@@ -11,7 +11,7 @@ const {
 router.get("", getAllFlightBookings);
 /* router.get("/:id", getOneFlightBooking); */
 router.put("/:id", updateFlightBooking);
-router.delete("/:id", createBookingAndIncreaseOcuppiedSeatsFromFlightBooking);
-router.post("", deleteBookingAndSeatsFromFlightBooking);
+router.post("/:id", createBookingAndIncreaseOcuppiedSeatsFromFlightBooking);
+router.delete("/:id", deleteBookingAndSeatsFromFlightBooking);
 
 module.exports = router;
