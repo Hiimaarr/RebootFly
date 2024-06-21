@@ -6,7 +6,7 @@ import twitter from '../../assets/media/twitter.png'
 
 function Footer() {
   return (
-    <div>
+    <>
       <div id="footer">
             <img id="logoFooter" src={logo}></img>
             <div id="info">
@@ -18,7 +18,7 @@ function Footer() {
                 <img className='red'src={twitter}/><img className="red"src={linkedin}/><img className="red"src={instagram}/>
             </div>
         </div>
-    </div>
+    </>
   )
 }
 
