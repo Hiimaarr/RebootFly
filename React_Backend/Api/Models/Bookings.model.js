@@ -13,14 +13,8 @@ const Bookings = sequelize.define(
       type: DataTypes.STRING(40),
       allowNull: false,
     },
-    username: {
-      type: DataTypes.STRING(20),
-      allowNull: false,
-      unique: true,
-    },
     dni: {
       type: DataTypes.STRING(9),
-      unique: true,
       allowNull: false,
       validate: {
         isDNI(value) {
@@ -42,7 +36,6 @@ const Bookings = sequelize.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         isEmail: {
           msg: "El correo electrónico no tiene un formato válido.",
@@ -75,11 +68,7 @@ const Bookings = sequelize.define(
           msg: "El número de teléfono debe contener exactamente 9 dígitos",
         },
       },
-    },
-    status: {
-      type: DataTypes.ENUM("blocked", "active"),
-      allowNull: false,
-    },
+    }
   },
   { timestamps: false }
 );

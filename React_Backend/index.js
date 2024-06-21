@@ -9,7 +9,7 @@ const app = express()
 
 async function checkAndSyncSQL() {
     await checkConnection()
-    initializeRelations() 
+    initializeRelations("force") 
     await syncModels(false)
     
 }

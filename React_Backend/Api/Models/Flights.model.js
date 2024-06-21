@@ -2,8 +2,8 @@ const { DataTypes } = require("sequelize");
 
 const { sequelize } = require("../../Database/index");
 
-const Flights = sequelize.define(
-  "Flights",
+const Flight = sequelize.define(
+  "Flight",
   {
     departure_time: {
       type: DataTypes.DATE,
@@ -12,11 +12,19 @@ const Flights = sequelize.define(
       type: DataTypes.DATE,
     },
     status: {
-      type: DataTypes.ENUM("full", "available", "cancel"),
+      type: DataTypes.ENUM("canceled", "full", "available"),
+      allowNull: false,
+    },
+    capacity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    occupiedPlaces: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
   { timestamps: false }
 );
 
-module.exports = Flights;
+module.exports = Flight;
