@@ -26,7 +26,7 @@ const Employees = sequelize.define('Employees',{
         allowNull: false,
     },
     category:{
-        type: DataTypes.ENUM("Pilot", "attendant"),
+        type: DataTypes.ENUM("Pilot", "attendant","admin"),
         allowNull: false,
     },
     status:{

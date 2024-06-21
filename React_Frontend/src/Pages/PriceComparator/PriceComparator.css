@@ -1,1 +1,37 @@
-conten
+#comparatorContent {
+    padding-top: 100px;
+  height: 80vh;
+  background-color: blueviolet;
+  display: grid;
+  grid-template-columns: 1fr 1fr 800px;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    '. Resultados . '
+}
+
+#Resultados {
+  grid-area: Resultados;
+  width: 45vw;
+  height: 65vh;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#FlightsContainers{
+    background-color: rgb(122, 30, 17);
+    height: 100%;
+    display: flex;
+    padding-top: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+ #InfoResultados{
+    grid-area: Info;
+    width: 45vw;
+    height: 20vh;
+    background-color: darkgoldenrod;
+} 

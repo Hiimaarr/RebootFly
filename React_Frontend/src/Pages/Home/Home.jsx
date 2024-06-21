@@ -1,13 +1,10 @@
-import Search from '../../Components/Search/Search';
+import Search from '../../components/Search/Search';
 import './Home.css';
 
 function Home() {
   return (
     <>
       <div>
-        <div id="PosicionHeader">
-          <p> aqui va el Header </p>
-        </div>
         <div id="ContenidoPagina">
           <Search/>
           <section id="Content">
@@ -21,9 +18,6 @@ function Home() {
         <section id="Promociones">
           <div id="inputCorreo">Aqui va para meter el correo</div>
         </section>
-        </div>
-        <div id="PosicionFooter">
-          <p> aqui va el Footer </p>
         </div>
       </div>
     </>

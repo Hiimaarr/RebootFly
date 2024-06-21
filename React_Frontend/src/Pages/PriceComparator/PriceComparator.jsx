@@ -1,13 +1,16 @@
+import FlightCard from "../../components/FlightCard/FlightCard";
 import "./PriceComparator.css"
 
 function PriceComparator() {
   return (
-    <>
-      <div id="PosicionHeader">
-        <p> aqui va el Header </p>
+    <div id="comparatorContent">
+      <div id="Resultados">
+        <div id="InfoResultados"></div>
+        <div id="FlightsContainers">
+          <FlightCard />
+        </div>
       </div>
-      <div id="ContenidoComparador"></div>
-    </>
+    </div>
   );
 }
 
