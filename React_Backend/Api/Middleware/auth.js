@@ -1,8 +1,8 @@
-const Employees = require("../Models/Employees.model");
+/* const Employees = require("../Models/Employees.model"); */
 const jwt = require("jsonwebtoken");
-const Clients = require("../Models/Clients.model");
-const planes = require("../Models/Planes.model");
-const flights = require("../Models/Flights.model");
+const Users = require("../Models/Users.model");
+/* const planes = require("../Models/Planes.model");
+const flights = require("../Models/Flights.model"); */
 
 const checkAuth = (req, res, next) => {
   if (!req.headers.authorization) {
@@ -16,28 +16,22 @@ const checkAuth = (req, res, next) => {
         console.log(error.message);
         return res.status(401).send("Token not valid");
       }
-      const employees = await Employees.findOne({
+      const users = await Users.findOne({
         where: {
           username: payload.username,
         },
       });
-      const clients = await Clients.findOne({
-        where: {
-          username: payload.username,
-        },
-      });
-      if (!employees && !clients) {
+      if (!users) {
         return res.status(401).send("Token not valid");
       }
-      res.locals.employees = employees;
-      res.locals.clients = clients;
+      res.locals.users = users;
       next();
     }
   );
 };
 
 function checkAdmin(req, res, next) {
-  if (res.locals.employees.category !== "admin" || res.locals.clients) {
+  if (res.locals.users.role !== "admin") {
     return res.status(401).json("Admins only");
   } else {
     next();

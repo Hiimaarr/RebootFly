@@ -7,16 +7,16 @@ const {
 
 const {
   getAllUsers,
-  getOneUser,
-  updateUser,
-  deleteUser,
-  createUser,
+  getOneUsers,
+  updateUsers,
+  deleteUsers,
+  createUsers,
 } = require("../Controllers/Users.controller");
 
 router.get("", checkAuth, checkAdmin, getAllUsers);
-router.get("/:id", checkAuth, checkAdmin, getOneUser);
-router.put("/:id", checkAuth, checkAdmin, updateUser);
-router.delete("/:id", deleteUser);
-router.post("", checkAuth, checkAdmin, createUser);
+router.get("/:id", checkAuth, checkAdmin, getOneUsers);
+router.put("/:id", checkAuth, checkAdmin, updateUsers);
+router.delete("/:id", deleteUsers);
+router.post("", checkAuth, checkAdmin, createUsers);
 
 module.exports = router;

@@ -80,8 +80,13 @@ const Users = sequelize.define(
         },
       },
     },
+    //icebox
     status: {
       type: DataTypes.ENUM("blocked", "active"),
+      allowNull: false,
+    },
+    role: {
+      type: DataTypes.ENUM("admin", "client"),
       allowNull: false,
     },
   },
