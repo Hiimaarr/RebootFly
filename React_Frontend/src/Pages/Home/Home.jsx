@@ -1,3 +1,4 @@
+import Search from '../../Components/Search/Search';
 import './Home.css';
 
 function Home() {
@@ -8,11 +9,7 @@ function Home() {
           <p> aqui va el Header </p>
         </div>
         <div id="ContenidoPagina">
-          <section id="BarraBuscar">
-            <button id="Lupa"> 🔎</button>
-            <select name="Origen" id="Origen"></select>
-            <select name="Destino" id="Destino"></select>
-          </section>
+          <Search/>
           <section id="Content">
             <div id=" Oferta1">Oferta 1</div>
             <div id=" Oferta2 ">Oferta 2</div>
