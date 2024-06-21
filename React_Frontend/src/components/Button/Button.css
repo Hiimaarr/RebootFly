@@ -1,0 +1,22 @@
+
+button:hover{
+    cursor:pointer;
+}
+.small{
+    height:50px;
+    width: 100px;
+    margin-left: 100px;
+    margin-top: 300px;
+    background-color: rgba(62, 63, 65, 0.918);
+    color: white;
+    border-radius: 5%;
+}
+.large{
+    height: 50px;
+    width: 150px;
+    margin-left: 100px;
+    margin-top: 300px;
+    background-color:rgba(62, 63, 65, 0.918);
+    color: white;
+    border-radius: 5%;
+}

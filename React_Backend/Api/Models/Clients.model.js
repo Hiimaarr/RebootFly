@@ -24,7 +24,7 @@ const Clients = sequelize.define('Clients',{
 
     },
     password:{
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     dni: {
