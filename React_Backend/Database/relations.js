@@ -5,6 +5,7 @@ const Bookings = require("../Api/Models/Bookings.model");
 const Flight = require("../Api/Models/Flights.model");
 const Location = require("../Api/Models/Location.model");
 const Users = require("../Api/Models/Users.model");
+const FlighBookings = require("../Api/Models/FlightBookings.model");
 
 /* const FlighBookings = sequelize.define(
   "Flight_bookings",
@@ -21,16 +22,16 @@ const initializeRelations = () => {
     Location.belongsTo(Airport);
 
     //
-    Airport.hasOne(Flight, {
+    Airport.hasMany(Flight, {
       foreignKey: "arrivalAirportId",
       as: "arrivalFlights", // Alias para la relación
     });
 
-    Airport.hasOne(Flight, {
+    Airport.hasMany(Flight, {
       foreignKey: "departureAirportId",
       as: "departureFlights", // Alias para la relación
     });
-    
+
     //
     Flight.belongsTo(Airport, {
       foreignKey: "arrivalAirportId",
@@ -44,16 +45,16 @@ const initializeRelations = () => {
 
     //
     Flight.belongsToMany(Bookings, {
-      through: 'FlighBookings',
+      through: FlighBookings,
     });
 
     Bookings.belongsToMany(Flight, {
-      through: 'FlighBookings',
+      through: FlighBookings,
     });
 
     //
-    Users.hasMany(Bookings);
-    Bookings.belongsTo(Users);
+    Bookings.hasMany(Users);
+    Users.belongsTo(Bookings);
   } catch (error) {
     console.log(error);
   }
