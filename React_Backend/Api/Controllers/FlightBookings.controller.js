@@ -47,18 +47,47 @@ const createBookingFromFlightBooking = async (req, res) => {
     const patchToAddSeatsToFlight = await Flight.update(req, body, {
       where: {
         id: req.params.id,
-      }
+      },
     });
-    return res.status(200).json(updateFLightBooking);
+
+    const creadBookingAndAddSeats = {
+      booking: createBooking,
+      flight: patchToAddSeatsToFlight,
+    };
+
+    return res.status(200).json(creadBookingAndAddSeats);
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+const deleteBookingAndSeatsFromFlightBooking = async (req, res) => {
+  try {
+    const deleteBooking = await Booking.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    const patchToReducedSeatsToFlight = await Flight.update(req, body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    const creadBookingAndAddSeats = {
+      booking: createBooking,
+      flight: patchToAddSeatsToFlight,
+    };
+
+    return res.status(200).json(creadBookingAndAddSeats);
   } catch (error) {
     return res.status(500).send(error.message);
   }
 };
 
 module.exports = {
-  getAllBookings,
-  getOneBooking,
-  updateBooking,
-  deleteBooking,
-  createBooking,
+  getAllFlightBookings,
+  getOneFlightBooking,
+  updateFlightBooking,
+  createBookingFromFlightBooking,
 };
