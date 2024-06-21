@@ -7,7 +7,7 @@
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    '. Resultados . '
+    '. Resultados Resumen '
 }
 
 #Resultados {
@@ -35,3 +35,11 @@
     height: 20vh;
     background-color: darkgoldenrod;
 } 
+
+#ResumenContainer{
+    grid-area: Resumen;
+    margin-left: 250px;
+    width: 15vw;
+    height: 55vh;
+    background-color: black;
+}

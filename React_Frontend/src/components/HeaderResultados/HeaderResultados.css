@@ -1,0 +1,16 @@
+ #HeaderResultados{
+     background-color: rgb(80, 182, 33);
+     width: 100%;
+     height: 15vh;
+     display: flex;
+     flex-direction: column;
+     justify-content:space-around ;
+     align-items: center;
+ }
+
+ #siuu{
+    display: flex;
+    justify-content: space-around;
+    background-color:rgb(80, 182, 33);
+    width: 100%;
+ }
