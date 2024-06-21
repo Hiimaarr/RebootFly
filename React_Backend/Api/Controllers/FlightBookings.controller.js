@@ -11,7 +11,9 @@ const getAllFlightBookings = async (req, res) => {
   }
 };
 
-const getOneFlightBooking = async (req, res) => {
+//search by flight id
+
+/* const getOneFlightBooking = async (req, res) => {
   try {
     const oneFlightBooking = await FlightBooking.findByPk(req.params.id);
     if (oneFLightBooking) {
@@ -22,28 +24,27 @@ const getOneFlightBooking = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+}; */
 
 const updateFlightBooking = async (req, res) => {
   try {
     const updatedFlightBooking = await FlightBooking.update(req.body, {
       where: {
-        id: req.params.id,
+        FlightId: req.params.id,
       },
     });
-    return res.status(200).json(updateFLightBooking);
+    return res.status(200).json(updatedFlightBooking);
   } catch (error) {
     return res.status(500).send(error.message);
   }
 };
 
-const createBookingFromFlightBooking = async (req, res) => {
+const createBookingAndIncreaseOcuppiedSeatsFromFlightBooking = async (
+  req,
+  res
+) => {
   try {
-    const createBooking = await Booking.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
+    const createBooking = await Booking.create(req.body);
 
     const patchToAddSeatsToFlight = await Flight.findOne(req, body, {
       where: {
@@ -65,25 +66,43 @@ const createBookingFromFlightBooking = async (req, res) => {
 
 const deleteBookingAndSeatsFromFlightBooking = async (req, res) => {
   try {
-    const deleteBooking = await Booking.destroy(req.body, {
+    const flightBooking = await FlightBooking.findOne(req.body, {
       where: {
-        id: req.params.id,
+        FlightId: req.params.id,
+        //we have to pass the bookingId in the body
+        BookingId: req.body.BookingId,
       },
     });
+    if (!flightBooking) {
+      return res.status(404).send("Flight booking not found");
+    }
+
+    await FlightBooking.destroy({
+      where: {
+        FlightId: req.params.id,
+        BookingId: req.body.BookingId,
+      },
+    });
+
+    await Booking.destroy({
+      where: {
+        id: req.body.bookingId,
+      },
+    });
+
     const patchToReducedSeatsToFlight = await Flight.update(req, body, {
       where: {
         id: req.params.id,
       },
     });
 
-    patchToReducedSeatsToFlight -= 1;
+    patchToReducedSeatsToFlight.occupiedPlaces -= 1;
+    await patchToReducedSeatsToFlight.save();
 
-    const creadBookingAndAddSeats = {
-      booking: deleteBooking,
+    return res.status(200).json({
+      message: "Booking deleted and seats reduced",
       flight: patchToReducedSeatsToFlight,
-    };
-
-    return res.status(200).json(creadBookingAndAddSeats);
+    });
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -91,8 +110,8 @@ const deleteBookingAndSeatsFromFlightBooking = async (req, res) => {
 
 module.exports = {
   getAllFlightBookings,
-  getOneFlightBooking,
+  /* getOneFlightBooking, */
   updateFlightBooking,
-  createBookingFromFlightBooking,
+  createBookingAndIncreaseOcuppiedSeatsFromFlightBooking,
   deleteBookingAndSeatsFromFlightBooking,
 };
