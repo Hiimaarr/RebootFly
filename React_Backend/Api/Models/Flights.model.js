@@ -5,6 +5,10 @@ const { sequelize } = require("../../Database/index");
 const Flight = sequelize.define(
   "Flight",
   {
+    code: {
+      type: DataTypes.STRING(6),
+      unique: true,
+    },
     departure_time: {
       type: DataTypes.DATE,
     },
@@ -20,6 +24,10 @@ const Flight = sequelize.define(
       allowNull: false,
     },
     occupiedPlaces: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    price: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

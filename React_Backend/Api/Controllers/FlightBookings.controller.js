@@ -44,11 +44,13 @@ const createBookingFromFlightBooking = async (req, res) => {
         id: req.params.id,
       },
     });
-    const patchToAddSeatsToFlight = await Flight.update(req, body, {
+
+    const patchToAddSeatsToFlight = await Flight.findOne(req, body, {
       where: {
         id: req.params.id,
       },
     });
+    patchToAddSeatsToFlight.occupiedPlaces += 1;
 
     const creadBookingAndAddSeats = {
       booking: createBooking,
@@ -63,7 +65,7 @@ const createBookingFromFlightBooking = async (req, res) => {
 
 const deleteBookingAndSeatsFromFlightBooking = async (req, res) => {
   try {
-    const deleteBooking = await Booking.update(req.body, {
+    const deleteBooking = await Booking.destroy(req.body, {
       where: {
         id: req.params.id,
       },
@@ -74,9 +76,11 @@ const deleteBookingAndSeatsFromFlightBooking = async (req, res) => {
       },
     });
 
+    patchToReducedSeatsToFlight -= 1;
+
     const creadBookingAndAddSeats = {
-      booking: createBooking,
-      flight: patchToAddSeatsToFlight,
+      booking: deleteBooking,
+      flight: patchToReducedSeatsToFlight,
     };
 
     return res.status(200).json(creadBookingAndAddSeats);
@@ -90,4 +94,5 @@ module.exports = {
   getOneFlightBooking,
   updateFlightBooking,
   createBookingFromFlightBooking,
+  deleteBookingAndSeatsFromFlightBooking,
 };
