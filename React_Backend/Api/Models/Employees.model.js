@@ -16,6 +16,15 @@ const Employees = sequelize.define('Employees',{
         type: DataTypes.STRING(30),
         allowNull: false,
     },
+    username:{
+        type: DataTypes.STRING(20),
+        allowNull: false,
+        unique:true
+    },
+    password:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     category:{
         type: DataTypes.ENUM("Pilot", "attendant"),
         allowNull: false,

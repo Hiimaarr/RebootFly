@@ -58,10 +58,27 @@ const createFlights = async (req, res) => {
   }
 };
 
+const updateBooking = async (req, res) => {
+  try {
+    const counter = await Flights.findOne(req.params.id,{
+      where: {
+        id: req.params.id,
+    },})
+    counter.booking +=1
+    await counter.save()
+    return res.status(200).json(counter);
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+
+
 module.exports = {
   getAllFlights,
   getOneFlights,
   updateFlights,
   deleteFlights,
   createFlights,
+  updateBooking
 };

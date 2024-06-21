@@ -17,6 +17,10 @@ const Flights = sequelize.define('Flights',{
     status:{
         type: DataTypes.ENUM('pending','in_progress','completed'),
         allowNull: false
+    },
+    booking:{
+        type:DataTypes.INTEGER,
+        defaultValue:0
     }
 
 },{timestamps:false})
