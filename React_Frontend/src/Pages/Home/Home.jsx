@@ -7,7 +7,7 @@ function Home() {
         <div id="PosicionHeader">
           <p> aqui va el Header </p>
         </div>
-        <div id="outlet">
+        <div id="ContenidoPagina">
           <section id="BarraBuscar">
             <button id="Lupa"> 🔎</button>
             <select name="Origen" id="Origen"></select>
@@ -21,6 +21,12 @@ function Home() {
             <div id=" Oferta5 ">Oferta 5</div>
             <div id=" Oferta6 ">Oferta 6</div>
           </section>
+        <section id="Promociones">
+          <div id="inputCorreo">Aqui va para meter el correo</div>
+        </section>
+        </div>
+        <div id="PosicionFooter">
+          <p> aqui va el Footer </p>
         </div>
       </div>
     </>
