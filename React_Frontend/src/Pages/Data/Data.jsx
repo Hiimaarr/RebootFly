@@ -1,20 +1,24 @@
 import "./Data.css"
 import Button from "../../components/Button/Button"
 import { Link } from "react-router-dom"
-import { TextField, Box, Grid } from "@mui/material"
+import { TextField, Box, Typography } from "@mui/material"
 function Data() {
   return (
     <>
     <div id="data">
-        <h3>Passenger 1</h3>
+   
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            marginBottom:"50px"
+            marginBottom:"50px",
+            marginTop:"50px"
           }}
-        > 
+        >  
+        <Typography component="h1" variant="h5">
+          Passenger 1
+        </Typography>
         
             <TextField
               label="Name"
@@ -28,14 +32,14 @@ function Data() {
                 defaultValue=""
                 variant="filled"
               />
-          <TextField
-              label="DNI"
-              id="filled-size-normal"
-              defaultValue=""
-              variant="filled"
-            />
+            <TextField
+                label="DNI"
+                id="filled-size-normal"
+                defaultValue=""
+                variant="filled"
+              />
         </Box>
-        <h3>Contact Info</h3>
+        
         <Box
          sx={{
           display: 'flex',
@@ -43,6 +47,9 @@ function Data() {
           alignItems: 'center',
         }}
         >
+          <Typography component="h1" variant="h5">
+          Contact Info
+        </Typography>
           <TextField
                 label="Email"
                 id="filled-size-normal"
