@@ -1,34 +1,64 @@
 import "./Data.css"
 import Button from "../../components/Button/Button"
+import { Link } from "react-router-dom"
+import { TextField, Box, Grid } from "@mui/material"
 function Data() {
   return (
     <>
     <div id="data">
         <h3>Passenger 1</h3>
-        <div id="infoData">  
-        <label id="name">Name</label>
-        <label id="apellido">Surname</label> 
-        <br/>
-        <input type="text" id="name" name="name" />
-        <input type="apellidos" id="apellidoI"/>
-          <br/>       
-        <label id="dniT">Document type</label>
-        <label id="dni">DNI</label><br/>
-        <select id="dniTS">
-            <option value="DNI">DNI</option>
-            <option value="NIF">NIF</option>
-        </select>
-        <input id="dniI" type="text"></input>
-        </div>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginBottom:"50px"
+          }}
+        > 
+        
+            <TextField
+              label="Name"
+              id="filled-size-normal"
+              defaultValue=""
+              variant="filled"
+            />
+            <TextField
+                label="Surname"
+                id="filled-size-normal"
+                defaultValue=""
+                variant="filled"
+              />
+          <TextField
+              label="DNI"
+              id="filled-size-normal"
+              defaultValue=""
+              variant="filled"
+            />
+        </Box>
         <h3>Contact Info</h3>
-        <div id="infoContact">
-        <label id="email">Email</label>
-        <label id="emailC">Confirm Email</label>
-        <br/>
-        <input type="email" id="emailI"></input>
-        <input type="email" id="emailIC"></input>
-        </div>  
-        <Button size="data" text="Continuar"/>
+        <Box
+         sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+        >
+          <TextField
+                label="Email"
+                id="filled-size-normal"
+                defaultValue=""
+                variant="filled"
+              />
+          <TextField
+                label="Confirm Email"
+                id="filled-size-normal"
+                defaultValue=""
+                variant="filled"
+              />
+        </Box>
+          <Link /*to="/signup" Aqui iria la ruta de la siguiente página */>
+          <Button size="data" text="Continuar"/>
+          </Link>
     </div>
     </>
   )

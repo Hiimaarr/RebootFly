@@ -12,29 +12,14 @@
     margin-left:500px ;
     width: 60vw;
     height:30vh;
-    background-color: blue;
-    color: white;
-}
-#name{
-    margin-left: 300px;
-}
-#apellido{
-    margin-left: 600px;
-}
-#apellidoI{
-    margin-left: 465px;
-}
-#dni{
-    margin-left: 525px;
+    color: white; 
+    align-items: center;
 }
 #dniT{
     margin-left: 300px;
 }
 #dniTS{
     margin-left: 300px;
-}
-#dniI{
-    margin-left: 590px;
 }
 #infoContact{
     border-radius: 10px;
@@ -46,17 +31,7 @@
     color: white;
 }
 h3{
+    margin-top: 50px;
     text-align: center;
 }
-#email{
-    margin-left: 300px;
-}
-#emailC{
-    margin-left: 600px;
-}
-#emailI{
-    margin-left: 300px;
-}
-#emailIC{
-    margin-left: 465px;
-}
+
