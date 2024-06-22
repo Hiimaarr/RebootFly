@@ -18,8 +18,8 @@ const FlighBookings = require("../Api/Models/FlightBookings.model");
 const initializeRelations = () => {
   try {
     //
-    Airport.hasOne(Location);
-    Location.belongsTo(Airport);
+    Location.hasOne(Airport);
+    Airport.belongsTo(Location);
 
     //
     Airport.hasMany(Flight, {
@@ -53,8 +53,8 @@ const initializeRelations = () => {
     });
 
     //
-    Bookings.hasMany(Users);
-    Users.belongsTo(Bookings);
+    Users.hasMany(Bookings);
+    Bookings.belongsTo(Users);
   } catch (error) {
     console.log(error);
   }
