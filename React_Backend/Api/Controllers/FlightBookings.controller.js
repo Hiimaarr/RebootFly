@@ -45,27 +45,30 @@ const createBookingAndIncreaseOcuppiedSeatsFromFlightBooking = async (
 ) => {
   try {
    
-    const createBooking = await Booking.create(req.body);
-
+    
     
     const flight = await Flight.findByPk(req.params.id);
-
-   console.log(flight.dataValues)
+    
+    
+    /// Actualizar flight
+    if (flight.dataValues.occupiedPlaces < flight.dataValues.capacity) {
+      
+      const createBooking = await Booking.create(req.body);
+      
+      suma = flight.dataValues.occupiedPlaces += 1;
+      const updatedFlights = await Flight.update(
+        { occupiedPlaces : suma },
+        {
+          where: {
+            id: flight.dataValues.id,
+          },
+        }
+      );
+    }
+    console.log(flight.dataValues)
     if (!flight) {
       return res.status(404).json({ error: "Flight not found" });
     }
-
-   /// Actualizar flight
-    
- suma = flight.dataValues.occupiedPlaces += 1;
-  const updatedFlights = await Flight.update(
-    { occupiedPlaces : suma },
-    {
-      where: {
-        id: flight.dataValues.id,
-      },
-    }
-  );
     console.log(updatedFlights);
    /*  await flight.save(); */
 console.log(createBooking.dataValues.id);
