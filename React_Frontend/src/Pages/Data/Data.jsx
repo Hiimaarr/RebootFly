@@ -19,7 +19,7 @@ function Data() {
         <Typography component="h1" variant="h5">
           Passenger 1
         </Typography>
-        
+        <br></br>
             <TextField
               label="Name"
               id="filled-size-normal"
@@ -50,6 +50,7 @@ function Data() {
           <Typography component="h1" variant="h5">
           Contact Info
         </Typography>
+        <br></br>
           <TextField
                 label="Email"
                 id="filled-size-normal"
@@ -62,10 +63,10 @@ function Data() {
                 defaultValue=""
                 variant="filled"
               />
-        </Box>
-          <Link /*to="/signup" Aqui iria la ruta de la siguiente página */>
+          <Link to="/payment">
           <Button size="data" text="Continuar"/>
           </Link>
+        </Box>
     </div>
     </>
   )

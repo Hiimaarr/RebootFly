@@ -5,6 +5,8 @@ import Notfound from "../Pages/NotFound/Notfound";
 import Data from "../Pages/Data/Data";
 import SignUp from "../Pages/Signup/Signup";
 import Login from "../Pages/Login/Login"
+import Payment from "../Pages/Payment/Payment";
+import Confirmation from "../Pages/Confirmation/Confirmation";
 const router = createBrowserRouter([
 {
     path:"/",
@@ -22,18 +24,16 @@ const router = createBrowserRouter([
     {
         path:"/data",
         element: <Data/>
-    }/*,
+    },
     {
-        path:"/confirmation"
-        element: página de confirmación
-    },*/
-    ]/*
+        path:"/confirmation",
+        element: <Confirmation/>
+    },
     {
-        path:"/login"
-        element:página de login
+        path:"/payment",
+        element:<Payment/>
     }
-]*/
-
+    ]
 },
 {
     path:"/signup",
