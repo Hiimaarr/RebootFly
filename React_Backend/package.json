@@ -18,6 +18,8 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "mysql-client": "^0.3.0",
     "mysql2": "^3.10.1",
     "sequelize": "^6.37.3"
   },
