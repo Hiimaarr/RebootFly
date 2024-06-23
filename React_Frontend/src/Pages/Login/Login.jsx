@@ -12,18 +12,28 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import { login } from '../../services/auth';
+
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
+      username: data.get('username'),
       password: data.get('password'),
     });
+    const username= data.get('username')
+    const password= data.get('password')
+    try {
+      await login(username, password)
+    } catch (error) {
+      console.log(error);
+    }
   };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -46,10 +56,10 @@ export default function SignIn() {
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
                   autoComplete="given-name"
-                  name="Username"
+                  name="username"
                   required
                   fullWidth
-                  id="Username"
+                  id="username"
                   label="Username"
                   autoFocus
                 />
@@ -67,7 +77,7 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Link to="/data">
+            <Link>
                 <Button
                   type="submit"
                   fullWidth

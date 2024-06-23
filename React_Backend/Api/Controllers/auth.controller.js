@@ -45,17 +45,17 @@ const login = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(404).send("Email or password wrong");
+      return res.status(404).send("Username or password wrong");
     }
 
     const checkpass = bcrypt.compareSync(req.body.password, user.password);
 
     if (checkpass) {
-      const payload = { email: req.body.email };
+      const payload = { username: req.body.username };
       const token = jwt.sign(payload, "secret", { expiresIn: "1h" });
       return res.status(200).json({ token });
     } else {
-      return res.status(404).send("Email or password wrong");
+      return res.status(404).send("Username or password wrong");
     }
   } catch (error) {
     console.log("Error logging in ");

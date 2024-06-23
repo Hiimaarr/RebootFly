@@ -5,9 +5,9 @@ const sequelize = new Sequelize(
   process.env.DB_USER,
   process.env.DB_PASS,
   {
-    host: process.env.DB_HOST,
+    host: "mysql://root:enRwoKEZNtyGJTWJAOjoCNKWPLwcqUTP@viaduct.proxy.rlwy.net:24132/railway",
     dialect: "mysql",
-    port: process.env.DB_PORT,
+    //port: process.env.DB_PORT,
     logging: false,
     timestamps: false,
   }
