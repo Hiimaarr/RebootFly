@@ -1,4 +1,5 @@
 const Booking = require("../Models/Bookings.model");
+const Flights = require("../Models/Flights.model");
 
 const getAllBookings = async (req, res) => {
   try {
@@ -24,6 +25,9 @@ const getOneBooking = async (req, res) => {
 
 const updateBooking = async (req, res) => {
   try {
+
+    
+    const flight = await Flight.findByPk(req.params.id);
     const updatedBooking = await Booking.update(req.body, {
       where: {
         id: req.params.id,
@@ -51,6 +55,22 @@ const deleteBooking = async (req, res) => {
 
 const createBooking = async (req, res) => {
   try {
+/*
+    const flight = await Flights.findByPk(req.params.id);
+
+    if(flight.dataValues.occupiedPlaces < flight.dataValues.capacity) {
+      const updatedBooking = await Booking.update(req.body, {
+        where: {
+          id: req.params.id,
+        },
+      });
+      return res.status(200).json(updatedBooking);
+
+    }
+    else {
+      return res.status(200).json("")
+    } */
+
     const updatedBooking = await Booking.create(req.body);
 
     return res.status(200).json(updatedBooking);
