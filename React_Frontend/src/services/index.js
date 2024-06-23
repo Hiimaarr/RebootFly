@@ -1,6 +1,6 @@
 import axios from "axios"
 const api = axios.create({
-    baseURL:"localhost:3000/api"
+    baseURL:"https://refactored-umbrella-69vjvjx9gpjwcr4pr-3000.app.github.dev/Api"
 })
 
 export default api

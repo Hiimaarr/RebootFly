@@ -11,14 +11,18 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../services/auth';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+
+  const navigate = useNavigate()
+
   const handleSubmit = async (event) => {
+    console.log("papa")
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -28,7 +32,9 @@ export default function SignIn() {
     const username= data.get('username')
     const password= data.get('password')
     try {
-      await login(username, password)
+      const token = await login(username, password)
+      localStorage.setItem("token",token)
+      navigate("/")
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +83,7 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Link>
+            
                 <Button
                   type="submit"
                   fullWidth
@@ -86,7 +92,6 @@ export default function SignIn() {
                 >
                 Sign In
               </Button>
-            </Link>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
