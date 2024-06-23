@@ -2,10 +2,11 @@ const { DataTypes } = require("sequelize");
 
 const { sequelize } = require("../../Database/index");
 
+const allowedDomains = (["gmail.com","outlook.com"])
 const Users = sequelize.define(
   "Users",
   {
-    name: {
+    name: { 
       type: DataTypes.STRING(30),
       allowNull: false,
     },
@@ -19,7 +20,7 @@ const Users = sequelize.define(
       unique: true,
     },
     password: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     dni: {
@@ -83,6 +84,7 @@ const Users = sequelize.define(
     role: {
       type: DataTypes.ENUM("admin", "client"),
       allowNull: false,
+      defaultValue:"client"
     },
   },
   { timestamps: false }
