@@ -1,23 +1,32 @@
-const {DataTypes}=require('sequelize')
+const { DataTypes } = require("sequelize");
 
-const {sequelize}=require('../../Database/index')
+const { sequelize } = require("../../Database/index");
 
-const Location = sequelize.define('Location',{
-    id:{
-        type:DataTypes.INTEGER,
-        autoIncrement:true,
-        primaryKey:true
+const Location = sequelize.define(
+  "Location",
+  {
+    name: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
     },
-    departure_airport:{
-        type: DataTypes.STRING(20),
-        allowNull: false,
+    country: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
     },
-    arrival_airport:{
-        type: DataTypes.STRING(20),
-        allowNull: false,
-    }
+    province: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING(60),
+      allowNull: false,
+    },
+  },
+  { timestamps: false }
+);
 
-},{timestamps:false})
-
-module.exports=Location
-
+module.exports = Location;

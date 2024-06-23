@@ -1,34 +1,60 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const { sequelize } = require("./index");
 const Airport = require("../Api/Models/Airport.model");
-const Billing = require("../Api/Models/Billing.model");
-const Clients = require("../Api/Models/Clients.model");
-const Employees = require("../Api/Models/Employees.model");
-const Flights = require("../Api/Models/Flights.model");
+const Bookings = require("../Api/Models/Bookings.model");
+const Flight = require("../Api/Models/Flights.model");
 const Location = require("../Api/Models/Location.model");
-const Planes = require("../Api/Models/Planes.model");
-const Clients_flights = require("../Api/Models/Clients_flights.model");
-const Employees_flights = require("../Api/Models/Employees_flights.model");
+const Users = require("../Api/Models/Users.model");
+const FlighBookings = require("../Api/Models/FlightBookings.model");
+
+/* const FlighBookings = sequelize.define(
+  "Flight_bookings",
+  {},
+  {
+    timestamps: false,
+  }
+); */
 
 const initializeRelations = () => {
   try {
-    Planes.hasMany(Flights);
-    Flights.belongsTo(Planes);
+    //
+    Location.hasOne(Airport);
+    Airport.belongsTo(Location);
 
-    Location.hasMany(Flights);
-    Flights.belongsTo(Location);
+    //
+    Airport.hasMany(Flight, {
+      foreignKey: "arrivalAirportId",
+      as: "arrivalFlights", // Alias para la relación
+    });
 
-    Airport.hasOne(Location);
-    Location.belongsTo(Airport);
+    Airport.hasMany(Flight, {
+      foreignKey: "departureAirportId",
+      as: "departureFlights", // Alias para la relación
+    });
 
-    Clients.belongsToMany(Flights, { through: "Clients_flights" });
-    Flights.belongsToMany(Clients, { through: "Clients_flights" });
+    //
+    Flight.belongsTo(Airport, {
+      foreignKey: "arrivalAirportId",
+      as: "arrivalAirport",
+    });
 
-    Employees.belongsToMany(Flights, { through: "Employees_flights" });
-    Flights.belongsToMany(Employees, { through: "Employees_flights" });
+    Flight.belongsTo(Airport, {
+      foreignKey: "departureAirportId",
+      as: "departureAirport",
+    });
 
-    Billing.hasOne(Clients_flights);
-    Clients_flights.belongsTo(Billing);
+    //
+    Flight.belongsToMany(Bookings, {
+      through: FlighBookings,
+    });
+
+    Bookings.belongsToMany(Flight, {
+      through: FlighBookings,
+    });
+
+    //
+    Users.hasMany(Bookings);
+    Bookings.belongsTo(Users);
   } catch (error) {
     console.log(error);
   }

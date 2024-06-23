@@ -1,20 +1,17 @@
- const Airport = require('../Api/Models/Airport.model')
- const Billing = require('../Api/Models/Billing.model')
- const Clients = require('../Api/Models/Clients.model')
- const Employees = require('../Api/Models/Employees.model')
- const Flights = require('../Api/Models/Flights.model')
- const Location = require('../Api/Models/Location.model')
- const Planes = require('../Api/Models/Planes.model')
- const clients_fligths= require('./relations')
- const Employees_flight = require('./relations')
- 
+const Airport = require("../Api/Models/Airport.model");
+const Bookings = require("../Api/Models/Bookings.model");
+const Users = require("../Api/Models/Users.model");
+const Flights = require("../Api/Models/Flights.model");
+const Location = require("../Api/Models/Location.model");
+
+//reviuew in case we need to import intermediate tables
 
 function addRelationsToModels() {
-    try {
-        console.log('Relations added to all models')
-    } catch (error) {
-        throw error
-    }
+  try {
+    console.log("Relations added to all models");
+  } catch (error) {
+    throw error;
+  }
 }
 
-module.exports = { addRelationsToModels }  
+module.exports = { addRelationsToModels };

@@ -9,7 +9,7 @@ const app = express()
 
 async function checkAndSyncSQL() {
     await checkConnection()
-    initializeRelations() 
+    initializeRelations("force") 
     await syncModels(false)
     
 }
@@ -18,9 +18,9 @@ const port = 3000
 const initAndListen = () => {
     try {
         app.use(express.json())
-        app.use('/Api', require('./Api/Routes/index'))
         .use(cors())
         .use(morgan('dev')) 
+        app.use("/Api", require("./Api/Routes/index"));
         app.listen(port, () => {
         console.log(`Server started ${port}`)
   })
