@@ -58,10 +58,26 @@ const createUsers = async (req, res) => {
   }
 };
 
+const createUsersInBulk = async (req, res) => {
+  try {
+    const createdUsers = await Users.bulkCreate(req.body);
+    console.log("Usuarios creados:", createdUsers.length);
+    return res.status(200).json(createdUsers);
+  } catch (error) {
+    console.error("Error al crear usuarios en bulk:", error);
+    return res.status(500).send(error.message);
+  }
+};
+
+module.exports = {
+  createUsersInBulk
+};
+
 module.exports = {
   getAllUsers,
   getOneUsers,
   updateUsers,
   deleteUsers,
   createUsers,
+  createUsersInBulk
 };
