@@ -7,6 +7,8 @@ import SignUp from "../Pages/Signup/Signup";
 import Login from "../Pages/Login/Login"
 import Payment from "../Pages/Payment/Payment";
 import Confirmation from "../Pages/Confirmation/Confirmation";
+import Profile from "../Pages/Profile/Profile";
+import Admin from "../Pages/Admin/Admin"
 const router = createBrowserRouter([
 {
     path:"/",
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
 {
     path:"/login",
     element:<Login/>
+},
+{
+    path:"/profile",
+    element:<Profile/>
+},
+{
+    path:"/admin",
+    element:<Admin/>
 }
 ])
 
