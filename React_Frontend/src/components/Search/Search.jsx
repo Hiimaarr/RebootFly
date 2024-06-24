@@ -1,6 +1,7 @@
 import "./Search.css"
 
 function Search() {
+  
   return (
     <>
       <section id="BarraBuscar">

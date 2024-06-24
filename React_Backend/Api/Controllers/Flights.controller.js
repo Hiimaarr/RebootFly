@@ -1,3 +1,4 @@
+const Flight = require("../Models/Flights.model");
 const Flights = require("../Models/Flights.model");
 
 const getAllFlights = async (req, res) => {
@@ -68,6 +69,23 @@ const createFlightsInBulk = async (req, res) => {
     return res.status(500).send(error.message);
   }
 };
+
+const searchFlight = async (req,res) =>{
+  try {
+    const flightByParams = await Flight.findAll({
+      where:{
+        arrivalAirportId: req.body.arrivalAirportId,
+        departureAirportId:req.body.departureAirportId,
+        departure_time:req.body.departure_time,
+        arrival_time:req.body.arrival_time
+      },includes:Airport
+    })
+    let returningFlight
+    if()
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
 
 module.exports = {
   getAllFlights,
