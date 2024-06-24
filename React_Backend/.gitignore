@@ -1,0 +1,11 @@
+# Ignorar archivos temporales
+*.log
+*.tmp
+
+# Ignorar directorios específicos
+/node_modules
+/dist
+
+# Ignorar archivos específicos
+.env
+.DS_Store
