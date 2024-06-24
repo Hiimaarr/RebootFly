@@ -1,6 +1,6 @@
 import './Header.css'
 import logo from '../../assets/media/logoT.png'
-import { Link } from 'react-router-dom'
+import {Link} from "react-router-dom"
 import { useState } from 'react'
 
 function Header() {
