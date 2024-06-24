@@ -83,7 +83,7 @@ const createBooking = async (req, res) => {
       flight.occupiedPlaces += 1;
       const flightBooking = await Flight.findOne({
         where: {
-          FlightId: req.params.id,
+          id: req.params.id,
         },
       });;
     console.log(flightBooking)
