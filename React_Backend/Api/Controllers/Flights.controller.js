@@ -58,10 +58,20 @@ const createFlights = async (req, res) => {
   }
 };
 
+const createFlightsInBulk = async (req, res) => {
+  try {
+    const updatedFlights = await Flights.bulkCreate(req.body);
+    return res.status(200).json(updatedFlights);
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   getAllFlights,
   getOneFlights,
   updateFlights,
   deleteFlights,
   createFlights,
+  createFlightsInBulk
 };
