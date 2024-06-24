@@ -7,7 +7,8 @@ const {
   updateFlights,
   deleteFlights,
   createFlights,
-createFlightsInBulk
+  createFlightsInBulk,
+  searchFlight
 } = require("../Controllers/Flights.controller");
 
 
@@ -18,5 +19,6 @@ router.put("/:id", updateFlights);
 router.delete("/:id", deleteFlights);
 router.post("", createFlights);
 router.post("/bulk-flight", createFlightsInBulk)
+router.get("/:",searchFlight)// Creo que hay que poner el filtro de la búsqueda (?)
 
 module.exports = router;

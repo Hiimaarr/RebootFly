@@ -80,8 +80,8 @@ const searchFlight = async (req,res) =>{
         arrival_time:req.body.arrival_time
       },includes:Airport
     })
-    let returningFlight
-    if()
+    //let returningFlight
+    //if()
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -93,5 +93,6 @@ module.exports = {
   updateFlights,
   deleteFlights,
   createFlights,
-  createFlightsInBulk
+  createFlightsInBulk,
+  searchFlight
 };

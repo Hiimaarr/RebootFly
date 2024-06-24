@@ -19,3 +19,12 @@ export const insertFly = async (code,departure_time,arrival_time,status,capacity
     }
 }
 
+export const flightInfoToBack = async (Origen,Destino,Ida,Vuelta)=>{
+    try {
+        const {data}= await api.get("/Flights",{Origen,Destino,Ida,Vuelta})
+        console.log(data)
+    } catch (error) {
+        console.log(error);
+    }
+}
+

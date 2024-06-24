@@ -30,13 +30,6 @@
     '. . . Promociones . . . . . . . . .';
 }
 
-
-#Origen {
-}
-
-#Destino {
-}
-
 #Lupa {
   grid-area: Lupa;
   width: 50px;

@@ -7,14 +7,61 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import { Box } from '@mui/material';
+import { flightInfoToBack } from '../../services/auth';
 
 function Home() {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const Origen = data.get('Origen')
+    const Destino = data.get('Destino')
+    const Ida = data.get('Ida')
+    const Vuelta = data.get('Vuelta')
+    try {
+      const result = await flightInfoToBack(Origen,Destino,Ida,Vuelta)
+      console.log(result)
+      navigate("/Price")
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
-      <div>
         <div id="ContenidoPagina">
-          <Search />
+          <Box component="form" onSubmit={handleSubmit} >
+                <section id="BarraBuscar">
+              <button id="Lupa"> 🔎</button>
+
+              <label>
+                  Origin
+                  <select name="Origen" id="Origen">
+                  <option value="Select a departure">Select a departure</option>
+                </select>
+              </label>
+
+              <label>
+                  Destination
+                  <select name="Destino" id="Destino">
+                  <option value="Select a arrival">Select a arrival</option>
+                </select>
+              </label>
+              <label>
+                Departure <input type="date" id="Ida" />
+              </label>
+              <label>
+                Return <input type="date" id="Vuelta" />
+              </label>
+
+              <label>
+                  Pasajeros
+                  <select name="Pasajeros" id="Pasajeros">
+                  <option value="1"> 1 passenger</option>
+                  </select>
+
+              </label>
+            </section>
+          </Box>
           <section id="Content">
             <div id=" Oferta1">
               <Card sx={{ maxWidth: 345, marginTop: "20px" }}>
@@ -157,7 +204,6 @@ function Home() {
             </p> <button id='inputSub'>Suscribirme</button></div>
           </section>
         </div>
-      </div>
     </>
   );
 }
