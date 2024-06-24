@@ -35,6 +35,7 @@ const updateAirport = async (req, res) => {
   }
 };
 
+
 const deleteAirport = async (req,res)=>{
     try {
         const deletedAirport=await Airport.destroy({
@@ -58,10 +59,28 @@ const createAirport = async (req, res ) => {
     }
 };
 
+//create bulk airports
+
+const createAirportInBulk = async (req, res) => {
+  try {
+    const updatedAirport = await Airport.bulkCreate(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.status(200).json(updatedAirport);
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+
+
 module.exports = {
   getAllAirports,
   getOneAirport,
   updateAirport,
   deleteAirport,
   createAirport,
+  createAirportInBulk
 };
