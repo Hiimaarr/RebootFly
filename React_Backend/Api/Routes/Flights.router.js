@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { checkAvailableBooking } = require("../Middelware/auth");
 
 const {
   getAllFlights,
@@ -8,6 +9,8 @@ const {
   createFlights,
 createFlightsInBulk
 } = require("../Controllers/Flights.controller");
+
+
 
 router.get("", getAllFlights);
 router.get("/:id", getOneFlights);
