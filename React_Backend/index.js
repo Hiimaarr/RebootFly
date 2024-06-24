@@ -20,7 +20,7 @@ const initAndListen = () => {
         app.use(express.json())
         .use(cors())
         .use(morgan('dev')) 
-        app.use("/Api", require("./Api/Routes/index"));
+        app.use("/Api", require("./Api/Routes/index"))
         app.listen(port, () => {
         console.log(`Server started ${port}`)
   })

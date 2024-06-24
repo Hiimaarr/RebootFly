@@ -1,9 +1,10 @@
 import "./Payment.css"
-import { Box, Typography,SnackbarContent,TextField } from "@mui/material"
+import { Box,SnackbarContent,TextField } from "@mui/material"
 import Button from "../../components/Button/Button"
-import { Link } from "react-router-dom"
+import {useNavigate } from "react-router-dom"
 
 function Payment (){
+  const navigate = useNavigate()
     return (
         <>
          <div id="payment">
@@ -48,12 +49,8 @@ function Payment (){
               defaultValue=""
               variant="filled"
             />
-            <Link to="/Confirmation">
-            <Button size="data" text="Continuar"/>
-            </Link>
-            <Link to="/Data">
-            <Button size="small" text="Cancelar"/>
-            </Link>
+            <Button size="data" text="Continuar" onClick={()=>{navigate("/Confirmation")}}/>
+            <Button size="small" text="Cancelar" onClick={()=>{navigate("/Data")}}/>
             </Box>
          </div>
         </>

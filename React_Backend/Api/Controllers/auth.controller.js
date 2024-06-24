@@ -2,6 +2,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const Users = require("../Models/Users.model");
+const Flights = require("../Models/Flights.model")
 
 const signUp = async (req, res) => {
   try {
@@ -68,7 +69,21 @@ const login = async (req, res) => {
     return res.status(500).json(error);
   }
 };
-
+const insertFly = async(req,res)=>{
+  try {
+    const flight = Flights.create({
+      code: req.body.code,
+      departure_time: req.body.departure_time,
+      arrival_time:req.body.arrival_time,
+      status: req.body.status,
+      capacity:req.body.capacity,
+      occupiedPlaces:req.body.occupiedPlaces,
+      price: req.body.price
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
 const bulkSignup = async (req, res) => {
   try {
     // Obtener los usuarios a registrar desde el cuerpo de la solicitud

@@ -5,10 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, CardActionArea, CardActions } from '@mui/material';
-import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button"
 
 function Confirmation (){
+    const navigate = useNavigate()
     return (
         <>
             <div id="confirmation">
@@ -32,9 +33,7 @@ function Confirmation (){
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" text="Download on PDF"/>
-                <Link to="/">
-                    <Button size ="small" text="Back to home"/>
-                </Link>
+                    <Button size ="small" text="Back to home" onClick={()=>{navigate("/")}}/>
                 </CardActions>
              </Card>
         </Box>
