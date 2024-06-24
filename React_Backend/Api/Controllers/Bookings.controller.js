@@ -1,5 +1,5 @@
 const Booking = require("../Models/Bookings.model");
-const Flights = require("../Models/Flights.model");
+const Flight = require("../Models/Flights.model");
 
 const getAllBookings = async (req, res) => {
   try {
@@ -56,7 +56,7 @@ const deleteBooking = async (req, res) => {
 const createBooking = async (req, res) => {
   try {
 /*
-    const flight = await Flights.findByPk(req.params.id);
+    const flight = await Flight.findByPk(req.params.id);
 
     if(flight.dataValues.occupiedPlaces < flight.dataValues.capacity) {
       const updatedBooking = await Booking.update(req.body, {
