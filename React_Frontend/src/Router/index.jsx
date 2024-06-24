@@ -46,11 +46,11 @@ const router = createBrowserRouter([
     element:<Login/>
 },
 {
-    path:"/profile",
+    path:"/Profile",
     element:<Profile/>
 },
 {
-    path:"/admin",
+    path:"/Admin",
     element:<Admin/>
 }
 ])

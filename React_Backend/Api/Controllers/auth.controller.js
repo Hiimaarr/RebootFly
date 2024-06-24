@@ -76,8 +76,8 @@ const insertFly = async(req,res)=>{
       departure_time: req.body.departure_time,
       arrival_time:req.body.arrival_time,
       status: req.body.status,
-      capacity:req.body.capacity
-      occupiedplaces:req.body.occupiedPlaces,
+      capacity:req.body.capacity,
+      occupiedPlaces:req.body.occupiedPlaces,
       price: req.body.price
     })
   } catch (error) {

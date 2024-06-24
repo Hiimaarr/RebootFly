@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { insertFly, login } from '../../services/auth';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -19,13 +20,23 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 export default function Admin() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    const code = data.get('code')
+    const departure_time= data.get('departuretime')
+    const arrival_time= data.get('arrivaltime')
+    const status = data.get('status')
+    const capacity =data.get('capacity')
+    const occupiedPlaces = parseInt(data.get('occupiedPlaces'))
+    const price = data.get('price')
+    try {
+        const result = await insertFly(code,departure_time,arrival_time,status,capacity,occupiedPlaces,price)
+        console.log(result)
+    } catch (error) {
+        console.log(error.message);
+    }
   };
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -94,9 +105,9 @@ export default function Admin() {
                 <TextField
                   required
                   fullWidth
-                  name="occupedplaces"
-                  label="Occuped places"
-                  id="occupedplaces"
+                  name="occupiedPlaces"
+                  label="Occupied places"
+                  id="occupiedPlaces"
                 />
               </Grid>
               <Grid item xs={12}>

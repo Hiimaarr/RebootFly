@@ -27,7 +27,7 @@ export default function SignIn() {
       username: data.get('username'),
       password: data.get('password'),
     });
-    const result = await login 
+    /*const result = await login*/
     const username= data.get('username')
     const password= data.get('password')
     try {

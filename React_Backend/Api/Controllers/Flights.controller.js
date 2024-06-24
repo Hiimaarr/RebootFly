@@ -51,9 +51,11 @@ const deleteFlights = async (req, res) => {
 
 const createFlights = async (req, res) => {
   try {
+    console.log(req.body);
     const updatedFlights = await Flights.create(req.body);
     return res.status(200).json(updatedFlights);
   } catch (error) {
+    console.log(error.message)
     return res.status(500).send(error.message);
   }
 };

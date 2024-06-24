@@ -10,9 +10,9 @@ export const login = async (username,password)=>{
     }
 }
 
-export const insertFly = async (code,departuretime,arrivaltime,status,capacity,occupedplaces,price)=>{
+export const insertFly = async (code,departure_time,arrival_time,status,capacity,occupiedPlaces,price)=>{
     try {
-        const {data}= await api.post("/Flights",{code,departuretime,arrivaltime,status,capacity,occupedplaces,price})
+        const {data}= await api.post("/Flights",{code,departure_time,arrival_time,status,capacity,occupiedPlaces,price})
         console.log(data)
     } catch (error) {
         console.log(error);
