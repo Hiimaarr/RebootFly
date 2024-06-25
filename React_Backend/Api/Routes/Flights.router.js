@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { checkAvailableBooking } = require("../Middelware/auth");
 
 const {
   getAllFlights,
@@ -8,13 +9,17 @@ const {
   createFlights,
   searchFlights,
   getFlightDates
+  createFlightsInBulk,
+  searchFlight
 } = require("../Controllers/Flights.controller");
+
+
 
 router.get("", getAllFlights);
 router.get("/:id", getOneFlights);
 router.put("/:id", updateFlights);
 router.delete("/:id", deleteFlights);
-router.post("", createFlights);  
+router.post("", createFlights);
 
 //search flights
 

@@ -1,8 +1,9 @@
 import "./Data.css"
 import Button from "../../components/Button/Button"
-import { Link } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import { TextField, Box, Typography } from "@mui/material"
 function Data() {
+  const navigate = useNavigate()
   return (
     <>
     <div id="data">
@@ -63,9 +64,7 @@ function Data() {
                 defaultValue=""
                 variant="filled"
               />
-          <Link to="/payment">
-          <Button size="data" text="Continuar"/>
-          </Link>
+          <Button size="data" text="Continuar" onClick={()=>{navigate("/Payment")}}/>
         </Box>
     </div>
     </>

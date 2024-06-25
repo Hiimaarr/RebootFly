@@ -7,24 +7,28 @@ import SignUp from "../Pages/Signup/Signup";
 import Login from "../Pages/Login/Login"
 import Payment from "../Pages/Payment/Payment";
 import Confirmation from "../Pages/Confirmation/Confirmation";
+import Profile from "../Pages/Profile/Profile";
+import Admin from "../Pages/Admin/Admin"
+import Home from "../Pages/Home/Home";
+import PriceComparator from "../Pages/PriceComparator/PriceComparator";
 import TestSearchPage from "../Pages/TestSearchPage/TestSearchPage";
 const router = createBrowserRouter([
 {
     path:"/",
     element:<Layout/>,
     errorElement:<Notfound/>,
-    children:[/*
+    children:[
     {
-        path:"/"
-        element: página de home
-    },
-    {
-        path:"/price"
-        element: página de comparador de precios
-    },*/
+        path:"/",
+        element:<Home/>
+    }, 
     {
         path:"/data",
         element: <Data/>
+    },
+    {
+        path:"/price",
+        element:<PriceComparator/>
     },
     {
         path:"/confirmation",
@@ -39,8 +43,7 @@ const router = createBrowserRouter([
         path:"/search",
         element:<TestSearchPage/>
     }
-    ]
-},
+]},
 {
     path:"/signup",
     element:<SignUp/>
@@ -48,8 +51,16 @@ const router = createBrowserRouter([
 {
     path:"/login",
     element:<Login/>
-}
-])
+},
+{
+    path:"/Profile",
+    element:<Profile/>
+},
+{
+    path:"/Admin",
+    element:<Admin/>
+}]
+)
 
 
 export default router

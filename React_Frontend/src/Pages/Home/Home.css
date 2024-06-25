@@ -1,0 +1,143 @@
+#PosicionHeader {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00ff22c0;
+  height: 10vh;
+  width: 100vw;
+  align-content: center;
+}
+
+#ContenidoPagina {
+  background-color: rgb(236, 236, 176);
+  display: grid;
+  height: 200vh;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    '. . . . . . . . . . . . .'
+    '. . . . . . . . . . . . .'
+    '. . . BarraBuscar . . . . . . . . .'
+    '. . . Contenido . . . . . . . . .'
+    '. . . Contenido . . . . . . . . .'
+    '. . . Contenido . . . . . . . . .'
+    '. . . Contenido . . . . . . . . .'
+    '. . . Contenido . . . . . . . . .'
+    '. . . Contenido . . . . . . . . .'
+    '. . . . . . . . . . . . .'
+    '. . . Promociones . . . . . . . . .';
+}
+
+#Lupa {
+  grid-area: Lupa;
+  width: 50px;
+  height: 25px;
+}
+
+#Content {
+  grid-area: Contenido;
+  width: 1500px;
+  height: 100%;
+  background-color: rgb(236, 236, 176);
+  place-items: center;
+  place-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px 10px;
+  grid-template-areas:
+    'Oferta1 Oferta2 Oferta3'
+    'Oferta4 Oferta5 Oferta6';
+}
+
+#Oferta1 {
+  display: block;
+  grid-area: Oferta1;
+  width: 1500px;
+  height: 10%;
+  background-color: rgb(236, 236, 176);
+}
+
+#Oferta2 {
+  grid-area: Oferta2;
+  width: 1500px;
+  height: 10%;
+  background-color: rgb(236, 236, 176);
+}
+
+#Oferta3 {
+  grid-area: Oferta3;
+  width: 1500px;
+  height: 10%;
+  background-color: rgb(236, 236, 176);
+}
+
+#Oferta4 {
+  grid-area: Oferta4;
+  width: 1500px;
+  height: 10%;
+  background-color: rgb(236, 236, 176);
+}
+
+#Oferta5 {
+  grid-area: Oferta5;
+  width: 1500px;
+  height: 10%;
+  background-color: rgb(236, 236, 176);
+}
+
+#Oferta6 {
+  grid-area: Oferta6;
+  width: 1500px;
+  height: 10%;
+  background-color: rgb(236, 236, 176);
+}
+
+#PosicionFooter {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(236, 236, 176);
+  height: 10vh;
+  width: 100vw;
+  align-content: center;
+}
+
+#Promociones {
+  grid-area: Promociones;
+  width: 1500px;
+  height: 300px;
+  background-color: rgb(236, 236, 154);
+  display: flex;
+  flex-direction: row;
+}
+
+#infoPromo{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+}
+
+#SubPromo{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#inputEmail{
+  width: 25%;
+}
+
+#inputSub{
+  width: 15%;
+  align-self: self-end;
+  margin-right: 50px;
+}
+

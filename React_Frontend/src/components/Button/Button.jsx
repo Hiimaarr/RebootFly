@@ -1,8 +1,8 @@
 import './Button.css'
-function Button({size,text/*,onclick (para que cambie la función del boton)*/ }) {
+function Button({size,text,onClick }) {
   return (
     <>
-      <button className={size === "small" ? "small" : "data" }>{text} </button>
+      <button className={size === "small" ? "small" : "data" } onClick={onClick}>{text} </button>
     </>
   )
 }

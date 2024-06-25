@@ -1,3 +1,4 @@
+const Flight = require("../Models/Flights.model");
 const Flights = require("../Models/Flights.model");
 const { Op } = require('sequelize');
 const Airport = require('../models/Airport');
@@ -53,7 +54,18 @@ const deleteFlights = async (req, res) => {
 
 const createFlights = async (req, res) => {
   try {
+    console.log(req.body);
     const updatedFlights = await Flights.create(req.body);
+    return res.status(200).json(updatedFlights);
+  } catch (error) {
+    console.log(error.message)
+    return res.status(500).send(error.message);
+  }
+};
+
+const createFlightsInBulk = async (req, res) => {
+  try {
+    const updatedFlights = await Flights.bulkCreate(req.body);
     return res.status(200).json(updatedFlights);
   } catch (error) {
     return res.status(500).send(error.message);
@@ -161,6 +173,4 @@ module.exports = {
   updateFlights,
   deleteFlights,
   createFlights,
-  searchFlights,
-  getFlightDates
 };

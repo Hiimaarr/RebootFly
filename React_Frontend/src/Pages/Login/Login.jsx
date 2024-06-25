@@ -20,15 +20,14 @@ const defaultTheme = createTheme();
 export default function SignIn() {
 
   const navigate = useNavigate()
-
   const handleSubmit = async (event) => {
-    console.log("papa")
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       username: data.get('username'),
       password: data.get('password'),
     });
+    /*const result = await login*/
     const username= data.get('username')
     const password= data.get('password')
     try {

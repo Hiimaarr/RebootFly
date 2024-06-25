@@ -10,3 +10,21 @@ export const login = async (username,password)=>{
     }
 }
 
+export const insertFly = async (code,departure_time,arrival_time,status,capacity,occupiedPlaces,price)=>{
+    try {
+        const {data}= await api.post("/Flights",{code,departure_time,arrival_time,status,capacity,occupiedPlaces,price})
+        console.log(data)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const flightInfoToBack = async (Origen,Destino,Ida,Vuelta)=>{
+    try {
+        const {data}= await api.get("/Flights",{Origen,Destino,Ida,Vuelta})
+        console.log(data)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
