@@ -7,6 +7,7 @@ import SignUp from "../Pages/Signup/Signup";
 import Login from "../Pages/Login/Login"
 import Payment from "../Pages/Payment/Payment";
 import Confirmation from "../Pages/Confirmation/Confirmation";
+import TestSearchPage from "../Pages/TestSearchPage/TestSearchPage";
 const router = createBrowserRouter([
 {
     path:"/",
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
     {
         path:"/payment",
         element:<Payment/>
+    },
+   
+    {
+        path:"/search",
+        element:<TestSearchPage/>
     }
     ]
 },

@@ -1,62 +1,64 @@
+import React, { useState, useEffect } from "react";
+import SearchFlightForm from "../../components/SearchForm"; 
+
 import { searchFlights } from "../../services/flights";
 import { getAirports } from "../../services/airports";
-import { flighDates } from "../../services/flightDates";
-
-import api from '.';
-
-import { useState, useEffect } from "react";
+import { flightDates } from "../../services/flightDates"; 
 
 const TestSearchPage = () => {
+  const [flights, setFlights] = useState(null);
+  const [airports, setAirports] = useState([]);
+  const [dates, setDates] = useState([]);
+  const [error, setError] = useState(null);
 
-    const [flights, setFlights] = useState(null);
-    const [airports, setAirports] = useState([]);
-    const [dates, setDates] = useState([]);
-    const [error, setError] = useState(null);
+  useEffect(() => {
+    const fetchAirports = async () => {
+      try {
+        const data = await getAirports();
+        setAirports(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
 
-    const bringFlights = async (origin, destination, date, returnDate) => {
-        try {
-            const data = await searchFlights(origin, destination, date, returnDate);
-            setFlights(data);
-        } catch (error) {
-            setError(error.message)
-        }
+    fetchAirports();
+  }, []);
+
+  const bringFlights = async (origin, destination, date, returnDate) => {
+    try {
+      const data = await searchFlights(origin, destination, date, returnDate);
+      setFlights(data);
+    } catch (error) {
+      setError(error.message);
     }
+  };
 
-    const bringDates = async (origin, destination) => {
-        try {
-          const data = await flighDates(origin, destination);
-          setDates(data);
-        } catch (error) {
-          setError(error.message);
-        }
-      };
+  const bringDates = async (origin, destination) => {
+    try {
+      const data = await flightDates(origin, destination); 
+      setDates(data);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
-      useEffect(() => {
-        const bringAirports = async () => {
-          try {
-            const data = await getAirports();
-            setAirports(data);
-          } catch (error) {
-            setError(error.message);
-          }
-        };
-        getAirports();
-      }, []);
-      return (
-        <div>
-          {error && <p>{error}</p>}
-          {airports.length > 0 ? (
-            <TestSearchPage
-              airports={airports}
-              bringFlights={bringFlights}
-              bringDates={bringDates}
-              dates={dates}
-              flights={flights}
-            />
-          ) : (
-            <p>Loading airports...</p>
-          )}
-        </div>
-      );
-    };   
-    export default TestSearchPage;
+  return (
+    <div>
+      <p>SOY SEARCH FLIGHT</p>
+      {error && <p>{error}</p>}
+      {airports.length > 0 ? (
+        <SearchFlightForm
+          airports={airports}
+          bringFlights={bringFlights}
+          bringDates={bringDates}
+          dates={dates}
+          flights={flights}
+        />
+      ) : (
+        <p>Loading airports...</p>
+      )}
+    </div>
+  );
+};
+
+export default TestSearchPage;
