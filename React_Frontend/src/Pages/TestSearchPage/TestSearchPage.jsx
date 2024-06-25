@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import SearchFlightForm from "../../components/SearchForm"; 
+import "./TestSearchPage.css"
+import SearchForm from "../../components/SearchForm/SearchForm"; 
 
 import { searchFlights } from "../../services/flights";
 import { getAirports } from "../../services/airports";
@@ -47,7 +48,7 @@ const TestSearchPage = () => {
       <p>SOY SEARCH FLIGHT</p>
       {error && <p>{error}</p>}
       {airports.length > 0 ? (
-        <SearchFlightForm
+        <SearchForm
           airports={airports}
           bringFlights={bringFlights}
           bringDates={bringDates}

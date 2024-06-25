@@ -57,6 +57,54 @@ const createFlights = async (req, res) => {
     return res.status(500).send(error.message);
   }
 };
+//searching for specific flights:
+
+const searchFlights = async (req, res) => {
+  const { origin, destination, date, returnDate } = req.query;
+
+  try {
+  
+    const query = {
+      where: {
+        departure_time: {
+          [Op.between]: [new Date(date), new Date(returnDate)],
+        },
+      },
+      include: [
+        {
+          model: Airport,
+          as: 'departureAirport',
+          where: { id: origin },
+        },
+        {
+          model: Airport,
+          as: 'arrivalAirport',
+          where: { id: destination },
+        },
+      ],
+    };
+
+    
+    const outgoingFlights = await Flight.findAll({
+      ...query,
+    });
+
+    let returnFlights = [];
+    
+    if (returnDate) {
+      returnFlights = await Flight.findAll({
+        ...query,
+      });
+    }
+
+    res.json({ outgoingFlights, returnFlights });
+  } catch (error) {
+    console.error('Error searching flights:', error);
+    res.status(500).json({ error: 'Error al buscar vuelos' }); 
+  }
+};
+
+
 
 module.exports = {
   getAllFlights,

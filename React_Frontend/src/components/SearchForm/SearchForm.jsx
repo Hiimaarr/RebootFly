@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const SearchForm = ({ airports, bringFlights, bringDates }) => {
   const [origin, setOrigin] = useState("");
