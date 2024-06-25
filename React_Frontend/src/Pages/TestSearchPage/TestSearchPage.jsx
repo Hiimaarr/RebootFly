@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./TestSearchPage.css"
 import SearchForm from "../../components/SearchForm/SearchForm"; 
 
 import { searchFlights } from "../../services/flights";
 import { getAirports } from "../../services/airports";
-import { flightDates } from "../../services/flightDates"; 
+
 
 const TestSearchPage = () => {
   const [flights, setFlights] = useState([]);
@@ -56,7 +56,7 @@ const TestSearchPage = () => {
           flights={flights}
         />
       ) : (
-        <p>Loading airports...</p>
+        <p id="Loading">Loading airports...</p>
       )}
     </div>
   );
