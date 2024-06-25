@@ -4,10 +4,10 @@ import SearchForm from "../../components/SearchForm/SearchForm";
 
 import { searchFlights } from "../../services/flights";
 import { getAirports } from "../../services/airports";
-import { flightDates } from "../../services/flighDates"; 
+import { flightDates } from "../../services/flightDates"; 
 
 const TestSearchPage = () => {
-  const [flights, setFlights] = useState(null);
+  const [flights, setFlights] = useState([]);
   const [airports, setAirports] = useState([]);
   const [dates, setDates] = useState([]);
   const [error, setError] = useState(null);
