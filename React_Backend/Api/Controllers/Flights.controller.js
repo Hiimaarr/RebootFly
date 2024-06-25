@@ -104,7 +104,41 @@ const searchFlights = async (req, res) => {
   }
 };
 
+//take the dates
 
+const getFlightDates = async (req, res) => {
+  const { origin, destination } = req.query;
+
+  try {
+    const dates = await Flight.findAll({
+      
+     
+attributes: [
+        [sequelize.fn('DISTINCT', sequelize.col('departure_time')), 'departure_time'],
+      ],
+      where: {
+        
+       
+departureAirportId: origin,
+        arrivalAirportId: destination,
+        
+       
+departure_time: {
+          [Op.gte]: new Date(), // Solo fechas en el futuro
+        },
+      },
+      order: [['departure_time', 'ASC']],
+    });
+
+    
+    const availableDates = dates.map(date => date.departure_time.toISOString()); // Convertimos las fechas a formato ISO 8601
+
+    res.json(availableDates);
+  } catch (error) {
+    console.error('Error fetching flight dates:', error);
+    res.status(500).json({ error: 'Error al obtener las fechas disponibles de vuelo' });
+  }
+};
 
 module.exports = {
   getAllFlights,
@@ -112,4 +146,6 @@ module.exports = {
   updateFlights,
   deleteFlights,
   createFlights,
+  searchFlights,
+  getFlightDates
 };
