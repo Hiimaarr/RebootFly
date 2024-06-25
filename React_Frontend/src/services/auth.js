@@ -19,9 +19,9 @@ export const insertFly = async (code,departure_time,arrival_time,status,capacity
     }
 }
 
-export const flightInfoToBack = async (Origen,Destino,idaDate,vueltaDate)=>{
+export const flightInfoToBack = async (origin,destination,date,returnDate)=>{
     try {
-        const {data}= await api.post("/Flights/search",{Origen,Destino,idaDate,vueltaDate})
+        const {data}= await api.post("/Flights/search",{origin,destination,date,returnDate})
         console.log(data)
     } catch (error) {
         console.log(error);

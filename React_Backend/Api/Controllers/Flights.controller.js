@@ -76,7 +76,7 @@ const createFlightsInBulk = async (req, res) => {
 const searchFlights = async (req, res) => {
   console.log("SEARCH FLIGHTTTTTTTTTTTTTTTTTTTTTTTT");
 
-  const { origin, destination, date, returnDate } = req.query;
+  const { origin, destination, date, returnDate } = req.body;
 
   // Parse dates from query parameters
   const searchDate = new Date(date);
@@ -85,8 +85,8 @@ const searchFlights = async (req, res) => {
 
   const query = {
     where: {
-      departureAirportId: origin,
-      arrivalAirportId: destination,
+      departureAirportId: 1,
+      arrivalAirportId:2,
       departure_time: {
         [Op.gte]: startOfDay,
         [Op.lt]: endOfDay
@@ -115,8 +115,8 @@ const searchFlights = async (req, res) => {
 
       returnFlights = await Flights.findAll({
         where: {
-          departureAirportId: destination,
-          arrivalAirportId: origin,
+          departureAirportId: 1,
+          arrivalAirportId: 2,
           departure_time: {
             [Op.gte]: returnStartOfDay,
             [Op.lt]: returnEndOfDay

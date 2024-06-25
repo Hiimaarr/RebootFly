@@ -1,6 +1,7 @@
 import axios from "axios"
 const api = axios.create({
-    baseURL:"https://fantastic-fiesta-qgr7995j77xh4g6q.github.dev/Api"
+    baseURL:"https://turbo-space-parakeet-5gvwvw7gq746cv4wx-3000.app.github.dev/Api"
+
 })
 
 export default api
