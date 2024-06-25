@@ -13,7 +13,9 @@ import { useState } from 'react';
 import { getAirports } from '../../services/airports';
 
 function Home() {
-  const airport = async ()
+  const airport = async () =>{
+    await getAirports()
+  }
   const [selectedDepartureDate,setSelectedDepartureDate]= useState()
   const [selectedReturnDate,setSelectedReturnDate]= useState()
   const handleDateDepartureChange = (event) => {
