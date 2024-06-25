@@ -10,8 +10,10 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { flightInfoToBack } from '../../services/auth';
 import { useState } from 'react';
+import { getAirports } from '../../services/airports';
 
 function Home() {
+  const airport = async ()
   const [selectedDepartureDate,setSelectedDepartureDate]= useState()
   const [selectedReturnDate,setSelectedReturnDate]= useState()
   const handleDateDepartureChange = (event) => {
@@ -25,17 +27,16 @@ function Home() {
     setSelectedReturnDate(event.target.value)*/
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const Origen = data.get('Origen')
-    const Destino = data.get('Destino')
+    const origin = data.get('Origen')
+    const destination = data.get('Destino')
     const Ida = {selectedDepartureDate}
-    const idaDate = Ida.selectedDepartureDate;
+    const date = Ida.selectedDepartureDate;
     const Vuelta = {selectedReturnDate};
-    const vueltaDate = Vuelta.selectedReturnDate;
-    console.log(Origen);
-    console.log(idaDate)
-    console.log(vueltaDate) 
+    const returnDate = Vuelta.selectedReturnDate;
+    
     try {
-      const result = await flightInfoToBack(Origen,Destino,idaDate,vueltaDate)
+      const result = await flightInfoToBack(origin,destination,date,returnDate)
+      console.log(result);
     } catch (error) {
       console.log(error);
     } 
@@ -57,8 +58,13 @@ function Home() {
               <label>
                   Origin
                   <select name="Origen" id="Origen">
+                  <option value="">Select origin...</option>
+                  {airports.map((airport) => (
+                      <option key={airport.code} value={airport.code}>
+                        {airport.name} ({airport.code})
+                      </option>))}
                   <option value="Select a departure">Select a departure</option>
-                </select>
+                  </select>
               </label>
 
               <label>

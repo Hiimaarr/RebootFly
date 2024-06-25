@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./TestSearchPage.css"
 import SearchForm from "../../components/SearchForm/SearchForm"; 
-
 import { searchFlights } from "../../services/flights";
 import { getAirports } from "../../services/airports";
 
