@@ -9,10 +9,22 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { flightInfoToBack } from '../../services/auth';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getAirports } from '../../services/airports';
 
 function Home() {
+  useEffect(() => {
+    const fetchAirports = async () => {
+      try {
+        const data = await getAirports();
+        setAirports(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    fetchAirports();
+  }, []);
+  const [airports, setAirports] = useState([]);
   const airport = async () =>{
     await getAirports()
   }
@@ -53,7 +65,7 @@ function Home() {
   return (
     <>
         <div id="ContenidoPagina">
-          <Box component="form" onSubmit={handleSubmit} >
+          <Box component="form" onSubmit={handleSubmit} id="BarraBuscar">
                 <section id="BarraBuscar">
               <button id="Lupa" type="submit"> 🔎</button>
 
@@ -65,7 +77,6 @@ function Home() {
                       <option key={airport.code} value={airport.code}>
                         {airport.name} ({airport.code})
                       </option>))}
-                  <option value="Select a departure">Select a departure</option>
                   </select>
               </label>
 
@@ -73,6 +84,10 @@ function Home() {
                   Destination
                   <select name="Destino" id="Destino">
                   <option value="Select a arrival">Select a arrival</option>
+                  {airports.map((airport) => (
+                      <option key={airport.code} value={airport.code}>
+                        {airport.name} ({airport.code})
+                      </option>))}
                 </select>
               </label>
               <label>
