@@ -48,7 +48,7 @@ const deleteBooking = async (req, res) => {
     });
    const flight = await Flight.findByPk(req.params.id);
     flight.occupiedPlaces -= 1;
-    return res.status(200).json(deletedBooking);
+    return res.status(200).json({deletedBooking, flight});
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
