@@ -9,29 +9,50 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { flightInfoToBack } from '../../services/auth';
+import { useState } from 'react';
 
 function Home() {
+  const [selectedDepartureDate,setSelectedDepartureDate]= useState()
+  const [selectedReturnDate,setSelectedReturnDate]= useState()
+  const handleDateDepartureChange = (event) => {
+    setSelectedDepartureDate(event.target.value);
+  };
+  const handleDateReturnChange = (event) => {
+    setSelectedReturnDate(event.target.value);
+  };
   const handleSubmit = async (event) => {
+    /*setSelectedDepartureDate(event.target.value)
+    setSelectedReturnDate(event.target.value)*/
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const Origen = data.get('Origen')
     const Destino = data.get('Destino')
-    const Ida = data.get('Ida')
-    const Vuelta = data.get('Vuelta')
+    const Ida = {selectedDepartureDate}
+    const idaDate = Ida.selectedDepartureDate;
+    const Vuelta = {selectedReturnDate};
+    const vueltaDate = Vuelta.selectedReturnDate;
+    console.log(Origen);
+    console.log(idaDate)
+    console.log(vueltaDate) 
     try {
-      const result = await flightInfoToBack(Origen,Destino,Ida,Vuelta)
-      console.log(result)
-      navigate("/Price")
+      const result = await flightInfoToBack(Origen,Destino,idaDate,vueltaDate)
     } catch (error) {
       console.log(error);
-    }
+    } 
+   /* try {
+      const result = await flightInfoToBack(Origen,Destino,Ida,Vuelta)
+      console.log(result)
+      //navigate("/Price")
+    } catch (error) {
+      console.log(error);
+    }*/
   };
   return (
     <>
         <div id="ContenidoPagina">
           <Box component="form" onSubmit={handleSubmit} >
                 <section id="BarraBuscar">
-              <button id="Lupa"> 🔎</button>
+              <button id="Lupa" type="submit"> 🔎</button>
 
               <label>
                   Origin
@@ -47,16 +68,17 @@ function Home() {
                 </select>
               </label>
               <label>
-                Departure <input type="date" id="Ida" />
+                Departure <input type="date" id="Ida" onChange={handleDateDepartureChange}/>
               </label>
               <label>
-                Return <input type="date" id="Vuelta" />
+                Return <input type="date" id="Vuelta" onChange={handleDateReturnChange}/>
               </label>
 
               <label>
                   Pasajeros
                   <select name="Pasajeros" id="Pasajeros">
                   <option value="1"> 1 passenger</option>
+                  <option > 2 passenger</option>
                   </select>
 
               </label>
