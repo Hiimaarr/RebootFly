@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+# Ignorar archivos temporales
+*.log
+*.tmp
+
+# Ignorar directorios específicos
+/node_modules
+/dist
+
+# Ignorar archivos específicos
+.env
+.DS_Store
+=======
 # Logs
 logs
 *.log
@@ -25,3 +38,4 @@ dist-ssr
 
 .env
 vite
+>>>>>>> a9fe323f3ff51961def08c38eba43d8938a6a5a4

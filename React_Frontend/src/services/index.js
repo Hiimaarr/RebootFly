@@ -1,7 +1,6 @@
-import axios from "axios"
+import axios from 'axios';
 const api = axios.create({
-    baseURL:"https://turbo-space-parakeet-5gvwvw7gq746cv4wx-3000.app.github.dev/Api"
+  baseURL: 'http://localhost:3000/Api',
+});
 
-})
-
-export default api
+export default api;
