@@ -30,7 +30,7 @@ const SearchForm = ({ airports, bringFlights, bringDates }) => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Origin:
+        {/*ORIGIN AIRPORT*/}
         <select value={origin} onChange={handleOriginChange}>
           <option value="">Select origin...</option>
           {airports.map((airport) => (
@@ -42,7 +42,7 @@ const SearchForm = ({ airports, bringFlights, bringDates }) => {
       </label>
       <br />
       <label>
-        Destination:
+           {/*DESTINATION AIRPORT*/}
         <select value={destination} onChange={handleDestinationChange}>
           <option value="">Select destination...</option>
           {airports.map((airport) => (
@@ -54,7 +54,7 @@ const SearchForm = ({ airports, bringFlights, bringDates }) => {
       </label>
       <br />
       <label>
-        Departure Date:
+          {/*DEPARTURE DATE*/} 
         <input
           type="date"
           value={departureDate}
@@ -63,7 +63,7 @@ const SearchForm = ({ airports, bringFlights, bringDates }) => {
       </label>
       <br />
       <label>
-        Return Date:
+           {/*RETURN DATE*/}
         <input
           type="date"
           value={returnDate}
