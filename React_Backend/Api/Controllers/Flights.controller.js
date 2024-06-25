@@ -75,14 +75,10 @@ const createFlightsInBulk = async (req, res) => {
 //searching for specific flights:
 const searchFlights = async (req, res) => {
   console.log("SEARCH FLIGHTTTTTTTTTTTTTTTTTTTTTTTT");
-  
-  // Variables mock para probar el controlador
-  const origin = 10; // ID del aeropuerto de origen simulado
-  const destination = 9; // ID del aeropuerto de destino simulado
-  const date = '2024-07-01'; // Fecha de salida simulada
-  const returnDate = "2024-07-01"; // Fecha de retorno simulada (puede ser null si no se necesita retorno)
 
-  // Extrae día, mes y año de la fecha proporcionada
+  const { origin, destination, date, returnDate } = req.query;
+
+  // Parse dates from query parameters
   const searchDate = new Date(date);
   const startOfDay = new Date(searchDate.getFullYear(), searchDate.getMonth(), searchDate.getDate());
   const endOfDay = new Date(searchDate.getFullYear(), searchDate.getMonth(), searchDate.getDate() + 1);
@@ -145,6 +141,7 @@ const searchFlights = async (req, res) => {
     res.status(500).json({ error: 'Error searching flights' });
   }
 };
+
 // Obtener fechas de vuelo disponibles
 const getFlightDates = async (req, res) => {
   const { origin, destination } = req.query;
