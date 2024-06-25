@@ -11,6 +11,7 @@ import Profile from "../Pages/Profile/Profile";
 import Admin from "../Pages/Admin/Admin"
 import Home from "../Pages/Home/Home";
 import PriceComparator from "../Pages/PriceComparator/PriceComparator";
+import TestSearchPage from "../Pages/TestSearchPage/TestSearchPage";
 const router = createBrowserRouter([
 {
     path:"/",
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
     {
         path:"/payment",
         element:<Payment/>
+    },
+   
+    {
+        path:"/search",
+        element:<TestSearchPage/>
     }
 ]},
 {
