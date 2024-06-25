@@ -25,11 +25,11 @@ function Home() {
     fetchAirports();
   }, []);
   const [airports, setAirports] = useState([]);
-  const airport = async () =>{
-    await getAirports()
-  }
-  const [selectedDepartureDate,setSelectedDepartureDate]= useState()
-  const [selectedReturnDate,setSelectedReturnDate]= useState()
+  const airport = async () => {
+    await getAirports();
+  };
+  const [selectedDepartureDate, setSelectedDepartureDate] = useState();
+  const [selectedReturnDate, setSelectedReturnDate] = useState();
   const handleDateDepartureChange = (event) => {
     setSelectedDepartureDate(event.target.value);
   };
@@ -41,8 +41,11 @@ function Home() {
     setSelectedReturnDate(event.target.value)*/
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    console.log(data);
     const origin = data.get('Origen');
+    console.log(origin);
     const destination = data.get('Destino');
+    console.log(destination);
     const Ida = { selectedDepartureDate };
     const date = Ida.selectedDepartureDate;
     const Vuelta = { selectedReturnDate };
@@ -69,38 +72,53 @@ function Home() {
   };
   return (
     <>
-        <div id="ContenidoPagina">
-          <Box component="form" onSubmit={handleSubmit} id="BarraBuscar">
-                <section id="BarraBuscar">
-              <button id="Lupa" type="submit"> 🔎</button>
+      <div id="ContenidoPagina">
+        <Box component="form" onSubmit={handleSubmit} id="BarraBuscar">
+          <section id="BarraBuscar">
+            <button id="Lupa" type="submit">
+              {' '}
+              🔎
+            </button>
 
-              <label>
-                  Origin
-                  <select name="Origen" id="Origen">
-                  <option value="">Select origin...</option>
-                  {airports.map((airport) => (
-                      <option key={airport.code} value={airport.code}>
-                        {airport.name} ({airport.code})
-                      </option>))}
-                  </select>
-              </label>
+            <label>
+              Origin
+              <select name="Origen" id="Origen">
+                <option value="">Select origin...</option>
+                {airports.map((airport) => (
+                  <option key={airport.code} value={airport.id}>
+                    {airport.name} ({airport.code})
+                  </option>
+                ))}
+              </select>
+            </label>
 
-              <label>
-                  Destination
-                  <select name="Destino" id="Destino">
-                  <option value="Select a arrival">Select a arrival</option>
-                  {airports.map((airport) => (
-                      <option key={airport.code} value={airport.code}>
-                        {airport.name} ({airport.code})
-                      </option>))}
-                </select>
-              </label>
-              <label>
-                Departure <input type="date" id="Ida" onChange={handleDateDepartureChange}/>
-              </label>
-              <label>
-                Return <input type="date" id="Vuelta" onChange={handleDateReturnChange}/>
-              </label>
+            <label>
+              Destination
+              <select name="Destino" id="Destino">
+                <option value="Select a arrival">Select a arrival</option>
+                {airports.map((airport) => (
+                  <option key={airport.code} value={airport.id}>
+                    {airport.name} ({airport.code})
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Departure{' '}
+              <input
+                type="date"
+                id="Ida"
+                onChange={handleDateDepartureChange}
+              />
+            </label>
+            <label>
+              Return{' '}
+              <input
+                type="date"
+                id="Vuelta"
+                onChange={handleDateReturnChange}
+              />
+            </label>
 
             <label>
               Pasajeros

@@ -13,6 +13,7 @@ const {
 
 router.get("/", getAllFlights);
 router.post("/search",searchFlights);
+
 router.get("/:id", getOneFlights);
 router.put("/:id", updateFlights);
 router.delete("/:id", deleteFlights);

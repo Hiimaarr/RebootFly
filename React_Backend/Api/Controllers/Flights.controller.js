@@ -72,7 +72,6 @@ const createFlightsInBulk = async (req, res) => {
     return res.status(500).send(error.message);
   }
 };
-//searching for specific flights:
 const searchFlights = async (req, res) => {
   console.log("SEARCH FLIGHTTTTTTTTTTTTTTTTTTTTTTTT");
 
@@ -93,8 +92,8 @@ const searchFlights = async (req, res) => {
 
   const query = {
     where: {
-      departureAirportId: 1,
-      arrivalAirportId:2,
+      departureAirportId: origin,
+      arrivalAirportId: destination,
       departure_time: {
         [Op.gte]: startOfDay,
         [Op.lt]: endOfDay,
@@ -131,8 +130,8 @@ const searchFlights = async (req, res) => {
 
       returnFlights = await Flights.findAll({
         where: {
-          departureAirportId: 1,
-          arrivalAirportId: 2,
+          departureAirportId: origin,
+          arrivalAirportId: destination,
           departure_time: {
             [Op.gte]: returnStartOfDay,
             [Op.lt]: returnEndOfDay,
@@ -177,7 +176,7 @@ const getFlightDates = async (req, res) => {
           [Op.gte]: new Date(), // Solo fechas en el futuro
         },
       },
-      order: [["departure_time", "ASC"]],
+      /*  order: [["departure_time", "ASC"]], */
     });
 
     const availableDates = dates.map((date) =>
