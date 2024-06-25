@@ -7,18 +7,20 @@ const {
   deleteFlights,
   createFlights,
   searchFlights,
-  getFlightDates
+  getFlightDates,
+  createFlightsInBulk
 } = require("../Controllers/Flights.controller");
 
-router.get("", getAllFlights);
+router.get("/", getAllFlights);
+router.get("/search",searchFlights);
 router.get("/:id", getOneFlights);
 router.put("/:id", updateFlights);
 router.delete("/:id", deleteFlights);
 router.post("", createFlights);  
+router.post("/bulk-flight", createFlightsInBulk);  
 
 //search flights
 
-router.get("/search",searchFlights)
 
 //flight dates
 

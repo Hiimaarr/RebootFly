@@ -1,7 +1,7 @@
-const Flight = require("../Models/Flights.model");
+//const Flight = require("../Models/Flights.model");
 const Flights = require("../Models/Flights.model");
 const { Op } = require('sequelize');
-const Airport = require('../models/Airport');
+const Airport = require('../Models/Airport.model');
                    
 const getAllFlights = async (req, res) => {
   try {
@@ -13,6 +13,7 @@ const getAllFlights = async (req, res) => {
 };
 
 const getOneFlights = async (req, res) => {
+  console.log("si soy")
   try {
     const oneFlights = await Flights.findByPk(req.params.id);
     if (oneFlights) {
@@ -72,21 +73,28 @@ const createFlightsInBulk = async (req, res) => {
   }
 };
 //searching for specific flights:
-
 const searchFlights = async (req, res) => {
-  const { origin, destination, date, returnDate } = req.query;
-  const startOfDay = new Date(date);
-  startOfDay.setUTCHours(0, 0, 0, 0);
-  const endOfDay = new Date(date);
-  endOfDay.setUTCHours(23, 59, 59, 999);
+  console.log("SEARCH FLIGHTTTTTTTTTTTTTTTTTTTTTTTT");
+  
+  // Variables mock para probar el controlador
+  const origin = 10; // ID del aeropuerto de origen simulado
+  const destination = 9; // ID del aeropuerto de destino simulado
+  const date = '2024-07-01'; // Fecha de salida simulada
+  const returnDate = "2024-07-01"; // Fecha de retorno simulada (puede ser null si no se necesita retorno)
+
+  // Extrae día, mes y año de la fecha proporcionada
+  const searchDate = new Date(date);
+  const startOfDay = new Date(searchDate.getFullYear(), searchDate.getMonth(), searchDate.getDate());
+  const endOfDay = new Date(searchDate.getFullYear(), searchDate.getMonth(), searchDate.getDate() + 1);
 
   const query = {
     where: {
-      departure_time: {
-        [Op.between]: [startOfDay, endOfDay],
-      },
       departureAirportId: origin,
       arrivalAirportId: destination,
+      departure_time: {
+        [Op.gte]: startOfDay,
+        [Op.lt]: endOfDay
+      }
     },
     include: [
       {
@@ -101,22 +109,22 @@ const searchFlights = async (req, res) => {
   };
 
   try {
-    const outgoingFlights = await Flight.findAll(query);
-
+    const outgoingFlights = await Flights.findAll(query);
     let returnFlights = [];
-    if (returnDate) {
-      const startOfReturnDay = new Date(returnDate);
-      startOfReturnDay.setUTCHours(0, 0, 0, 0);
-      const endOfReturnDay = new Date(returnDate);
-      endOfReturnDay.setUTCHours(23, 59, 59, 999);
 
-      returnFlights = await Flight.findAll({
+    if (returnDate) {
+      const returnSearchDate = new Date(returnDate);
+      const returnStartOfDay = new Date(returnSearchDate.getFullYear(), returnSearchDate.getMonth(), returnSearchDate.getDate());
+      const returnEndOfDay = new Date(returnSearchDate.getFullYear(), returnSearchDate.getMonth(), returnSearchDate.getDate() + 1);
+
+      returnFlights = await Flights.findAll({
         where: {
-          departure_time: {
-            [Op.between]: [startOfReturnDay, endOfReturnDay],
-          },
           departureAirportId: destination,
           arrivalAirportId: origin,
+          departure_time: {
+            [Op.gte]: returnStartOfDay,
+            [Op.lt]: returnEndOfDay
+          }
         },
         include: [
           {
@@ -131,19 +139,18 @@ const searchFlights = async (req, res) => {
       });
     }
 
-    res.json({ outgoingFlights, returnFlights });
+    res.status(200).json({ outgoingFlights, returnFlights });
   } catch (error) {
     console.error('Error searching flights:', error);
     res.status(500).json({ error: 'Error searching flights' });
   }
 };
-
 // Obtener fechas de vuelo disponibles
 const getFlightDates = async (req, res) => {
   const { origin, destination } = req.query;
 
   try {
-    const dates = await Flight.findAll({
+    const dates = await Flights.findAll({
       attributes: [
         [sequelize.fn('DISTINCT', sequelize.col('departure_time')), 'departure_time'],
       ],
@@ -173,4 +180,7 @@ module.exports = {
   updateFlights,
   deleteFlights,
   createFlights,
+  searchFlights,
+  getFlightDates,
+  createFlightsInBulk
 };
