@@ -47,7 +47,9 @@ const deleteBooking = async (req, res) => {
         id: req.params.id,
       },
     });
-    return res.status(200).json(deletedBooking);
+   const flight = await Flight.findByPk(req.params.id);
+    flight.occupiedPlaces -= 1;
+    return res.status(200).json({deletedBooking, flight});
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
@@ -56,12 +58,34 @@ const deleteBooking = async (req, res) => {
 
 /*const createBooking = async (req, res) => {
   try {
+ 
+    const flight = await Flight.findByPk(req.params.id);
 
-    const updatedBooking = await Booking.create(req.body);
+    if (!flight) {
+      return res.status(404).json({ error: "Flight not found" });
+    }
 
-    return res.status(200).json(updatedBooking);
+    if (flight.occupiedPlaces < flight.capacity) {
+      
+      const createBooking = await Booking.create(req.body);
+
+      await flight.addBooking(createBooking);
+
+      flight.occupiedPlaces += 1;
+      const flightBooking = await Flight.findOne({
+        where: {
+          id: req.params.id,
+        },
+      });;
+    console.log(flightBooking)
+
+      return res.status(200).json({ booking: createBooking, flightUpdated: flight });
+    } else {
+      return res.status(400).json({ error: "No available seats on this flight" });
+    }
   } catch (error) {
-    return res.status(500).send(error.message);
+    console.error(error);
+    return res.status(500).json({ error: error.message });
   }
 };*/
 

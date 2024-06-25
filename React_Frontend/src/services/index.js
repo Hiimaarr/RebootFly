@@ -1,6 +1,6 @@
 import axios from "axios"
 const api = axios.create({
-    baseURL:"https://fuzzy-space-adventure-pj65w77577j3995j-3000.app.github.dev/Api"
+    baseURL:"https://fantastic-fiesta-qgr7995j77xh4g6q.github.dev/Api"
 })
 
 export default api
