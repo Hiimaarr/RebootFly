@@ -6,10 +6,13 @@ function SearchFlightComponent() {
 
     return (
         <>
-        <form action="">
+        <form>
+            <select name="" id="">
+
+                
+            </select>
 
 
-            
         </form>
         
         </>
