@@ -1,5 +1,7 @@
 const Flights = require("../Models/Flights.model");
-
+const { Op } = require('sequelize');
+const Airport = require('../models/Airport');
+                   
 const getAllFlights = async (req, res) => {
   try {
     const getAllflights = await Flights.findAll();
