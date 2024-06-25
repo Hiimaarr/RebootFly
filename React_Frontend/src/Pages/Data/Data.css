@@ -1,0 +1,37 @@
+#data{
+    height: 80vh;
+    background-color: yellow;
+    display:flex;
+    flex-direction: column;
+    gap:30px;
+}
+
+#infoData{
+    border-radius: 10px;
+    align-content: center;
+    margin-left:500px ;
+    width: 60vw;
+    height:30vh;
+    color: white; 
+    align-items: center;
+}
+#dniT{
+    margin-left: 300px;
+}
+#dniTS{
+    margin-left: 300px;
+}
+#infoContact{
+    border-radius: 10px;
+    align-content: center;
+    margin-left: 500px;
+    width: 60vw;
+    height: 30vh;
+    background-color: blueviolet;
+    color: white;
+}
+h3{
+    margin-top: 50px;
+    text-align: center;
+}
+

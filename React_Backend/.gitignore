@@ -1,3 +1,5 @@
+node_modules
+.env
 # Ignorar archivos temporales
 *.log
 *.tmp

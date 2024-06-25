@@ -1,0 +1,44 @@
+#footer {
+    display: flex;
+    background-color: rgb(34, 34, 34);
+    height: 10vh;
+    width: 100%;
+    align-content: center;
+    color: white;
+}
+
+#redes {
+    display: flex;
+    height:50px;
+    margin-left: 750px;
+    padding-top: 15px;
+
+}
+.red{
+    height:60px;
+    width: 60px;
+    padding-right:5px;
+    border-radius: 50%;
+}
+
+#info {
+    margin-top: 0;
+    padding-top: 5px;
+    margin-left: 35%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap: 20px;
+}
+.infoFooter:hover{
+    color: aqua;
+    cursor: pointer;
+}
+.red:hover{
+    cursor: pointer;
+}
+#logoFooter{
+    margin-left: 80px;
+    padding: 5px;
+}
