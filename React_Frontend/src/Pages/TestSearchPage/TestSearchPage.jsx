@@ -4,7 +4,7 @@ import SearchForm from "../../components/SearchForm/SearchForm";
 
 import { searchFlights } from "../../services/flights";
 import { getAirports } from "../../services/airports";
-import { flightDates } from "../../services/flightDates"; 
+import { flightDates } from "../../services/flighDates"; 
 
 const TestSearchPage = () => {
   const [flights, setFlights] = useState(null);
