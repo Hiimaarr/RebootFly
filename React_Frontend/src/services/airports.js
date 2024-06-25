@@ -5,6 +5,6 @@ export const getAirports = async () => {
         const response = await api.get('/Airport');
         return response.data;
     } catch (error) {
-        console.log(error);
+        console.log(error); 
     }
 }
