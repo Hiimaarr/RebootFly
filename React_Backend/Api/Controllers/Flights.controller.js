@@ -61,84 +61,97 @@ const createFlights = async (req, res) => {
 
 const searchFlights = async (req, res) => {
   const { origin, destination, date, returnDate } = req.query;
+  const startOfDay = new Date(date);
+  startOfDay.setUTCHours(0, 0, 0, 0);
+  const endOfDay = new Date(date);
+  endOfDay.setUTCHours(23, 59, 59, 999);
+
+  const query = {
+    where: {
+      departure_time: {
+        [Op.between]: [startOfDay, endOfDay],
+      },
+      departureAirportId: origin,
+      arrivalAirportId: destination,
+    },
+    include: [
+      {
+        model: Airport,
+        as: 'departureAirport',
+      },
+      {
+        model: Airport,
+        as: 'arrivalAirport',
+      },
+    ],
+  };
 
   try {
-  
-    const query = {
-      where: {
-        departure_time: {
-          [Op.between]: [new Date(date), new Date(returnDate)],
-        },
-      },
-      include: [
-        {
-          model: Airport,
-          as: 'departureAirport',
-          where: { id: origin },
-        },
-        {
-          model: Airport,
-          as: 'arrivalAirport',
-          where: { id: destination },
-        },
-      ],
-    };
-
-    
-    const outgoingFlights = await Flight.findAll({
-      ...query,
-    });
+    const outgoingFlights = await Flight.findAll(query);
 
     let returnFlights = [];
-    
     if (returnDate) {
+      const startOfReturnDay = new Date(returnDate);
+      startOfReturnDay.setUTCHours(0, 0, 0, 0);
+      const endOfReturnDay = new Date(returnDate);
+      endOfReturnDay.setUTCHours(23, 59, 59, 999);
+
       returnFlights = await Flight.findAll({
-        ...query,
+        where: {
+          departure_time: {
+            [Op.between]: [startOfReturnDay, endOfReturnDay],
+          },
+          departureAirportId: destination,
+          arrivalAirportId: origin,
+        },
+        include: [
+          {
+            model: Airport,
+            as: 'departureAirport',
+          },
+          {
+            model: Airport,
+            as: 'arrivalAirport',
+          },
+        ],
       });
     }
 
     res.json({ outgoingFlights, returnFlights });
   } catch (error) {
     console.error('Error searching flights:', error);
-    res.status(500).json({ error: 'Error al buscar vuelos' }); 
+    res.status(500).json({ error: 'Error searching flights' });
   }
 };
 
-//take the dates
-
+// Obtener fechas de vuelo disponibles
 const getFlightDates = async (req, res) => {
   const { origin, destination } = req.query;
 
   try {
     const dates = await Flight.findAll({
-      
-     
-attributes: [
+      attributes: [
         [sequelize.fn('DISTINCT', sequelize.col('departure_time')), 'departure_time'],
       ],
       where: {
-        
-       
-departureAirportId: origin,
+        departureAirportId: origin,
         arrivalAirportId: destination,
-        
-       
-departure_time: {
+        departure_time: {
           [Op.gte]: new Date(), // Solo fechas en el futuro
         },
       },
       order: [['departure_time', 'ASC']],
     });
 
-    
-    const availableDates = dates.map(date => date.departure_time.toISOString()); // Convertimos las fechas a formato ISO 8601
+    const availableDates = dates.map(date => date.departure_time.toISOString());
 
     res.json(availableDates);
   } catch (error) {
     console.error('Error fetching flight dates:', error);
-    res.status(500).json({ error: 'Error al obtener las fechas disponibles de vuelo' });
+    res.status(500).json({ error: 'Error fetching flight dates' });
   }
 };
+
 
 module.exports = {
   getAllFlights,
