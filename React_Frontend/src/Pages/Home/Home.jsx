@@ -71,57 +71,56 @@ function Home() {
   return (
     <>
       <div id="ContenidoPagina">
-        <Box id="BarraBuscar2" component="form" onSubmit={handleSubmit}>
-          <section id="BarraBuscar">
-            <button id="Lupa" type="submit">
-              🔎
-            </button>
-
-            <label>
-              Origin
-              <select name="Origen" id="Origen">
-                {airports.map((airport) => (
-                  <option key={airport.code} value={airport.id}>
-                    {airport.name} ({airport.code})
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              Destination
-              <select name="Destino" id="Destino">
-                {airports.map((airport) => (
-                  <option key={airport.code} value={airport.id}>
-                    {airport.name} ({airport.code})
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Departure{' '}
-              <input
-                type="date"
-                id="Ida"
-                onChange={handleDateDepartureChange}
-              />
-            </label>
-            <label>
-              Return{' '}
-              <input
-                type="date"
-                id="Vuelta"
-                onChange={handleDateReturnChange}
-              />
-            </label>
-
-            <label>
-              Pasajeros
-              <select name="Pasajeros" id="Pasajeros">
-                <option value="1"> 1 passenger</option>
-                <option> 2 passenger</option>
-              </select>
-            </label>
+        <Box id="BarraBuscar" component="form" onSubmit={handleSubmit}>
+          <section id="BarraBuscar2">
+            <div id="BarraBuscar3">
+              <label>
+                Origin
+                <select name="Origen" id="Origen">
+                  {airports.map((airport) => (
+                    <option key={airport.code} value={airport.id}>
+                      {airport.name} ({airport.code})
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Destination
+                <select name="Destino" id="Destino">
+                  {airports.map((airport) => (
+                    <option key={airport.code} value={airport.id}>
+                      {airport.name} ({airport.code})
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Departure
+                <input
+                  type="date"
+                  id="Ida"
+                  onChange={handleDateDepartureChange}
+                />
+              </label>
+              <label>
+                Return
+                <input
+                  type="date"
+                  id="Vuelta"
+                  onChange={handleDateReturnChange}
+                />
+              </label>
+              <label>
+                Pasajeros
+                <select name="Pasajeros" id="Pasajeros">
+                  <option value="1"> 1 passenger</option>
+                  <option> 2 passenger</option>
+                </select>
+              </label> 
+              <button id="Lupa" type="submit">
+                🔎
+              </button>
+            </div>
           </section>
         </Box>
         <section id="Content">
