@@ -148,6 +148,8 @@ const searchFlights = async (req, res) => {
       });
     }
 
+    console.log(outgoingFlights)
+
     res.status(200).json({ outgoingFlights, returnFlights });
   } catch (error) {
     console.error("Error searching flights:", error);

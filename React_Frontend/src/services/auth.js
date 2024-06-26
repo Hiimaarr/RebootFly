@@ -23,6 +23,7 @@ export const flightInfoToBack = async (origin,destination,date,returnDate)=>{
     try {
         const {data}= await api.post("/Flights/search",{origin,destination,date,returnDate})
         console.log(data)
+        return data
     } catch (error) {
         console.log(error);
     }
