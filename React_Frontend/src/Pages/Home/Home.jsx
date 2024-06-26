@@ -1,22 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Box } from '@mui/material';
+import './Home.css';
+import Search from '../../components/Search/Search';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { FlightContext } from '../../Context/FlightContext'; // Asegúrate de importar el contexto correcto
+import { Box } from '@mui/material';
 import { flightInfoToBack } from '../../services/auth';
-
-import {getAirports} from '../../services/airports'
+import { useState, useEffect } from 'react';
+import { getAirports } from '../../services/airports';
 
 function Home() {
-  const { searchFlights, flights, loading, error } = useContext(FlightContext);
-  const [airports, setAirports] = useState([]);
-  const [selectedDepartureDate, setSelectedDepartureDate] = useState('');
-  const [selectedReturnDate, setSelectedReturnDate] = useState('');
-
   useEffect(() => {
     const fetchAirports = async () => {
       try {
@@ -24,20 +19,26 @@ function Home() {
         setAirports(data);
       } catch (error) {
         console.log(error.message);
+        console.log(error.message);
       }
     };
     fetchAirports();
   }, []);
-
+  const [airports, setAirports] = useState([]);
+  const airport = async () => {
+    await getAirports();
+  };
+  const [selectedDepartureDate, setSelectedDepartureDate] = useState();
+  const [selectedReturnDate, setSelectedReturnDate] = useState();
   const handleDateDepartureChange = (event) => {
     setSelectedDepartureDate(event.target.value);
   };
-
   const handleDateReturnChange = (event) => {
     setSelectedReturnDate(event.target.value);
   };
-
   const handleSubmit = async (event) => {
+    /*setSelectedDepartureDate(event.target.value)
+    setSelectedReturnDate(event.target.value)*/
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const Origen = data.get('Origen');
@@ -59,17 +60,22 @@ function Home() {
     } catch (error) {
       console.log(error);
     }
+    /* try {
+      const result = await flightInfoToBack(Origen,Destino,Ida,Vuelta)
+      console.log(result)
+      //navigate("/Price")
+    } catch (error) {
+      console.log(error);
+    }*/
   };
-
   return (
     <>
       <div id="ContenidoPagina">
-        <Box id="BarraBuscar2" component="form" onSubmit={handleSubmit}>
-          <section id="BarraBuscar">
+        <Box id="BarraBuscar" component="form" onSubmit={handleSubmit}>
+          <section id="BarraBuscar2">
             <button id="Lupa" type="submit">
               🔎
             </button>
-
             <label>
               Origin
               <select name="Origen" id="Origen">
