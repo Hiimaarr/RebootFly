@@ -1,14 +1,16 @@
 import './HeaderResultados.css';
 
-function HeaderResultados() {
+function HeaderResultados({ direction, departAirport, ArriAirport }) {
   return (
-    <div id="HeaderResultados">
-      <p>Aqui irian los pasos</p>
-      <div id='siuu'>
-        <p>Aqui y el origen destino</p>
-        <p>Aqui irian los pasajeros</p>
+    <>
+      <div id="HeaderResultados">
+        <p>Vuelo de {direction}</p>
       </div>
-    </div>
+      <div id="siuu">
+        <p>{departAirport}</p>
+        <p>{ArriAirport}</p>
+      </div>
+    </>
   );
 }
 

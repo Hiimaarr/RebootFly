@@ -1,12 +1,15 @@
-import "./FlightCard.css"
+import './FlightCard.css';
 
-function FlightCard() {
+function FlightCard({departCode, arrivCode, departHour, arrivHour, price}) {
+
+
   return (
-         <div id="FlightCArd">
-              <p>Aqui estaria el componente FligthCard</p>
-        </div>
-      
-  )
+    <div id="FlightCard">
+      <p>Departure Airport: {departCode}</p>
+      <p>Arrival Airport:{arrivCode}</p>
+      <h2>{price} €</h2>
+    </div>
+  );
 }
 
-export default FlightCard
+export default FlightCard;
