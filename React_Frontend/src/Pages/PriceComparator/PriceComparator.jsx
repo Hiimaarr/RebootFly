@@ -38,12 +38,19 @@ function PriceComparator() {
       }
     }
   };
+  useEffect(() => {
+    bringFlight();
+  }, []);
+
+  useEffect(() => {
+    console.log(flightsOutGoing);
+  }, [flightsOutGoing]);
 
   const info = () => {
     console.log(flights);
 
-    if (flights.length > 0) {
-      const result1 = flights.map((viajes) => {
+    if (flightsOutGoing.length > 0) {
+      const result1 = flightsOutGoing.map((viajes) => {
         return viajes.code;
       });
 
@@ -53,13 +60,6 @@ function PriceComparator() {
     }
   };
 
-  useEffect(() => {
-    bringFlight();
-  }, []);
-
-  useEffect(() => {
-    console.log(flightsOutGoing);
-  }, [flightsOutGoing]);
 
   return (
     <div id="comparatorContent">
