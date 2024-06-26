@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { flightInfoToBack } from '../../services/auth';
 import { useState } from 'react';
+import Origin from "../../components/SelectsHome/Origin/Origin"
 
 function Home() {
   const [selectedDepartureDate, setSelectedDepartureDate] = useState();
@@ -57,16 +58,14 @@ function Home() {
       <div id="ContenidoPagina">
         <Box id="BarraBuscar2" component="form" onSubmit={handleSubmit}>
           <section id="BarraBuscar">
+            
             <button id="Lupa" type="submit">
-              {' '}
+              
               🔎
             </button>
 
             <label>
-              Origin
-              <select name="Origen" id="Origen">
-                <option value="Select a departure">Select a departure</option>
-              </select>
+             <Origin/>
             </label>
 
             <label>
