@@ -1,6 +1,5 @@
-import Search from '../../components/Search/Search';
 import './Home.css';
-import * as React from 'react';
+import Search from '../../components/Search/Search';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -10,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { flightInfoToBack } from '../../services/auth';
 import { useState, useEffect } from 'react';
-import {getAirports} from '../../services/airports'
+import { getAirports } from '../../services/airports';
 
 function Home() {
   useEffect(() => {
@@ -19,6 +18,7 @@ function Home() {
         const data = await getAirports();
         setAirports(data);
       } catch (error) {
+        console.log(error.message);
         console.log(error.message);
       }
     };

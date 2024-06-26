@@ -79,11 +79,9 @@ const searchFlights = async (req, res) => {
 
   // Parse dates from query parameters
   const searchDate = new Date(date);
-  const startOfDay = new Date(
-    searchDate.getFullYear(),
-    searchDate.getMonth(),
+  const startOfDay = new Date((
     searchDate.getDate()
-  );
+  ))
   const endOfDay = new Date(
     searchDate.getFullYear(),
     searchDate.getMonth(),
