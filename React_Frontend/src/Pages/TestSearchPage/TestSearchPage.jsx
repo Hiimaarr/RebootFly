@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./TestSearchPage.css"
 import SearchForm from "../../components/SearchForm/SearchForm"; 
 import { searchFlights } from "../../services/flights";
@@ -54,7 +54,7 @@ const TestSearchPage = () => {
           flights={flights}
         />
       ) : (
-        <p>Loading airports...</p>
+        <p id="Loading">Loading airports...</p>
       )}
     </div>
   );
