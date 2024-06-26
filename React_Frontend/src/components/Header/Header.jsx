@@ -19,12 +19,15 @@ function Header() {
               <h2 className="info">Contact</h2>
               {!logged && <h2 className="info" onClick={()=>{navigate("/signup")}}>Get in!</h2> }
               {!logged ? <h2 className="info" onClick={()=>{navigate("/login")}}>Not logged</h2> : 
+              <div id="icon">
               <Box sx={{ flexGrow: 1 }}> 
-                <h2 className="info">Logged</h2>
                 <Grid xs display="flex" justifyContent="center" alignItems="center">
                   <Avatar src="/static/images/avatar/3.jpg" onClick={()=>{navigate("/Profile")}} />
                </Grid>
-              </Box>}
+              </Box>
+              </div>
+              }
+
 
             </div>
         </div>

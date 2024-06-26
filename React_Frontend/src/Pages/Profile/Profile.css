@@ -1,3 +1,103 @@
+#profile-view{
+    background-color: rgb(255, 255, 253);
+    display: grid;
+    height: 130vh;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+            '. . . '
+            '. Profile . '
+            '. Flights .'
+            '. . .'
+            '. . .'
+            '. . .';
+}
+
 .title{
     text-align: center;
+}
+
+#Profile{
+    margin-bottom:10px;
+    padding-bottom: 10px;
+    grid-area: Profile;
+    width: 1500px;
+    height: 110%;
+    background-color: rgb(236, 236, 176);
+    place-items: center;
+    place-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px 10px;
+    grid-template-areas:
+        'titleProfile titleProfile titleProfile'
+        'Name Surname Username'
+        'Email Phone .'
+        '. ButtonSave .'
+        ;
+}
+#titleProfile{
+    grid-area: titleProfile;
+}
+#buttonSave{
+    grid-area: ButtonSave;
+}
+#name{
+    grid-area: Name;
+}
+#surname {
+    grid-area: Surname;
+}
+#username{
+    grid-area: Username;
+}
+#email{
+    grid-area: Email;
+}
+
+#Flights {
+    grid-area: Flights;
+    margin-top: 100px;
+    width: 1500px;
+    height: 100%;
+    background-color: rgb(236, 236, 176);
+    place-items: center;
+    place-content: center;
+    display: grid;
+    grid-template-columns: 1fr  ;
+    grid-template-rows: 1fr ;
+    gap: 10px 10px;
+    grid-template-areas:
+        'titleFlights '
+        'Oferta1'
+        'Oferta2'
+        ' button ';
+}
+#button{
+    grid-area: button;
+}
+#titleFlights {
+    background-color: rgb(236, 236, 176);
+    grid-area: titleFlights;
+}
+#Oferta1 {
+    grid-area: Oferta1;
+    width: 1500px;
+    height: 10%;
+    background-color: rgb(236, 236, 176);
+    cursor: pointer;
+    transition: all 400ms ease;
+}
+.Oferta:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+#Oferta2 {
+    grid-area: Oferta2;
+    width: 1500px;
+    height: 10%;
+    background-color: rgb(236, 236, 176);
 }
