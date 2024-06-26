@@ -14,6 +14,7 @@ function PriceComparator() {
       name: 'LPA',
       runwayCount: 2,
       runwayLength: 3660,
+      hora: '11:30',
       terminalCount: 5,
       price: 50,
     },
@@ -26,6 +27,7 @@ function PriceComparator() {
       name: 'Madrid',
       runwayCount: 2,
       runwayLength: 3660,
+      hora: "12:30",
       terminalCount: 5,
       price: 25,
     },
@@ -40,8 +42,8 @@ function PriceComparator() {
           <div className="HrContainer">
             <HeaderResultados
               direction={'IDA'}
-              departAirport={'Madrid'}
-              ArriAirport={'LPA'}
+              departAirport={exampleFlight.departureAirport.name}
+              ArriAirport={exampleFlight.arrivalAirport.name}
             />
           </div>
 
@@ -50,6 +52,8 @@ function PriceComparator() {
               departCode={exampleFlight.departureAirport.code}
               arrivCode={exampleFlight.arrivalAirport.code}
               price={exampleFlight.price}
+              departHour={exampleFlight.departureAirport.hora}
+              arrivHour={exampleFlight.arrivalAirport.hora}
             />
           </div>
         </div>
@@ -58,8 +62,8 @@ function PriceComparator() {
           <div className="HrContainer">
             <HeaderResultados
               direction={'VUELTA'}
-              departAirport={'LPA'}
-              ArriAirport={'Madrid'}
+              departAirport={exampleFlight.arrivalAirport.name}
+              ArriAirport={exampleFlight.departureAirport.name}
             />
           </div>
 
@@ -68,6 +72,8 @@ function PriceComparator() {
               departCode={exampleFlight.departureAirport.code}
               arrivCode={exampleFlight.arrivalAirport.code}
               price={exampleFlight.price}
+              departHour={exampleFlight.departureAirport.hora}
+              arrivHour={exampleFlight.arrivalAirport.hora}
             />
           </div>
         </div>

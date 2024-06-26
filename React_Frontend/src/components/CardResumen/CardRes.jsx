@@ -2,6 +2,7 @@ import './CardRes.css'
 
 
 function CardRes({Name, Name2, Price, Price2}) {
+  const result = Price + Price2;
   return (
     <>
       <div id="Resumen">
@@ -14,10 +15,10 @@ function CardRes({Name, Name2, Price, Price2}) {
         <p> {Name2} </p>
         </div>
         <div id='Suma'>
-            <p> Precio del vuelo de Ida es {Price} </p>
-            <p> Precio del vuelo de Vuelta es {Price2}  </p>
+            <p> Precio del vuelo de Ida es {Price} € </p>
+            <p> Precio del vuelo de Vuelta es {Price2} € </p>
             <br /> <br />
-            <p> Total = {Price} + {Price2} </p>
+            <p> Total = {result} € </p>
         </div>
       </div>
     </>

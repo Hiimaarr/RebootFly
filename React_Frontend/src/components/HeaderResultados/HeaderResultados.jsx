@@ -4,7 +4,7 @@ function HeaderResultados({ direction, departAirport, ArriAirport }) {
   return (
     <>
       <div id="HeaderResultados">
-        <p>Vuelo de {direction}</p>
+        <p>Vuelos de {direction}</p>
       </div>
       <div id="siuu">
         <p>{departAirport}</p>
