@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { flightInfoToBack } from '../../services/auth';
 import { useState, useEffect } from 'react';
-import { getAirports } from '../../services/airports';
+import {getAirports} from '../../services/airports'
 
 function Home() {
   useEffect(() => {
@@ -19,7 +19,7 @@ function Home() {
         const data = await getAirports();
         setAirports(data);
       } catch (error) {
-        setError(error.message);
+        console.log(error.message);
       }
     };
     fetchAirports();
@@ -41,24 +41,22 @@ function Home() {
     setSelectedReturnDate(event.target.value)*/
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log(data);
-    const origin = data.get('Origen');
-    console.log(origin);
-    const destination = data.get('Destino');
-    console.log(destination);
+    const Origen = data.get('Origen');
+    const Destino = data.get('Destino');
     const Ida = { selectedDepartureDate };
-    const date = Ida.selectedDepartureDate;
+    const idaDate = Ida.selectedDepartureDate;
     const Vuelta = { selectedReturnDate };
-    const returnDate = Vuelta.selectedReturnDate;
-
+    const vueltaDate = Vuelta.selectedReturnDate;
+    console.log(Origen);
+    console.log(idaDate);
+    console.log(vueltaDate);
     try {
       const result = await flightInfoToBack(
-        origin,
-        destination,
-        date,
-        returnDate
+        Origen,
+        Destino,
+        idaDate,
+        vueltaDate
       );
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -73,17 +71,15 @@ function Home() {
   return (
     <>
       <div id="ContenidoPagina">
-        <Box component="form" onSubmit={handleSubmit} id="BarraBuscar">
+        <Box id="BarraBuscar2" component="form" onSubmit={handleSubmit}>
           <section id="BarraBuscar">
             <button id="Lupa" type="submit">
-              {' '}
               🔎
             </button>
 
             <label>
               Origin
               <select name="Origen" id="Origen">
-                <option value="">Select origin...</option>
                 {airports.map((airport) => (
                   <option key={airport.code} value={airport.id}>
                     {airport.name} ({airport.code})
@@ -95,7 +91,6 @@ function Home() {
             <label>
               Destination
               <select name="Destino" id="Destino">
-                <option value="Select a arrival">Select a arrival</option>
                 {airports.map((airport) => (
                   <option key={airport.code} value={airport.id}>
                     {airport.name} ({airport.code})
@@ -130,7 +125,7 @@ function Home() {
           </section>
         </Box>
         <section id="Content">
-          <div id=" Oferta1">
+          <div id=" Oferta1" className="Oferta">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -154,7 +149,7 @@ function Home() {
               </CardActions>
             </Card>
           </div>
-          <div id=" Oferta2 ">
+          <div id=" Oferta2 " className="Oferta">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -178,7 +173,7 @@ function Home() {
               </CardActions>
             </Card>
           </div>
-          <div id=" Oferta3 ">
+          <div id=" Oferta3 " className="Oferta">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -202,7 +197,7 @@ function Home() {
               </CardActions>
             </Card>
           </div>
-          <div id=" Oferta4 ">
+          <div id=" Oferta4 " className="Oferta">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -226,7 +221,7 @@ function Home() {
               </CardActions>
             </Card>
           </div>
-          <div id=" Oferta5 ">
+          <div id=" Oferta5 " className="Oferta">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -250,7 +245,7 @@ function Home() {
               </CardActions>
             </Card>
           </div>
-          <div id=" Oferta6 ">
+          <div id=" Oferta6 " className="Oferta">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -290,7 +285,7 @@ function Home() {
               id="inputEmail"
               type="email"
               placeholder="Ingrese su Correo"
-            />{' '}
+            />
             <p>
               Los datos personales facilitados serán tratados por Binter
               Canarias como responsable del tratamiento, para el envío periódico
@@ -302,7 +297,7 @@ function Home() {
                 Política de privacidad
               </a>
               .
-            </p>{' '}
+            </p>
             <button id="inputSub">Suscribirme</button>
           </div>
         </section>
