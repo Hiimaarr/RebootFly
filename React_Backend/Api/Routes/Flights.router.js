@@ -12,7 +12,8 @@ const {
 } = require("../Controllers/Flights.controller");
 
 router.get("/", getAllFlights);
-router.get("/search",searchFlights);
+router.post("/search",searchFlights);
+
 router.get("/:id", getOneFlights);
 router.put("/:id", updateFlights);
 router.delete("/:id", deleteFlights);

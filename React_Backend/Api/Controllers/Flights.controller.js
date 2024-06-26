@@ -1,8 +1,8 @@
 //const Flight = require("../Models/Flights.model");
 const Flights = require("../Models/Flights.model");
-const { Op } = require('sequelize');
-const Airport = require('../Models/Airport.model');
-                   
+const { Op } = require("sequelize");
+const Airport = require("../Models/Airport.model");
+
 const getAllFlights = async (req, res) => {
   try {
     const getAllflights = await Flights.findAll();
@@ -13,7 +13,7 @@ const getAllFlights = async (req, res) => {
 };
 
 const getOneFlights = async (req, res) => {
-  console.log("si soy")
+  console.log("si soy");
   try {
     const oneFlights = await Flights.findByPk(req.params.id);
     if (oneFlights) {
@@ -59,7 +59,7 @@ const createFlights = async (req, res) => {
     const updatedFlights = await Flights.create(req.body);
     return res.status(200).json(updatedFlights);
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
     return res.status(500).send(error.message);
   }
 };
@@ -72,16 +72,23 @@ const createFlightsInBulk = async (req, res) => {
     return res.status(500).send(error.message);
   }
 };
-//searching for specific flights:
 const searchFlights = async (req, res) => {
   console.log("SEARCH FLIGHTTTTTTTTTTTTTTTTTTTTTTTT");
 
-  const { origin, destination, date, returnDate } = req.query;
+  const { origin, destination, date, returnDate } = req.body;
 
   // Parse dates from query parameters
   const searchDate = new Date(date);
-  const startOfDay = new Date(searchDate.getFullYear(), searchDate.getMonth(), searchDate.getDate());
-  const endOfDay = new Date(searchDate.getFullYear(), searchDate.getMonth(), searchDate.getDate() + 1);
+  const startOfDay = new Date(
+    searchDate.getFullYear(),
+    searchDate.getMonth(),
+    searchDate.getDate()
+  );
+  const endOfDay = new Date(
+    searchDate.getFullYear(),
+    searchDate.getMonth(),
+    searchDate.getDate() + 1
+  );
 
   const query = {
     where: {
@@ -89,17 +96,17 @@ const searchFlights = async (req, res) => {
       arrivalAirportId: destination,
       departure_time: {
         [Op.gte]: startOfDay,
-        [Op.lt]: endOfDay
-      }
+        [Op.lt]: endOfDay,
+      },
     },
     include: [
       {
         model: Airport,
-        as: 'departureAirport',
+        as: "departureAirport",
       },
       {
         model: Airport,
-        as: 'arrivalAirport',
+        as: "arrivalAirport",
       },
     ],
   };
@@ -110,26 +117,34 @@ const searchFlights = async (req, res) => {
 
     if (returnDate) {
       const returnSearchDate = new Date(returnDate);
-      const returnStartOfDay = new Date(returnSearchDate.getFullYear(), returnSearchDate.getMonth(), returnSearchDate.getDate());
-      const returnEndOfDay = new Date(returnSearchDate.getFullYear(), returnSearchDate.getMonth(), returnSearchDate.getDate() + 1);
+      const returnStartOfDay = new Date(
+        returnSearchDate.getFullYear(),
+        returnSearchDate.getMonth(),
+        returnSearchDate.getDate()
+      );
+      const returnEndOfDay = new Date(
+        returnSearchDate.getFullYear(),
+        returnSearchDate.getMonth(),
+        returnSearchDate.getDate() + 1
+      );
 
       returnFlights = await Flights.findAll({
         where: {
-          departureAirportId: destination,
-          arrivalAirportId: origin,
+          departureAirportId: origin,
+          arrivalAirportId: destination,
           departure_time: {
             [Op.gte]: returnStartOfDay,
-            [Op.lt]: returnEndOfDay
-          }
+            [Op.lt]: returnEndOfDay,
+          },
         },
         include: [
           {
             model: Airport,
-            as: 'departureAirport',
+            as: "departureAirport",
           },
           {
             model: Airport,
-            as: 'arrivalAirport',
+            as: "arrivalAirport",
           },
         ],
       });
@@ -137,8 +152,8 @@ const searchFlights = async (req, res) => {
 
     res.status(200).json({ outgoingFlights, returnFlights });
   } catch (error) {
-    console.error('Error searching flights:', error);
-    res.status(500).json({ error: 'Error searching flights' });
+    console.error("Error searching flights:", error);
+    res.status(500).json({ error: "Error searching flights" });
   }
 };
 
@@ -149,7 +164,10 @@ const getFlightDates = async (req, res) => {
   try {
     const dates = await Flights.findAll({
       attributes: [
-        [sequelize.fn('DISTINCT', sequelize.col('departure_time')), 'departure_time'],
+        [
+          sequelize.fn("DISTINCT", sequelize.col("departure_time")),
+          "departure_time",
+        ],
       ],
       where: {
         departureAirportId: origin,
@@ -158,18 +176,19 @@ const getFlightDates = async (req, res) => {
           [Op.gte]: new Date(), // Solo fechas en el futuro
         },
       },
-      order: [['departure_time', 'ASC']],
+      /*  order: [["departure_time", "ASC"]], */
     });
 
-    const availableDates = dates.map(date => date.departure_time.toISOString());
+    const availableDates = dates.map((date) =>
+      date.departure_time.toISOString()
+    );
 
     res.json(availableDates);
   } catch (error) {
-    console.error('Error fetching flight dates:', error);
-    res.status(500).json({ error: 'Error fetching flight dates' });
+    console.error("Error fetching flight dates:", error);
+    res.status(500).json({ error: "Error fetching flight dates" });
   }
 };
-
 
 module.exports = {
   getAllFlights,
@@ -179,5 +198,5 @@ module.exports = {
   createFlights,
   searchFlights,
   getFlightDates,
-  createFlightsInBulk
+  createFlightsInBulk,
 };

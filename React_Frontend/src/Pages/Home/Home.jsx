@@ -9,10 +9,25 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { flightInfoToBack } from '../../services/auth';
-import { useState } from 'react';
-import Origin from "../../components/SelectsHome/Origin/Origin"
+import { useState, useEffect } from 'react';
+import { getAirports } from '../../services/airports';
 
 function Home() {
+  useEffect(() => {
+    const fetchAirports = async () => {
+      try {
+        const data = await getAirports();
+        setAirports(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    fetchAirports();
+  }, []);
+  const [airports, setAirports] = useState([]);
+  const airport = async () => {
+    await getAirports();
+  };
   const [selectedDepartureDate, setSelectedDepartureDate] = useState();
   const [selectedReturnDate, setSelectedReturnDate] = useState();
   const handleDateDepartureChange = (event) => {
@@ -26,22 +41,24 @@ function Home() {
     setSelectedReturnDate(event.target.value)*/
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const Origen = data.get('Origen');
-    const Destino = data.get('Destino');
+    console.log(data);
+    const origin = data.get('Origen');
+    console.log(origin);
+    const destination = data.get('Destino');
+    console.log(destination);
     const Ida = { selectedDepartureDate };
-    const idaDate = Ida.selectedDepartureDate;
+    const date = Ida.selectedDepartureDate;
     const Vuelta = { selectedReturnDate };
-    const vueltaDate = Vuelta.selectedReturnDate;
-    console.log(Origen);
-    console.log(idaDate);
-    console.log(vueltaDate);
+    const returnDate = Vuelta.selectedReturnDate;
+
     try {
       const result = await flightInfoToBack(
-        Origen,
-        Destino,
-        idaDate,
-        vueltaDate
+        origin,
+        destination,
+        date,
+        returnDate
       );
+      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -56,22 +73,34 @@ function Home() {
   return (
     <>
       <div id="ContenidoPagina">
-        <Box id="BarraBuscar2" component="form" onSubmit={handleSubmit}>
+        <Box component="form" onSubmit={handleSubmit} id="BarraBuscar">
           <section id="BarraBuscar">
-            
             <button id="Lupa" type="submit">
-              
+              {' '}
               🔎
             </button>
 
             <label>
-             <Origin/>
+              Origin
+              <select name="Origen" id="Origen">
+                <option value="">Select origin...</option>
+                {airports.map((airport) => (
+                  <option key={airport.code} value={airport.id}>
+                    {airport.name} ({airport.code})
+                  </option>
+                ))}
+              </select>
             </label>
 
             <label>
               Destination
               <select name="Destino" id="Destino">
                 <option value="Select a arrival">Select a arrival</option>
+                {airports.map((airport) => (
+                  <option key={airport.code} value={airport.id}>
+                    {airport.name} ({airport.code})
+                  </option>
+                ))}
               </select>
             </label>
             <label>
@@ -101,7 +130,7 @@ function Home() {
           </section>
         </Box>
         <section id="Content">
-          <div id=" Oferta1" className="Oferta">
+          <div id=" Oferta1">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -125,7 +154,7 @@ function Home() {
               </CardActions>
             </Card>
           </div>
-          <div id=" Oferta2 " className="Oferta">
+          <div id=" Oferta2 ">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -149,7 +178,7 @@ function Home() {
               </CardActions>
             </Card>
           </div>
-          <div id=" Oferta3 " className="Oferta">
+          <div id=" Oferta3 ">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -173,7 +202,7 @@ function Home() {
               </CardActions>
             </Card>
           </div>
-          <div id=" Oferta4 " className="Oferta">
+          <div id=" Oferta4 ">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -197,7 +226,7 @@ function Home() {
               </CardActions>
             </Card>
           </div>
-          <div id=" Oferta5 " className="Oferta">
+          <div id=" Oferta5 ">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -221,7 +250,7 @@ function Home() {
               </CardActions>
             </Card>
           </div>
-          <div id=" Oferta6 " className="Oferta">
+          <div id=" Oferta6 ">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
                 sx={{ height: 140 }}
@@ -261,7 +290,7 @@ function Home() {
               id="inputEmail"
               type="email"
               placeholder="Ingrese su Correo"
-            />
+            />{' '}
             <p>
               Los datos personales facilitados serán tratados por Binter
               Canarias como responsable del tratamiento, para el envío periódico
@@ -273,7 +302,7 @@ function Home() {
                 Política de privacidad
               </a>
               .
-            </p>
+            </p>{' '}
             <button id="inputSub">Suscribirme</button>
           </div>
         </section>
