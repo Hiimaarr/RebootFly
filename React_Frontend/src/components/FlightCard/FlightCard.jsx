@@ -74,4 +74,4 @@ function FlightCard() {
   )
 }
 
-export default FlightCard
+export default FlightCard;

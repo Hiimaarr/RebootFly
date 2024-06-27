@@ -1,17 +1,23 @@
 #comparatorContent {
-    padding-top: 100px;
-  height: 80vh;
-  background-color:  rgba(117, 227, 247, 0.753);
+  padding-top: 100px;
+  height: 160vh;
+  background-color: rgb(98, 245, 237);
   display: grid;
-  grid-template-columns: 1fr 1fr 800px;
-  grid-template-rows: 1fr;
+  grid-template-columns: 1fr  800px;
   gap: 0px 0px;
   grid-template-areas:
-    '. Resultados Resumen '
+    'Flights Resumen';
 }
 
-#Resultados {
-  grid-area: Resultados;
+#flights {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-left: 500px;
+}
+
+.resultados {
   width: 45vw;
   height: 65vh;
   background-color: aliceblue;
@@ -19,27 +25,48 @@
   flex-direction: column;
 }
 
-
-#FlightsContainers{
-    background-color: rgb(122, 30, 17);
-    height: 100%;
-    display: flex;
-    padding-top: 20px;
-    flex-direction: column;
-    align-items: center;
+#ResultadosVuelta {
+  grid-area: Vuelta;
+  margin-top: 150px;
+  width: 45vw;
+  height: 65vh;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
 }
 
- #InfoResultados{
-    grid-area: Info;
-    width: 45vw;
-    height: 20vh;
-    background-color: darkgoldenrod;
-} 
+.flightsContainer {
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  display: flex;
+  padding-top: 20px;
+  flex-direction: column;
+  align-items: center;
+}
 
-#ResumenContainer{
-    grid-area: Resumen;
-    margin-left: 250px;
-    width: 15vw;
-    height: 55vh;
-    background-color: black;
+#InfoResultados {
+  grid-area: Info;
+  width: 45vw;
+  height: 20vh;
+  background-color: darkgoldenrod;
+}
+
+#ResumenContainer {
+  grid-area: Resumen;
+  margin-left: 250px;
+  width: 15vw;
+  height: 30vh;
+  background-color: black;
+}
+
+#FlightCard {
+  background-color: rgba(89, 214, 223, 0.986);
+  width: 80%;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
 }

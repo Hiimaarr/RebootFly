@@ -114,12 +114,12 @@ const navigate = useNavigate()
                 />
               </label>
               <label>
-                Pasajeros
+                Passengers
                 <select name="Pasajeros" id="Pasajeros">
                   <option value="1"> 1 passenger</option>
                   <option> 2 passenger</option>
                 </select>
-              </label> 
+              </label>
               <button id="Lupa" type="submit">
                 🔎
               </button>
@@ -130,7 +130,7 @@ const navigate = useNavigate()
           <div id=" Oferta1" className="Oferta">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
-                sx={{ height: 140 }}
+                sx={{ height: 160 }}
                 image="https://www.spain.info/.content/imagenes/cabeceras-grandes/madrid/calle-gran-via-madrid-s333961043.jpg"
                 title="Madrid"
               />
@@ -139,14 +139,14 @@ const navigate = useNavigate()
                   Madrid
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Madrid es una ciudad cosmopolita, fiel a sus costumbres,
-                  cultura y a su arte, pero a su vez es un lugar moderno,
-                  alberga centros culturales, económicos y políticos de primer
-                  orden en Europa
+                  Madrid is a cosmopolitan city, faithful to its customs,
+                  culture and its art, but at the same time it is a modern
+                  place, It houses first-class cultural, economic and political
+                  centers order in Europe
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Reservar</Button>
+                <Button size="small">Reserve</Button>
                 <span size="small">Learn More</span>
               </CardActions>
             </Card>
@@ -163,14 +163,14 @@ const navigate = useNavigate()
                   París
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Explora París, la encantadora Ciudad de la Luz. Disfruta de la
-                  Torre Eiffel, el Louvre, paseos románticos por el Sena y
-                  deliciosa gastronomía francesa. Reserva tu vuelo y vive una
-                  experiencia inolvidable en la capital de Francia.
+                  Explore Paris, the charming City of Light. Enjoy the Eiffel
+                  Tower, the Louvre, romantic walks along the Seine and
+                  delicious French cuisine. Book your flight and live an
+                  unforgettable experience in the capital of France.
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Reservar</Button>
+                <Button size="small">Reserve</Button>
                 <span size="small">Learn More</span>
               </CardActions>
             </Card>
@@ -187,14 +187,14 @@ const navigate = useNavigate()
                   Barcelona
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Descubre Barcelona, una vibrante ciudad mediterránea. Admira
-                  la arquitectura de Gaudí, relájate en sus playas, disfruta de
-                  la deliciosa comida catalana y explora Las Ramblas. Reserva tu
-                  vuelo y vive la magia barcelonesa.
+                  Discover Barcelona, ​​a vibrant Mediterranean city. Admire
+                  Gaudí's architecture, relax on its beaches, enjoy delicious
+                  Catalan food and explore Las Ramblas. Reserve your Fly and
+                  experience the magic of Barcelona.
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Reservar</Button>
+                <Button size="small">Reserve</Button>
                 <span size="small">Learn More</span>
               </CardActions>
             </Card>
@@ -202,7 +202,7 @@ const navigate = useNavigate()
           <div id=" Oferta4 " className="Oferta">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
-                sx={{ height: 140 }}
+                sx={{ height: 160 }}
                 image="https://eu-central-1.linodeobjects.com/tecnohotelnews/2022/12/shutterstock_649614043.jpg"
                 title="Sevilla"
               />
@@ -211,14 +211,14 @@ const navigate = useNavigate()
                   Sevilla
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Descubre Sevilla, corazón de Andalucía. Maravíllate con la
-                  Giralda, la majestuosa Catedral y el Alcázar. Disfruta de
-                  tapas, flamenco y paseos por el Barrio de Santa Cruz. Reserva
-                  tu vuelo y vive su encanto único.
+                  Discover Seville, heart of Andalusia. Marvel at the Giralda,
+                  the majestic Cathedral and the Alcázar. Enjoy tapas, flamenco
+                  and walks through the Santa Cruz neighborhood. Booking your
+                  flight and experience its unique charm.
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Reservar</Button>
+                <Button size="small">Reserve</Button>
                 <span size="small">Learn More</span>
               </CardActions>
             </Card>
@@ -235,14 +235,14 @@ const navigate = useNavigate()
                   Lanzarote
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Explora Lanzarote, isla volcánica en Canarias. Disfruta de sus
-                  playas, paisajes únicos de Timanfaya, y bodegas de vino.
-                  Relájate en Jameos del Agua y César Manrique. Reserva tu vuelo
-                  y vive una experiencia inolvidable.
+                  Explore Lanzarote, a volcanic island in the Canary Islands.
+                  Enjoy your beaches, unique landscapes of Timanfaya, and wine
+                  cellars. Relax at Jameos del Agua and César Manrique. Book
+                  your flight and live an unforgettable experience.
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Reservar</Button>
+                <Button size="small">Reserve</Button>
                 <span size="small">Learn More</span>
               </CardActions>
             </Card>
@@ -250,7 +250,7 @@ const navigate = useNavigate()
           <div id=" Oferta6 " className="Oferta">
             <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
               <CardMedia
-                sx={{ height: 140 }}
+                sx={{ height: 160 }}
                 image="https://tourscanner.com/blog/wp-content/uploads/2023/11/que-ver-y-hacer-en-Cadiz.jpeg"
                 title="Cádiz"
               />
@@ -259,14 +259,14 @@ const navigate = useNavigate()
                   Cadiz
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Descubre Cádiz, ciudad costera andaluza. Relájate en sus
-                  playas doradas, explora el casco antiguo, y saborea pescados
-                  frescos. Disfruta del carnaval y la rica historia gaditana.
-                  Reserva tu vuelo y vive Cádiz al máximo.
+                  Discover Cádiz, an Andalusian coastal city. Relax in your
+                  golden beaches, explore the old town, and taste fish fresh.
+                  Enjoy the carnival and the rich history of Cádiz. Book your
+                  flight and experience Cádiz to the fullest.
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Reservar</Button>
+                <Button size="small">Reserve</Button>
                 <span size="small">Learn More</span>
               </CardActions>
             </Card>

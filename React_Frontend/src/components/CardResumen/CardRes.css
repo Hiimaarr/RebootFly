@@ -1,0 +1,30 @@
+#Resumen{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(46, 134, 211);
+    width: 100%
+}
+
+#Titulo{
+    display: flex;
+    justify-content: center;
+}
+
+
+#Locations{
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#Suma{
+    background-color: blanchedalmond;
+    height: 18.07vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: ;
+}
+

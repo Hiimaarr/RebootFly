@@ -1,3 +1,4 @@
+import CardRes from '../../components/CardResumen/CardRes';
 import FlightCard from '../../components/FlightCard/FlightCard';
 import HeaderResultados from '../../components/HeaderResultados/HeaderResultados';
 import './PriceComparator.css';
@@ -48,11 +49,15 @@ function PriceComparator() {
         <div id="FlightsContainers">
           <FlightCard />
         </div>
-
       </div>
 
-      <div id='ResumenContainer'>
-
+      <div id="ResumenContainer">
+        <CardRes
+          Name={exampleFlight.departureAirport.name}
+          Name2={exampleFlight.arrivalAirport.name}
+          Price={exampleFlight.departureAirport.price}
+          Price2={exampleFlight.arrivalAirport.price}
+        />
       </div>
     </div>
   );

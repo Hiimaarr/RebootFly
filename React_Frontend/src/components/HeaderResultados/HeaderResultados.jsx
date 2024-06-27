@@ -38,8 +38,7 @@ function HeaderResultados() {
     bringFlight();
   }, []);
   return (
-    <div id="HeaderResultados">
-      <p>Aqui irian los pasos</p>
+    <>
       <div id='siuu'>
       {flightsOutGoing.map((flight) => (
           <li key={flight.id}>
@@ -53,7 +52,8 @@ function HeaderResultados() {
           </li>
         ))}
       </div>
-    </div>
+      
+    </>
   );
 }
 
