@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { flightInfoToBack } from '../../services/auth';
 
-
 function PriceComparator() {
   const location = useLocation();
   const { Origen, Destino, idaDate, vueltaDate } = location.state;
@@ -15,7 +14,12 @@ function PriceComparator() {
 
   const bringFlight = async () => {
     try {
-      const flightsArr = await flightInfoToBack(Origen, Destino, idaDate, vueltaDate);
+      const flightsArr = await flightInfoToBack(
+        Origen,
+        Destino,
+        idaDate,
+        vueltaDate
+      );
       setFlights(flightsArr);
 
       if (flightsArr.outgoingFlights && flightsArr.outgoingFlights.length > 0) {
@@ -44,12 +48,11 @@ function PriceComparator() {
     <div id="comparatorContent">
       <div id="Resultados">
         <div id="HrContainer">
-          <HeaderResultados/>
+          <HeaderResultados />
         </div>
         <div id="FlightsContainers">
           <FlightCard />
         </div>
-
       </div>
 
       <div id="ResumenContainer"></div>
