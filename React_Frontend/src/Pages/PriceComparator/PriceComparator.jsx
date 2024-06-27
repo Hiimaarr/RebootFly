@@ -13,11 +13,9 @@ function PriceComparator() {
   const [flightsOutGoing, setFlightsOutGoing] = useState([]);
   const [flightsReturn, setFlightsReturn] = useState([]);
   const [selectedId, setSelectedId] = useState();
-const [priceOngoing, setPriceOngoing] = useState();
-const [priceReturn, setPriceReturn] = useState();
-const [buttonClicked, setbuttonClicked] = useState(false);
-
-
+  const [priceOngoing, setPriceOngoing] = useState();
+  const [priceReturn, setPriceReturn] = useState();
+  const [buttonClicked, setbuttonClicked] = useState(false);
 
   const bringFlight = async () => {
     try {
@@ -47,15 +45,14 @@ const [buttonClicked, setbuttonClicked] = useState(false);
       setFlightsReturn([]);
     }
   };
-const stealId = (datos) =>{
-setbuttonClicked(true)
-setSelectedId(datos.id)
-setPriceOngoing(datos.outgoing)
-setPriceReturn(datos.return)
-}
+  const stealId = (datos) => {
+    setbuttonClicked(true);
+    setSelectedId(datos.id);
+    setPriceOngoing(datos.outgoing);
+    setPriceReturn(datos.return);
+  };
 
-
-
+  console.log(flightsOutGoing);
 
   useEffect(() => {
     bringFlight();
@@ -63,51 +60,55 @@ setPriceReturn(datos.return)
   return (
     <div id="comparatorContent">
       <div id="flights">
-        <div className="resultados">
-          <div className="HrContainer">
-            <HeaderResultados
-              direction={'Outbound flight'}
-              departAirport={flightsOutGoing.map((flight) => (
-                <p key={flight.id}>{flight.departureAirport.name}</p>
-              ))}
-              arriAirport={flightsOutGoing.map((flight) => (
-                <p key={flight.id}>{flight.arrivalAirport.name}</p>
-              ))}
-            />
-          </div>
+        {/* Arrival */}
 
-          <div className="flightsContainer">
-            <FlightCard
-              functionId={stealId}
-              array={flightsOutGoing}
-              vuelo="Outgoing"
-            />
-          </div>
-        </div>
-        <div className="resultados">
-          <div className="HrContainer">
-            <HeaderResultados
-              direction={'Return Flight'}
-              departAirport={flightsOutGoing.map((flight) => (
-                <p key={flight.id}>{flight.arrivalAirport.name}</p>
-              ))}
-              arriAirport={flightsOutGoing.map((flight) => (
-                <p key={flight.id}>{flight.departureAirport.name}</p>
-              ))}
-            />
-          </div>
-          <div className="flightsContainer">
-            {
+        {flightsOutGoing.length > 0 && (
+          <div className="resultados">
+            <div className="HrContainer">
+              <HeaderResultados
+                direction={'Outbound flight'}
+                departAirport={flightsOutGoing[0].departureAirport.name}
+                arriAirport={flightsOutGoing[0].arrivalAirport.name}
+              />
+            </div>
+
+            <div className="flightsContainer">
               <FlightCard
                 functionId={stealId}
-                array={flightsReturn}
-                vuelo="Return"
+                array={flightsOutGoing}
+                vuelo="Outgoing"
               />
-            }
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Departure */}
+
+        {flightsOutGoing.length > 0 && (
+          <div className="resultados">
+            <div className="HrContainer">
+              <HeaderResultados
+                direction={'Return Flight'}
+                departAirport={flightsOutGoing[0].arrivalAirport.name}
+                arriAirport={flightsOutGoing[0].departureAirport.name}
+              />
+            </div>
+            <div className="flightsContainer">
+              {
+                <FlightCard
+                  functionId={stealId}
+                  array={flightsReturn}
+                  vuelo="Return"
+                />
+              }
+            </div>
+          </div>
+        )}
       </div>
 
+      {/* Total */}
+
+      {flightsOutGoing.length > 0 &&
       <div id="ResumenContainer">
         <CardRes
           selectedId={selectedId}
@@ -116,7 +117,7 @@ setPriceReturn(datos.return)
           buttonClicked={buttonClicked}
           setbuttonClicked={setbuttonClicked}
         />
-      </div>
+      </div>}
     </div>
   );
 }

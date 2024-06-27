@@ -17,8 +17,8 @@ function CardRes({
   const [flights, setFlights] = useState([]);
   const [flightsOutGoing, setFlightsOutGoing] = useState([]);
   const [flightsReturn, setFlightsReturn] = useState([]);
-  const [flightsReturnPrice, setFlightsReturnPrice] = useState();
-  const [flightsOngoingPrice, setFlightsOngoingPrice] = useState();
+  const [flightsReturnPrice, setFlightsReturnPrice] = useState(0);
+  const [flightsOngoingPrice, setFlightsOngoingPrice] = useState(0);
 
   const seterPriceMoreThanCero = () => {
     console.log(buttonClicked);
@@ -70,45 +70,34 @@ function CardRes({
   }, []);
   const navigate = useNavigate();
   return (
-    <>
+    flightsOutGoing.length > 0 &&
       <div id="Resumen">
         <div id="Titulo">
-          <h2>Resumen</h2>
+          <h2>Booking</h2>
         </div>
         <div id="Locations">
-          ✈️{' '}
-          {flightsOutGoing.map((flight) => (
-            <p key={flight.id}>{flight.departureAirport.name}</p>
-          ))}
+          ✈️ {flightsOutGoing[0].departureAirport.name}
           <p> ⟿⟿⟿</p>
-          {flightsOutGoing.map((flight) => (
-            <p key={flight.id}>{flight.arrivalAirport.name}</p>
-          ))}
+          {flightsOutGoing[0].arrivalAirport.name}
         </div>
         <div id="Suma">
-          <p> Precio del vuelo de Ida es {flightsOngoingPrice} </p>
+          <p> Outbound Price: {flightsOngoingPrice} € </p>
           <p>
             {' '}
-            Precio del vuelo de Vuelta es
-            {flightsReturnPrice}{' '}
+            Return Price: {flightsReturnPrice} €
           </p>
-          <br /> <br />
+          <br/> <br/>
           <p> Total = {flightsReturnPrice + flightsOngoingPrice}€ </p>
-          <p>{selectedId}</p>
         </div>
-        {flightsOutGoing.map((flight) => (
-          <p key={flight.id}>
-            <Button
-              size="small"
+        <Button 
+        size="small"
               text="Take Flight"
               onClick={() => {
-                navigate('/data');
+                navigate('/data')
               }}
-            />
-          </p>
-        ))}
+        />
+
       </div>
-    </>
   );
 }
 

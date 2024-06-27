@@ -24,7 +24,7 @@
     grid-area: Profile;
     width: 1500px;
     height: 110%;
-    background-color: rgb(236, 236, 176);
+    background-color: rgba(117, 227, 247, 0.753);
     place-items: center;
     place-content: center;
     display: grid;
@@ -62,7 +62,7 @@
     margin-top: 100px;
     width: 1500px;
     height: 100%;
-    background-color: rgb(236, 236, 176);
+    background-color: rgba(117, 227, 247, 0.753);
     place-items: center;
     place-content: center;
     display: grid;
@@ -79,7 +79,6 @@
     grid-area: button;
 }
 #titleFlights {
-    background-color: rgb(236, 236, 176);
     grid-area: titleFlights;
 }
 #Oferta1 {
