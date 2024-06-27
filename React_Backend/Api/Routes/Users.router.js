@@ -11,10 +11,12 @@ const {
   updateUsers,
   deleteUsers,
   createUsers,
-  createUsersInBulk
+  createUsersInBulk,
+  getBookingFromOneUser
 } = require("../Controllers/Users.controller");
 
 router.get("", checkAuth, checkAdmin, getAllUsers);
+router.get("/:id",getBookingFromOneUser)
 router.get("/:id", checkAuth, checkAdmin, getOneUsers);
 router.put("/:id", checkAuth, checkAdmin, updateUsers);
 router.delete("/:id", deleteUsers);

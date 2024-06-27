@@ -33,6 +33,7 @@ export default function SignIn() {
     try {
       const token = await login(username, password)
       localStorage.setItem("token",token)
+      localStorage.setItem("username",username)
       navigate("/")
     } catch (error) {
       console.log(error);

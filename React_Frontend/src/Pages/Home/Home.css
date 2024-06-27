@@ -54,7 +54,7 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: rgba(236, 236, 176, 0.96);
+  background-color: rgba(117, 227, 247, 0.753);
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
 }
@@ -70,7 +70,8 @@
   margin-top: 80px;
   width: 1500px;
   height: 120%;
-  background-color: rgb(236, 236, 176);
+  background-color: rgba(117, 227, 247, 0.753);
+  border-radius: 25px;
   place-items: center;
   place-content: center;
   display: grid;
@@ -148,7 +149,8 @@
   margin-top: 180px;
   width: 1480px;
   height: 300px;
-  background-color: rgb(236, 236, 154);
+  background-color: rgba(117, 227, 247, 0.753);
+  border-radius: 25px;
   display: flex;
   flex-direction: row;
   padding: 10px;

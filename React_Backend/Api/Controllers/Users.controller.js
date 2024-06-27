@@ -1,4 +1,5 @@
 const Users = require("../Models/Users.model");
+const Bookings = require("../Models/Bookings.model")
 
 const getAllUsers = async (req, res) => {
   try {
@@ -69,6 +70,19 @@ const createUsersInBulk = async (req, res) => {
   }
 };
 
+const getBookingFromOneUser = async(req,res)=>{
+  try {
+    const getUser = await Users.findByPk(req.params.id)
+    const getBooking = await Bookings.findAll({
+      where:{
+        UserId : getUser, 
+      }
+    },include=Users)
+    return getBooking
+  } catch (error) {
+    console.log(error);
+  }
+}
 module.exports = {
   createUsersInBulk
 };
@@ -79,5 +93,6 @@ module.exports = {
   updateUsers,
   deleteUsers,
   createUsers,
-  createUsersInBulk
+  createUsersInBulk,
+  getBookingFromOneUser
 };

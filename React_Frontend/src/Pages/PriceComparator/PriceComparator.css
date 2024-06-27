@@ -1,7 +1,7 @@
 #comparatorContent {
     padding-top: 100px;
   height: 80vh;
-  background-color: blueviolet;
+  background-color:  rgba(117, 227, 247, 0.753);
   display: grid;
   grid-template-columns: 1fr 1fr 800px;
   grid-template-rows: 1fr;

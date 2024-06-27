@@ -26,18 +26,21 @@ function Data() {
               id="filled-size-normal"
               defaultValue=""
               variant="filled"
+              sx={{backgroundColor:"white"}}
             />
             <TextField
                 label="Surname"
                 id="filled-size-normal"
                 defaultValue=""
                 variant="filled"
+                sx={{backgroundColor:"white"}}
               />
             <TextField
                 label="DNI"
                 id="filled-size-normal"
                 defaultValue=""
                 variant="filled"
+                sx={{backgroundColor:"white"}}
               />
         </Box>
         
@@ -57,12 +60,14 @@ function Data() {
                 id="filled-size-normal"
                 defaultValue=""
                 variant="filled"
+                sx={{backgroundColor:"white"}}
               />
           <TextField
                 label="Confirm Email"
                 id="filled-size-normal"
                 defaultValue=""
                 variant="filled"
+                sx={{backgroundColor:"white"}}
               />
           <Button size="data" text="Continuar" onClick={()=>{navigate("/Payment")}}/>
         </Box>

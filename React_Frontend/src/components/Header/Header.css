@@ -36,6 +36,11 @@
     margin-left:2000px;
 }
 
-
+.MuiBox-root.css-i9gxme{
+    cursor:pointer;
+    border-radius: 45%;
+    border-style:solid;
+    border-color: black;
+}
 
 

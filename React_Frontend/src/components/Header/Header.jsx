@@ -22,7 +22,7 @@ function Header() {
               <div id="icon">
               <Box sx={{ flexGrow: 1 }}> 
                 <Grid xs display="flex" justifyContent="center" alignItems="center">
-                  <Avatar src="/static/images/avatar/3.jpg" onClick={()=>{navigate("/Profile")}} />
+                  <Avatar src={logo} onClick={()=>{navigate("/Profile")}} />
                </Grid>
               </Box>
               </div>

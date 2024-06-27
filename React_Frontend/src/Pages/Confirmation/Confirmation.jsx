@@ -12,12 +12,12 @@ function Confirmation (){
     const navigate = useNavigate()
     return (
         <>
-            <div id="confirmation">
+        <div id="confirmation">
                 <Box sx={{display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center'
+                    alignItems: 'center',
                     }}>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345}}>
                 <CardActionArea>
                     <CardMedia
                     component="img"
@@ -36,8 +36,8 @@ function Confirmation (){
                     <Button size ="small" text="Back to home" onClick={()=>{navigate("/")}}/>
                 </CardActions>
              </Card>
-        </Box>
-    </div>
+            </Box>
+        </div>
         </>
     )
 }

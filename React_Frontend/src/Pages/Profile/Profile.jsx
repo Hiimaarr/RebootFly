@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
+
 function Profile (){
 const navigate = useNavigate()
     return (
@@ -78,6 +79,11 @@ const navigate = useNavigate()
                 </Typography>
               </CardContent>
             <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+               Hora salida
+            </Typography>
+            </CardContent>
+            <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                 Precio ida
                 </Typography>
@@ -95,6 +101,11 @@ const navigate = useNavigate()
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     Destino vuelta
+                </Typography>
+            </CardContent>
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                Hora vuelta
                 </Typography>
             </CardContent>
             <CardContent>
