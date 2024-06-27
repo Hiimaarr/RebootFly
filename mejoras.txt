@@ -5,7 +5,44 @@
 
 2. aeropuerto: al seleccionar uno, no aparece en el select de destino el mismo y viceversa.
 ////////
+const filteredAirportsForOrigin = airports.filter(
+    (airport) => airport.id !== destination
+  );
 
+  const filteredAirportsForDestination = airports.filter(
+    (airport) => airport.id !== origin
+  );
+
+  return (
+    <div>
+      <div>
+        <label htmlFor="origin">Origen:</label>
+        <select id="origin" value={origin} onChange={handleOriginChange}>
+          <option value="">Selecciona un aeropuerto</option>
+          {filteredAirportsForOrigin.map((airport) => (
+            <option key={airport.id} value={airport.id}>
+              {airport.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="destination">Destino:</label>
+        <select id="destination" value={destination} onChange={handleDestinationChange}>
+          <option value="">Selecciona un aeropuerto</option>
+          {filteredAirportsForDestination.map((airport) => (
+            <option key={airport.id} value={airport.id}>
+              {airport.name}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+};
+
+export default AirportSelect
 ///////
 
 3. 
