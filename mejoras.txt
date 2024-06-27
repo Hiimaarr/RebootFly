@@ -1,0 +1,11 @@
+1. booking: al clicar se llama a create booking y se pasa como req.params el id del vuelo
+////////
+
+///////
+
+2. aeropuerto: al seleccionar uno, no aparece en el select de destino el mismo y viceversa.
+////////
+
+///////
+
+3. 

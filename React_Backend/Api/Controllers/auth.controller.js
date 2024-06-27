@@ -86,21 +86,15 @@ const insertFly = async(req,res)=>{
 }
 const bulkSignup = async (req, res) => {
   try {
-    // Obtener los usuarios a registrar desde el cuerpo de la solicitud
     const usersToCreate = req.body.users;
 
-    // Validar que se reciban datos de usuarios
     if (!usersToCreate || usersToCreate.length === 0) {
       return res.status(400).json({ message: "No users provided" });
     }
 
-    // Procesar cada usuario para encriptar la contraseña y crear en la base de datos
-    const salt = bcrypt.genSaltSync(10); // Generar salt para bcrypt
     const usersPromises = usersToCreate.map(async (userData) => {
-      // Encriptar contraseña
       const hashedPassword = bcrypt.hashSync(userData.password, salt);
 
-      // Crear usuario en la base de datos
       await Users.create({
         name: userData.name,
         surname: userData.surname,
