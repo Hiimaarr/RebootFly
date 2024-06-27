@@ -75,7 +75,7 @@ const createBooking = async (req, res) => {
         email,
         phone,
         userId: user ? user.id : null
-      };
+      };//cambiar por el número de userid en hardcode
 
     
       const newBooking = await Booking.create(bookingData);
