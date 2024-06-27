@@ -1,7 +1,9 @@
 import "./FlightCard.css"
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { flightInfoToBack } from '../../services/auth';
+import Button from "../Button/Button"
+
 
 function FlightCard() {
   const location = useLocation();
@@ -9,6 +11,7 @@ function FlightCard() {
   const [flights, setFlights] = useState([]);
   const [flightsOutGoing, setFlightsOutGoing] = useState([]);
   const [flightsReturn, setFlightsReturn] = useState([]);
+  const[getPrice,setGetPrice]=useState()
 
   const bringFlight = async () => {
     try {
@@ -36,28 +39,36 @@ function FlightCard() {
   useEffect(() => {
     bringFlight();
   }, []);
+  const navigate = useNavigate()
   return (
          <div id="FlightCArd">
                {flightsOutGoing.map((flight) => (
           <li key={flight.id}>
             Code:{flight.code}
           </li>
-        ))}
-        {flightsOutGoing.map((flight) => (
-          <li key={flight.id}>
-            Date:{flight.departure_time.substr(0,10)}
-          </li>
-        ))}
-        {flightsOutGoing.map((flight) => (
-          <li key={flight.id}>
-            Time:{flight.departure_time.substr(11,8)}
-          </li>
-        ))}
-        {flightsOutGoing.map((flight) => (
-          <li key={flight.id}>
-            Price:{flight.price} €
-          </li>
-        ))}
+          ))}
+          {flightsOutGoing.map((flight) => (
+              <li key={flight.id}>
+                Date:{flight.departure_time.substr(0,10)}
+              </li>
+          ))}
+          {flightsOutGoing.map((flight) => (
+              <li key={flight.id}>
+                Time:{flight.departure_time.substr(11,8)}
+              </li>
+          ))}
+          {flightsOutGoing.map((flight) => (
+              <li key={flight.id}>
+                Price:{flight.price} €
+              </li>
+          ))}
+          {flightsOutGoing.map((flight) => (
+              <li key={flight.id}>
+                <Button size="small" text="Take Flight" />
+              </li>
+          ))}
+          
+          
         </div>
       
   )

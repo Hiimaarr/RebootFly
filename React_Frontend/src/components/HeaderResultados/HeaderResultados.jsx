@@ -45,6 +45,7 @@ function HeaderResultados() {
           <li key={flight.id}>
             Departure: {flight.departureAirport.name} 
           </li>
+          
         ))}
         {flightsOutGoing.map((flight) => (
           <li key={flight.id}>
