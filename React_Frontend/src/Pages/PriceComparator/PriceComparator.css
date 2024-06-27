@@ -1,9 +1,9 @@
 #comparatorContent {
   padding-top: 100px;
   height: 160vh;
-  background-color: blueviolet;
+  background-color: rgb(98, 245, 237);
   display: grid;
-  grid-template-columns: 1fr 800px;
+  grid-template-columns: 1fr  800px;
   gap: 0px 0px;
   grid-template-areas:
     'Flights Resumen';
@@ -36,7 +36,7 @@
 }
 
 .flightsContainer {
-  background-color: rgb(122, 30, 17);
+  background-color: rgb(255, 255, 255);
   height: 100%;
   display: flex;
   padding-top: 20px;
@@ -60,7 +60,7 @@
 }
 
 #FlightCard {
-  background-color: blue;
+  background-color: rgba(89, 214, 223, 0.986);
   width: 80%;
   display: flex;
   flex-direction:row;
