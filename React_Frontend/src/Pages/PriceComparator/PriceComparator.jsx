@@ -12,10 +12,21 @@ function PriceComparator() {
   const [flights, setFlights] = useState([]);
   const [flightsOutGoing, setFlightsOutGoing] = useState([]);
   const [flightsReturn, setFlightsReturn] = useState([]);
+  const [selectedId, setSelectedId] = useState();
+const [priceOngoing, setPriceOngoing] = useState();
+const [priceReturn, setPriceReturn] = useState();
+const [buttonClicked, setbuttonClicked] = useState(false);
+
+
 
   const bringFlight = async () => {
     try {
-      const flightsArr = await flightInfoToBack(Origen, Destino, idaDate, vueltaDate);
+      const flightsArr = await flightInfoToBack(
+        Origen,
+        Destino,
+        idaDate,
+        vueltaDate
+      );
       setFlights(flightsArr);
 
       if (flightsArr.outgoingFlights && flightsArr.outgoingFlights.length > 0) {
@@ -36,27 +47,74 @@ function PriceComparator() {
       setFlightsReturn([]);
     }
   };
+const stealId = (datos) =>{
+setbuttonClicked(true)
+setSelectedId(datos.id)
+setPriceOngoing(datos.outgoing)
+setPriceReturn(datos.return)
+}
+
+
+
 
   useEffect(() => {
     bringFlight();
   }, []);
   return (
     <div id="comparatorContent">
-      <div id="Resultados">
-        <div id="HrContainer">
-          <HeaderResultados/>
+      <div id="flights">
+        <div className="resultados">
+          <div className="HrContainer">
+            <HeaderResultados
+              direction={'Outbound flight'}
+              departAirport={flightsOutGoing.map((flight) => (
+                <p key={flight.id}>{flight.departureAirport.name}</p>
+              ))}
+              arriAirport={flightsOutGoing.map((flight) => (
+                <p key={flight.id}>{flight.arrivalAirport.name}</p>
+              ))}
+            />
+          </div>
+
+          <div className="flightsContainer">
+            <FlightCard
+              functionId={stealId}
+              array={flightsOutGoing}
+              vuelo="Outgoing"
+            />
+          </div>
         </div>
-        <div id="FlightsContainers">
-          <FlightCard />
+        <div className="resultados">
+          <div className="HrContainer">
+            <HeaderResultados
+              direction={'Return Flight'}
+              departAirport={flightsOutGoing.map((flight) => (
+                <p key={flight.id}>{flight.arrivalAirport.name}</p>
+              ))}
+              arriAirport={flightsOutGoing.map((flight) => (
+                <p key={flight.id}>{flight.departureAirport.name}</p>
+              ))}
+            />
+          </div>
+          <div className="flightsContainer">
+            {
+              <FlightCard
+                functionId={stealId}
+                array={flightsReturn}
+                vuelo="Return"
+              />
+            }
+          </div>
         </div>
       </div>
 
       <div id="ResumenContainer">
         <CardRes
-          Name={exampleFlight.departureAirport.name}
-          Name2={exampleFlight.arrivalAirport.name}
-          Price={exampleFlight.departureAirport.price}
-          Price2={exampleFlight.arrivalAirport.price}
+          selectedId={selectedId}
+          priceOngoing={priceOngoing}
+          priceReturn={priceReturn}
+          buttonClicked={buttonClicked}
+          setbuttonClicked={setbuttonClicked}
         />
       </div>
     </div>

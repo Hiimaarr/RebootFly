@@ -1,21 +1,24 @@
-import "./FlightCard.css"
-import { useNavigate, useLocation } from 'react-router-dom';
+import './FlightCard.css';
+import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { flightInfoToBack } from '../../services/auth';
-import Button from "../Button/Button"
+import Button from '../Button/Button';
 
-
-function FlightCard() {
-  const location = useLocation();
-  const { Origen, Destino, idaDate, vueltaDate } = location.state;
-  const [flights, setFlights] = useState([]);
+function FlightCard({ array, functionId, vuelo }) {
+  /*  const location = useLocation(); */
+  /* const { Origen, Destino, idaDate, vueltaDate } = location.state; */
+  /* const [flights, setFlights] = useState([]);
   const [flightsOutGoing, setFlightsOutGoing] = useState([]);
-  const [flightsReturn, setFlightsReturn] = useState([]);
-  const[getPrice,setGetPrice]=useState()
+  const [flightsReturn, setFlightsReturn] = useState([]); */
 
-  const bringFlight = async () => {
+  /* const bringFlight = async () => {
     try {
-      const flightsArr = await flightInfoToBack(Origen, Destino, idaDate, vueltaDate);
+      const flightsArr = await flightInfoToBack(
+        Origen,
+        Destino,
+        idaDate,
+        vueltaDate
+      );
       setFlights(flightsArr);
 
       if (flightsArr.outgoingFlights && flightsArr.outgoingFlights.length > 0) {
@@ -34,44 +37,39 @@ function FlightCard() {
       setFlightsOutGoing([]);
       setFlightsReturn([]);
     }
+  }; */
+
+  /* useEffect(() => {
+    bringFlight();
+  }, []); */
+
+  const objectFlight = (data) => {
+    if (vuelo === 'Return') {
+      functionId({ id: data.id, outgoing: 0, return:  data.price  });
+    } else {
+      functionId({ id: data.id, outgoing: data.price, return: 0 });
+    }
   };
 
-  useEffect(() => {
-    bringFlight();
-  }, []);
-  const navigate = useNavigate()
   return (
-         <div id="FlightCArd">
-               {flightsOutGoing.map((flight) => (
-          <li key={flight.id}>
-            Code:{flight.code}
-          </li>
-          ))}
-          {flightsOutGoing.map((flight) => (
-              <li key={flight.id}>
-                Date:{flight.departure_time.substr(0,10)}
-              </li>
-          ))}
-          {flightsOutGoing.map((flight) => (
-              <li key={flight.id}>
-                Time:{flight.departure_time.substr(11,8)}
-              </li>
-          ))}
-          {flightsOutGoing.map((flight) => (
-              <li key={flight.id}>
-                Price:{flight.price} €
-              </li>
-          ))}
-          {flightsOutGoing.map((flight) => (
-              <li key={flight.id}>
-                <Button size="small" text="Take Flight" />
-              </li>
-          ))}
-          
-          
+    <div style={{ width: '40vw', marginLeft: '140px' }}>
+      {array.map((flight) => (
+        <div id="FlightCard" key={flight.id}>
+          <li key={flight.id}>{flight.code}</li>
+          <li key={flight.id}>{flight.departure_time.substr(0, 10)}</li>
+          <li key={flight.id}>{flight.departure_time.substr(11, 8)}</li>
+          <li key={flight.id}>{flight.price} €</li>
+          <Button
+            size="small"
+            text="Take Flight"
+            onClick={() => {
+              objectFlight({ id: flight.id, price: flight.price });
+            }}
+          />
         </div>
-      
-  )
+      ))}
+    </div>
+  );
 }
 
 export default FlightCard;

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { flightInfoToBack } from '../../services/auth';
 
-function HeaderResultados() {
+function HeaderResultados({direction,departAirport,arriAirport}) {
   const location = useLocation();
   const { Origen, Destino, idaDate, vueltaDate } = location.state;
   const [flights, setFlights] = useState([]);
@@ -39,18 +39,12 @@ function HeaderResultados() {
   }, []);
   return (
     <>
+      <div id="HeaderResultados">
+      <p>{direction}</p>
+      </div>
       <div id='siuu'>
-      {flightsOutGoing.map((flight) => (
-          <li key={flight.id}>
-            Departure: {flight.departureAirport.name} 
-          </li>
-          
-        ))}
-        {flightsOutGoing.map((flight) => (
-          <li key={flight.id}>
-            Arrival: {flight.arrivalAirport.name}
-          </li>
-        ))}
+        <p> {departAirport}</p>
+        <p>{arriAirport}</p>
       </div>
       
     </>
