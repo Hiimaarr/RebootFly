@@ -1,6 +1,48 @@
 1. booking: al clicar se llama a create booking y se pasa como req.params el id del vuelo
 ////////
+import React, { useState, useEffect } from 'react';
 
+const FlightSelect = () => {
+  const [flights, setFlights] = useState([]);
+  const [selectedFlight, setSelectedFlight] = useState('');
+
+  useEffect(() => {
+    // Supongamos que fetchFlights es una función que obtiene los vuelos de una API
+    const fetchFlights = async () => {
+      try {
+        const response = await fetch('URL_DE_TU_API');
+        const data = await response.json();
+        setFlights(data);
+      } catch (error) {
+        console.error('Error fetching flights:', error);
+      }
+    };
+
+    fetchFlights();
+  }, []);
+
+  const handleFlightChange = (event) => {
+    const flightId = event.target.value;
+    setSelectedFlight(flightId);
+    localStorage.setItem('selectedFlightId', flightId);  // Guarda el ID del vuelo en localStorage
+  };
+
+  return (
+    <div>
+      <label htmlFor="flight">Selecciona un vuelo:</label>
+      <select id="flight" value={selectedFlight} onChange={handleFlightChange}>
+        <option value="">Selecciona un vuelo</option>
+        {flights.map((flight) => (
+          <option key={flight.id} value={flight.id}>
+            {flight.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
+export default FlightSelect;
 ///////
 
 2. aeropuerto: al seleccionar uno, no aparece en el select de destino el mismo y viceversa.
