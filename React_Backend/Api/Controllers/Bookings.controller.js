@@ -1,6 +1,7 @@
 const Booking = require("../Models/Bookings.model");
 const Flight = require("../Models/Flights.model");
-const FlightBooking = require("../Models/FlightBookings.model")
+const FlightBooking = require("../Models/FlightBookings.model");
+const Users = require("../Models/Users.model");
 
 const getAllBookings = async (req, res) => {
   try {
@@ -26,8 +27,6 @@ const getOneBooking = async (req, res) => {
 
 const updateBooking = async (req, res) => {
   try {
-
-    
     const flight = await Flight.findByPk(req.params.id);
     const updatedBooking = await Booking.update(req.body, {
       where: {
@@ -47,51 +46,17 @@ const deleteBooking = async (req, res) => {
         id: req.params.id,
       },
     });
-   const flight = await Flight.findByPk(req.params.id);
+    const flight = await Flight.findByPk(req.params.id);
     flight.occupiedPlaces -= 1;
-    return res.status(200).json({deletedBooking, flight});
+    return res.status(200).json({ deletedBooking, flight });
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
   }
 };
-
-/*const createBooking = async (req, res) => {
-  try {
- 
-    const flight = await Flight.findByPk(req.params.id);
-
-    if (!flight) {
-      return res.status(404).json({ error: "Flight not found" });
-    }
-
-    if (flight.occupiedPlaces < flight.capacity) {
-      
-      const createBooking = await Booking.create(req.body);
-
-      await flight.addBooking(createBooking);
-
-      flight.occupiedPlaces += 1;
-      const flightBooking = await Flight.findOne({
-        where: {
-          id: req.params.id,
-        },
-      });;
-    console.log(flightBooking)
-
-      return res.status(200).json({ booking: createBooking, flightUpdated: flight });
-    } else {
-      return res.status(400).json({ error: "No available seats on this flight" });
-    }
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: error.message });
-  }
-};*/
-
 const createBooking = async (req, res) => {
   try {
- 
+    const { name, surname, dni, email, phone, userId } = req.body;
     const flight = await Flight.findByPk(req.params.id);
 
     if (!flight) {
@@ -99,29 +64,37 @@ const createBooking = async (req, res) => {
     }
 
     if (flight.occupiedPlaces < flight.capacity) {
-      
-      const createBooking = await Booking.create(req.body);
+      const user = await Users.findOne({ where: { dni } });
 
-      await flight.addBooking(createBooking);
+      const bookingData = {
+        name,
+        surname,
+        dni,
+        email,
+        phone,
+        userId,
+      };
+
+      const newBooking = await Booking.create(bookingData);
+
+      await flight.addBooking(newBooking);
 
       flight.occupiedPlaces += 1;
-      const flightBooking = await Flight.findOne({
-        where: {
-          id: req.params.id,
-        },
-      });;
-    console.log(flightBooking)
+      await flight.save();
 
-      return res.status(200).json({ booking: createBooking, flightUpdated: flight });
+      return res
+        .status(200)
+        .json({ booking: newBooking, flightUpdated: flight });
     } else {
-      return res.status(400).json({ error: "No available seats on this flight" });
+      return res
+        .status(400)
+        .json({ error: "No available seats on this flight" });
     }
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: error.message });
   }
 };
- 
 
 module.exports = {
   getAllBookings,

@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { flightInfoToBack } from '../../services/auth';
 
+
 function PriceComparator() {
   const location = useLocation();
   const { Origen, Destino, idaDate, vueltaDate } = location.state;
@@ -51,9 +52,7 @@ function PriceComparator() {
 
       </div>
 
-      <div id='ResumenContainer'>
-
-      </div>
+      <div id="ResumenContainer"></div>
     </div>
   );
 }

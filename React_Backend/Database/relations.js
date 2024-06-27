@@ -54,7 +54,9 @@ const initializeRelations = () => {
 
     //
     Users.hasMany(Bookings);
-    Bookings.belongsTo(Users);
+    Bookings.belongsTo(Users, {
+      foreignKey: "userId",
+    });
   } catch (error) {
     console.log(error);
   }

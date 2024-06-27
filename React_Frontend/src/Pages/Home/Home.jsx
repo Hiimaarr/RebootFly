@@ -10,10 +10,10 @@ import { Box } from '@mui/material';
 import { flightInfoToBack } from '../../services/auth';
 import { useState, useEffect } from 'react';
 import { getAirports } from '../../services/airports';
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
-const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchAirports = async () => {
       try {
@@ -59,17 +59,10 @@ const navigate = useNavigate()
         idaDate,
         vueltaDate
       );
-      navigate("/price", { state: { Origen, Destino, idaDate, vueltaDate } })
+      navigate('/price', { state: { Origen, Destino, idaDate, vueltaDate } });
     } catch (error) {
       console.log(error);
     }
-    /* try {
-      const result = await flightInfoToBack(Origen,Destino,Ida,Vuelta)
-      console.log(result)
-      //navigate("/Price")
-    } catch (error) {
-      console.log(error);
-    }*/
   };
   return (
     <>
@@ -119,7 +112,7 @@ const navigate = useNavigate()
                   <option value="1"> 1 passenger</option>
                   <option> 2 passenger</option>
                 </select>
-              </label> 
+              </label>
               <button id="Lupa" type="submit">
                 🔎
               </button>

@@ -17,7 +17,6 @@ const Bookings = sequelize.define(
     dni: {
       type: DataTypes.STRING(9),
       allowNull: false,
-      unique: true,
       validate: {
         isDNI(value) {
           const dniPattern = /^[0-9]{8}[A-Z]$/;

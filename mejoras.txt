@@ -1,0 +1,133 @@
+1. booking: al clicar se llama a create booking y se pasa como req.params el id del vuelo
+////////
+import React, { useState, useEffect } from 'react';
+
+const FlightSelect = () => {
+  const [flights, setFlights] = useState([]);
+  const [selectedFlight, setSelectedFlight] = useState('');
+
+  useEffect(() => {
+    // Supongamos que fetchFlights es una función que obtiene los vuelos de una API
+    const fetchFlights = async () => {
+      try {
+        const response = await fetch('URL_DE_TU_API');
+        const data = await response.json();
+        setFlights(data);
+      } catch (error) {
+        console.error('Error fetching flights:', error);
+      }
+    };
+
+    fetchFlights();
+  }, []);
+
+  const handleFlightChange = (event) => {
+    const flightId = event.target.value;
+    setSelectedFlight(flightId);
+    localStorage.setItem('selectedFlightId', flightId);  // Guarda el ID del vuelo en localStorage
+  };
+
+  return (
+    <div>
+      <label htmlFor="flight">Selecciona un vuelo:</label>
+      <select id="flight" value={selectedFlight} onChange={handleFlightChange}>
+        <option value="">Selecciona un vuelo</option>
+        {flights.map((flight) => (
+          <option key={flight.id} value={flight.id}>
+            {flight.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
+export default FlightSelect;
+
+
+
+página Booking:
+
+import React, { useState, useEffect } from 'react';
+
+const FlightDetails = () => {
+  const [flightDetails, setFlightDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchFlightDetails = async () => {
+      const flightId = localStorage.getItem('selectedFlightId');  // Recupera el ID del vuelo desde localStorage
+
+      if (flightId) {
+        try {
+          const response = await fetch(`URL_DE_TU_API/${flightId}`);
+          const data = await response.json();
+          setFlightDetails(data);
+        } catch (error) {
+          console.error('Error fetching flight details:', error);
+        }
+      }
+    };
+
+    fetchFlightDetails();
+  }, []);
+
+  if (!flightDetails) {
+    return <div>Cargando detalles del vuelo...</div>;
+  }
+
+  return (
+    <div>
+      <h1>Detalles del Vuelo</h1>
+      <p>ID: {flightDetails.id}</p>
+      <p>Nombre: {flightDetails.name}</p>
+      {/* Muestra otros detalles del vuelo según sea necesario */}
+    </div>
+  );
+};
+
+export default FlightDetails;
+///////
+
+2. aeropuerto: al seleccionar uno, no aparece en el select de destino el mismo y viceversa.
+////////
+const filteredAirportsForOrigin = airports.filter(
+    (airport) => airport.id !== destination
+  );
+
+  const filteredAirportsForDestination = airports.filter(
+    (airport) => airport.id !== origin
+  );
+
+  return (
+    <div>
+      <div>
+        <label htmlFor="origin">Origen:</label>
+        <select id="origin" value={origin} onChange={handleOriginChange}>
+          <option value="">Selecciona un aeropuerto</option>
+          {filteredAirportsForOrigin.map((airport) => (
+            <option key={airport.id} value={airport.id}>
+              {airport.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="destination">Destino:</label>
+        <select id="destination" value={destination} onChange={handleDestinationChange}>
+          <option value="">Selecciona un aeropuerto</option>
+          {filteredAirportsForDestination.map((airport) => (
+            <option key={airport.id} value={airport.id}>
+              {airport.name}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+};
+
+export default AirportSelect
+///////
+
+3. 
